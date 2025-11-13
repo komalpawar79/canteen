@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #2c3e50;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark {
+  background-color: #1a1a1a;
+  color: #ecf0f1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f0b32f;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d99a27;
+}
+
+/* Smooth transitions */
+a, button {
+  transition: all 0.3s ease;
+}
+
+/* Focus states */
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid #f0b32f;
+  outline-offset: 2px;
+}
+
+/* Loading animation */
+.loading {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Card hover effect */
+.card-hover {
+  @apply transition-all duration-300 hover:shadow-premium hover:scale-105;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-primary-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-primary-600 transition-colors;
+}
+
+.btn-secondary {
+  @apply bg-secondary-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-secondary-600 transition-colors;
+}
+
+.btn-outline {
+  @apply border-2 border-primary-500 text-primary-500 px-6 py-2 rounded-lg font-semibold hover:bg-primary-50 transition-colors;
+}
+
+/* Badge styles */
+.badge {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.badge-primary {
+  @apply bg-primary-100 text-primary-800;
+}
+
+.badge-secondary {
+  @apply bg-secondary-100 text-secondary-800;
+}
+
+.badge-danger {
+  @apply bg-red-100 text-red-800;
+}
+
+.badge-success {
+  @apply bg-green-100 text-green-800;
+}
