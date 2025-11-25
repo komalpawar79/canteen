@@ -9,12 +9,19 @@ import useAuthStore from '../store/authStore';
 const OrderPage = () => {
   const navigate = useNavigate();
   const { cart, totalPrice, clearCart, calculateTotal, updateQuantity, removeFromCart } = useCartStore();
-  const { user, token } = useAuthStore();
+  const { user, token, isAuthenticated } = useAuthStore();
   const [orderMode, setOrderMode] = useState('dine-in');
   const [paymentMethod, setPaymentMethod] = useState('card');
   const [specialRequests, setSpecialRequests] = useState('');
   const [showSummary, setShowSummary] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // ✅ Auth Guard - Redirect if not authenticated
+  useEffect(() => {
+    if (!isAuthenticated || !user) {
+      navigate('/login', { replace: true });
+    }
+  }, [isAuthenticated, user, navigate]);
 
   // Calculate total when component mounts or cart changes
   useEffect(() => {
@@ -139,6 +146,18 @@ const OrderPage = () => {
       setLoading(false);
     }
   };
+
+  // ✅ If not authenticated, show loading while redirecting
+  if (!isAuthenticated || !user) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto mb-4"></div>
+          <p className="text-gray-600 dark:text-gray-400 font-semibold">Redirecting to login...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">

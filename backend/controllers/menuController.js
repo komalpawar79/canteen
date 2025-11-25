@@ -1,80 +1,210 @@
 import MenuItem from '../models/MenuItem.js';
 import Canteen from '../models/Canteen.js';
+import ApiResponse from '../utils/apiResponse.js';
 
+/**
+ * Get menu items by canteen ID
+ * Query params: cuisine, dietary, category, sortBy
+ */
 export const getMenuByCanteen = async (req, res) => {
   try {
     const { canteenId } = req.params;
     const { cuisine, dietary, category, sortBy } = req.query;
 
-    let query = { canteen: canteenId, isAvailable: true };
+    // Validate canteen exists
+    const canteen = await Canteen.findById(canteenId);
+    if (!canteen) {
+      return res.status(404).json(
+        new ApiResponse(404, null, 'Canteen not found')
+      );
+    }
 
+    // Build query
+    let query = { canteen: canteenId, isAvailable: true };
+    
     if (cuisine) query.cuisine = cuisine;
     if (dietary) query.dietary = dietary;
     if (category) query.category = category;
 
-    let items = MenuItem.find(query);
+    // Build sort
+    let sortOptions = {};
+    if (sortBy === 'price') sortOptions = { price: 1 };
+    if (sortBy === 'rating') sortOptions = { rating: -1 };
+    if (sortBy === 'popular') sortOptions = { ordersCount: -1 };
+    if (sortBy === 'newest') sortOptions = { createdAt: -1 };
 
-    if (sortBy === 'price') items = items.sort({ price: 1 });
-    if (sortBy === 'rating') items = items.sort({ rating: -1 });
-    if (sortBy === 'popular') items = items.sort({ ordersCount: -1 });
+    // Fetch menu items
+    const menuItems = await MenuItem.find(query)
+      .sort(sortOptions)
+      .populate('canteen', 'name location');
 
-    const menuItems = await items.populate('canteen');
-
-    res.json({
-      success: true,
-      count: menuItems.length,
-      items: menuItems
-    });
+    res.status(200).json(
+      new ApiResponse(200, {
+        count: menuItems.length,
+        items: menuItems,
+        canteen: canteen
+      }, 'Menu items fetched successfully')
+    );
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('Error in getMenuByCanteen:', error);
+    res.status(500).json(
+      new ApiResponse(500, null, `Error fetching menu: ${error.message}`)
+    );
   }
 };
 
+/**
+ * Get menu item by ID
+ */
 export const getMenuItemById = async (req, res) => {
   try {
-    const item = await MenuItem.findById(req.params.id).populate('canteen');
+    const item = await MenuItem.findById(req.params.id).populate('canteen', 'name location');
+    
     if (!item) {
-      return res.status(404).json({ error: 'Menu item not found' });
+      return res.status(404).json(
+        new ApiResponse(404, null, 'Menu item not found')
+      );
     }
-    res.json({ success: true, item });
+
+    res.status(200).json(
+      new ApiResponse(200, { item }, 'Menu item fetched successfully')
+    );
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('Error in getMenuItemById:', error);
+    res.status(500).json(
+      new ApiResponse(500, null, `Error fetching menu item: ${error.message}`)
+    );
   }
 };
 
+/**
+ * Search menu items across all canteens or specific canteen
+ */
 export const searchMenu = async (req, res) => {
   try {
-    const { q } = req.query;
-    
-    const items = await MenuItem.find({
+    const { q, canteenId } = req.query;
+
+    if (!q || q.trim().length === 0) {
+      return res.status(400).json(
+        new ApiResponse(400, null, 'Search query is required')
+      );
+    }
+
+    let query = {
+      isAvailable: true,
       $or: [
         { name: { $regex: q, $options: 'i' } },
         { description: { $regex: q, $options: 'i' } },
         { tags: { $in: [new RegExp(q, 'i')] } }
-      ],
-      isAvailable: true
-    }).limit(20);
+      ]
+    };
 
-    res.json({ success: true, items });
+    // Filter by canteen if specified
+    if (canteenId) {
+      query.canteen = canteenId;
+    }
+
+    const items = await MenuItem.find(query)
+      .limit(20)
+      .populate('canteen', 'name location');
+
+    res.status(200).json(
+      new ApiResponse(200, {
+        count: items.length,
+        items
+      }, 'Search completed successfully')
+    );
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('Error in searchMenu:', error);
+    res.status(500).json(
+      new ApiResponse(500, null, `Error searching menu: ${error.message}`)
+    );
   }
 };
 
+/**
+ * Get top recommendations for a canteen
+ */
 export const getRecommendations = async (req, res) => {
   try {
     const { canteenId } = req.params;
+    const limit = parseInt(req.query.limit) || 8;
 
-    const topItems = await MenuItem.find({ 
+    // Validate canteen exists
+    const canteen = await Canteen.findById(canteenId);
+    if (!canteen) {
+      return res.status(404).json(
+        new ApiResponse(404, null, 'Canteen not found')
+      );
+    }
+
+    const topItems = await MenuItem.find({
       canteen: canteenId,
-      isAvailable: true,
-      tags: 'popular'
+      isAvailable: true
     })
-      .sort({ ordersCount: -1 })
-      .limit(8);
+      .sort({ ordersCount: -1, rating: -1 })
+      .limit(limit)
+      .populate('canteen', 'name location');
 
-    res.json({ success: true, recommendations: topItems });
+    res.status(200).json(
+      new ApiResponse(200, {
+        count: topItems.length,
+        recommendations: topItems
+      }, 'Recommendations fetched successfully')
+    );
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('Error in getRecommendations:', error);
+    res.status(500).json(
+      new ApiResponse(500, null, `Error fetching recommendations: ${error.message}`)
+    );
+  }
+};
+
+/**
+ * Get all available menu items (no filter)
+ */
+export const getAllMenuItems = async (req, res) => {
+  try {
+    const items = await MenuItem.find({ isAvailable: true })
+      .populate('canteen', 'name location');
+
+    res.status(200).json(
+      new ApiResponse(200, {
+        count: items.length,
+        items
+      }, 'All menu items fetched successfully')
+    );
+  } catch (error) {
+    console.error('Error in getAllMenuItems:', error);
+    res.status(500).json(
+      new ApiResponse(500, null, `Error fetching menu items: ${error.message}`)
+    );
+  }
+};
+
+/**
+ * Get menu items by category
+ */
+export const getMenuByCategory = async (req, res) => {
+  try {
+    const { category } = req.params;
+
+    const items = await MenuItem.find({ 
+      category, 
+      isAvailable: true 
+    })
+      .populate('canteen', 'name location');
+
+    res.status(200).json(
+      new ApiResponse(200, {
+        count: items.length,
+        items
+      }, `Menu items in ${category} fetched successfully`)
+    );
+  } catch (error) {
+    console.error('Error in getMenuByCategory:', error);
+    res.status(500).json(
+      new ApiResponse(500, null, `Error fetching menu by category: ${error.message}`)
+    );
   }
 };

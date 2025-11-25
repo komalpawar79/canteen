@@ -1,17 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FiEdit2, FiLogOut } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../store/authStore';
 
 const ProfilePage = () => {
-  const { user, logout } = useAuthStore();
+  const { user, logout, isAuthenticated } = useAuthStore();
+  const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
+
+  // ✅ Auth Guard - Redirect to login if not authenticated
+  useEffect(() => {
+    if (!isAuthenticated || !user) {
+      navigate('/login', { replace: true });
+    }
+  }, [isAuthenticated, user, navigate]);
 
   const orderHistory = [
     { id: 1, date: 'Nov 8, 2025', items: 'Butter Chicken, Naan', amount: '₹380', status: 'Completed' },
     { id: 2, date: 'Nov 6, 2025', items: 'Masala Dosa, Sambar', amount: '₹120', status: 'Completed' },
     { id: 3, date: 'Nov 4, 2025', items: 'Paneer Tikka, Coke', amount: '₹250', status: 'Completed' },
   ];
+
+  // ✅ If not authenticated, show loading while redirecting
+  if (!isAuthenticated || !user) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto mb-4"></div>
+          <p className="text-gray-600 dark:text-gray-400 font-semibold">Redirecting to login...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">

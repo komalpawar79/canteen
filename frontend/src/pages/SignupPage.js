@@ -164,6 +164,37 @@ const SignupPage = () => {
               </div>
             </div>
 
+            {/* Role Selector */}
+            <div>
+              <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
+                Account Type
+              </label>
+              <div className="grid grid-cols-2 gap-4">
+                <label className="flex items-center p-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer hover:border-primary-500 transition" style={{ borderColor: formData.role === 'student' ? '#f0b32f' : undefined }}>
+                  <input
+                    type="radio"
+                    name="role"
+                    value="student"
+                    checked={formData.role === 'student'}
+                    onChange={handleChange}
+                    className="w-4 h-4 accent-primary-500"
+                  />
+                  <span className="ml-3 font-semibold text-dark dark:text-white">👨‍🎓 Student</span>
+                </label>
+                <label className="flex items-center p-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer hover:border-primary-500 transition" style={{ borderColor: formData.role === 'staff' ? '#f0b32f' : undefined }}>
+                  <input
+                    type="radio"
+                    name="role"
+                    value="staff"
+                    checked={formData.role === 'staff'}
+                    onChange={handleChange}
+                    className="w-4 h-4 accent-primary-500"
+                  />
+                  <span className="ml-3 font-semibold text-dark dark:text-white">👨‍💼 Staff</span>
+                </label>
+              </div>
+            </div>
+
             {/* Phone & Department */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>

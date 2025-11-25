@@ -143,10 +143,76 @@ export const updateProfile = async (req, res) => {
   }
 };
 
+export const setupAdmin = async (req, res) => {
+  try {
+    // Check if any admin already exists
+    const existingAdmin = await User.findOne({ role: 'admin' });
+    if (existingAdmin) {
+      return res.status(400).json({
+        success: false,
+        error: 'Admin user already exists. Cannot create another admin.'
+      });
+    }
+
+    const { name, email, password, universityId } = req.body;
+
+    // Validate required fields
+    if (!name || !email || !password || !universityId) {
+      return res.status(400).json({
+        success: false,
+        error: 'Please provide name, email, password, and universityId'
+      });
+    }
+
+    // Check if email already exists
+    let user = await User.findOne({ email });
+    if (user) {
+      return res.status(400).json({
+        success: false,
+        error: 'Email already registered'
+      });
+    }
+
+    // Create admin user
+    user = new User({
+      name,
+      email,
+      password,
+      universityId,
+      role: 'admin',
+      department: 'Administration',
+      isVerified: true,
+      isActive: true
+    });
+
+    await user.save();
+
+    const token = generateToken(user._id);
+    res.status(201).json({
+      success: true,
+      message: 'Admin user created successfully',
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role
+      }
+    });
+  } catch (error) {
+    console.error('Setup admin error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message || 'Error creating admin user'
+    });
+  }
+};
+
 export default {
   signup,
   login,
   logout,
   getMe,
-  updateProfile
+  updateProfile,
+  setupAdmin
 };

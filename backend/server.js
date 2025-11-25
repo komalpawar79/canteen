@@ -22,15 +22,13 @@ const app = express();
 app.use(helmet());
 app.use(cors({ 
   origin: (origin, callback) => {
-    const allowedOrigins = [
-      'http://localhost:3000',
-      'http://localhost:3001',
-      process.env.FRONTEND_URL || 'http://localhost:3000'
-    ];
-    if (!origin || allowedOrigins.includes(origin)) {
+    // Allow all localhost origins in development
+    if (!origin || origin.includes('localhost') || origin.includes('127.0.0.1')) {
+      callback(null, true);
+    } else if (origin === process.env.FRONTEND_URL) {
       callback(null, true);
     } else {
-      callback(new Error('CORS not allowed'));
+      callback(null, true); // Allow in development
     }
   },
   credentials: true,
