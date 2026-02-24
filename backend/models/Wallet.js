@@ -23,8 +23,8 @@ const walletSchema = new mongoose.Schema(
     },
     transactions: [
       {
-        type: {
-          type: String,
+        type: {  // Field name: type of transaction
+          type: String,  // Mongoose type declaration
           enum: ['credit', 'debit'],
           required: true,
         },

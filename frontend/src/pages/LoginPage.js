@@ -12,7 +12,7 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [userType, setUserType] = useState('student');
   const navigate = useNavigate();
-  const { login } = useAuthStore();
+  const { login, user } = useAuthStore();
 
   const handleChange = (e) => {
     setFormData({
@@ -29,7 +29,17 @@ const LoginPage = () => {
       const result = await login(formData.email, formData.password);
       if (result.success) {
         toast.success('Login successful!');
-        setTimeout(() => navigate('/menu'), 500);
+        // Redirect based on user role
+        const userRole = result.user?.role;
+        setTimeout(() => {
+          if (userRole === 'admin') {
+            navigate('/admin/dashboard');
+          } else if (userRole === 'canteen_manager') {
+            navigate('/canteen/dashboard');
+          } else {
+            navigate('/menu');
+          }
+        }, 500);
       } else {
         toast.error(result.error || 'Login failed');
       }

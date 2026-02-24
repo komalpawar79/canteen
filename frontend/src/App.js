@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import useAuthStore from './store/authStore';
+import websocket from './services/websocket';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ProtectedRoute from './components/ProtectedRoute';
 
-// Pages
 import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
@@ -13,11 +15,26 @@ import MenuPage from './pages/MenuPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import OrderPage from './pages/OrderPage';
+import MyOrdersPage from './pages/MyOrdersPage';
 import OrderTrackingPage from './pages/OrderTrackingPage';
 import AdminDashboard from './pages/AdminDashboard';
+import AdminDashboardNew from './pages/AdminDashboardNew';
 import ProfilePage from './pages/ProfilePage';
+import CanteenDashboard from './pages/CanteenDashboard';
 
 function App() {
+  const { user, isAuthenticated } = useAuthStore();
+
+  useEffect(() => {
+    if (isAuthenticated && user?._id) {
+      websocket.connect(user._id);
+    }
+
+    return () => {
+      websocket.disconnect();
+    };
+  }, [isAuthenticated, user]);
+
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
@@ -27,13 +44,56 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
-            <Route path="/menu" element={<MenuPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
-            <Route path="/orders" element={<OrderPage />} />
-            <Route path="/tracking/:orderId" element={<OrderTrackingPage />} />
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/profile" element={<ProfilePage />} />
+            
+            <Route path="/menu" element={
+              <ProtectedRoute>
+                <MenuPage />
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/orders" element={
+              <ProtectedRoute>
+                <OrderPage />
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/my-orders" element={
+              <ProtectedRoute>
+                <MyOrdersPage />
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/tracking/:orderId" element={
+              <ProtectedRoute>
+                <OrderTrackingPage />
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/profile" element={
+              <ProtectedRoute>
+                <ProfilePage />
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/admin" element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminDashboard />
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/admin/dashboard" element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminDashboardNew />
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/canteen/dashboard" element={
+              <ProtectedRoute requiredRole="canteen_manager">
+                <CanteenDashboard />
+              </ProtectedRoute>
+            } />
           </Routes>
         </main>
         <Footer />

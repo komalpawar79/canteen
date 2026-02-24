@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { FiFilter, FiSearch, FiChevronDown } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import MenuCard from '../components/MenuCard';
+import useMenuStore from '../store/menuStore';
 import toast from 'react-hot-toast';
 
 const MenuPage = () => {
-  const [selectedCanteen, setSelectedCanteen] = useState(null);
+  const { menuItems, selectedCanteen, loading, setSelectedCanteen, fetchMenuByCanteen } = useMenuStore();
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('popular');
   const [filters, setFilters] = useState({
@@ -15,82 +16,23 @@ const MenuPage = () => {
   });
   const [showFilters, setShowFilters] = useState(false);
   const [canteens, setCanteens] = useState([]);
-  const [menuItems, setMenuItems] = useState([]);
-  const [loading, setLoading] = useState(true);
 
-  // Fetch data from backend
+  // Fetch canteens on mount
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCanteens = async () => {
       try {
-        setLoading(true);
-        
-        // Fetch canteens
-        const canteenRes = await fetch('http://localhost:5000/api/canteens');
-        const canteenData = await canteenRes.json();
-        if (canteenRes.ok && canteenData.canteens) {
-          setCanteens(canteenData.canteens);
-        }
-
-        // Fetch menu items
-        const menuRes = await fetch('http://localhost:5000/api/menu');
-        const menuData = await menuRes.json();
-        if (menuRes.ok && menuData.items) {
-          setMenuItems(menuData.items);
+        const res = await fetch('http://localhost:5000/api/canteens');
+        const data = await res.json();
+        if (res.ok && data.canteens) {
+          // Filter only active canteens
+          setCanteens(data.canteens.filter(c => c.isActive));
         }
       } catch (error) {
-        console.error('Error fetching data:', error);
-        // Fallback to mock data if API fails
-        setCanteens(mockCanteens);
-        setMenuItems(mockMenuItems);
-      } finally {
-        setLoading(false);
+        console.error('Error fetching canteens:', error);
       }
     };
-
-    fetchData();
+    fetchCanteens();
   }, []);
-
-  // Mock data - 4 Campus Canteens (fallback)
-  const mockCanteens = [
-    { _id: '1', name: 'Main Canteen', location: 'Central Campus', image: '🏢', rating: 4.6, itemCount: 45 },
-    { _id: '2', name: 'Food Court', location: 'Near Hostels', image: '🍽️', rating: 4.5, itemCount: 38 },
-    { _id: '3', name: 'Quick Bites', location: 'Library Building', image: '⚡', rating: 4.7, itemCount: 32 },
-    { _id: '4', name: 'Cafe Coffee', location: 'Student Center', image: '☕', rating: 4.4, itemCount: 25 },
-  ];
-
-  // Mock menu items (fallback - with proper ObjectIds)
-  const mockMenuItems = [
-    {
-      _id: '507f1f77bcf86cd799439001',
-      name: 'Masala Dosa',
-      description: 'Crispy rice crepe filled with spiced potato and served with sambar',
-      price: 120,
-      image: 'https://via.placeholder.com/300x200?text=Dosa',
-      category: 'breakfast',
-      dietary: 'veg',
-      rating: 4.5,
-      reviewCount: 145,
-      preparationTime: 20,
-      discount: 10,
-      canteen: '1',
-      isNew: false,
-    },
-    {
-      _id: '507f1f77bcf86cd799439002',
-      name: 'Idli Sambar',
-      description: 'Fluffy steamed rice cakes with lentil stew',
-      price: 80,
-      image: 'https://via.placeholder.com/300x200?text=Idli',
-      category: 'breakfast',
-      dietary: 'veg',
-      rating: 4.3,
-      reviewCount: 98,
-      preparationTime: 15,
-      discount: 0,
-      canteen: '2',
-      isNew: true,
-    },
-  ];
 
   // Special Offers for Students & Faculty
   const specialOffers = [
@@ -168,7 +110,6 @@ const MenuPage = () => {
   };
 
   const filteredItems = menuItems.filter((item) => {
-    if (selectedCanteen && item.canteen !== selectedCanteen) return false;
     if (searchQuery && !item.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
     if (filters.dietary && item.dietary !== filters.dietary) return false;
     if (filters.category && item.category !== filters.category) return false;
@@ -183,11 +124,32 @@ const MenuPage = () => {
   });
 
   const sortedItems = getSortedItems(filteredItems);
-  const uniqueCanteen = selectedCanteen ? canteens.find(c => c.id === selectedCanteen) : null;
+  const uniqueCanteen = selectedCanteen ? canteens.find(c => c._id === selectedCanteen._id) : null;
+
+  // Debug info
+  console.log('MenuPage State:', { 
+    menuItems: menuItems.length, 
+    filteredItems: filteredItems.length, 
+    sortedItems: sortedItems.length,
+    loading,
+    canteens: canteens.length 
+  });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-dark py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Loading State */}
+        {loading && (
+          <motion.div 
+            className="text-center py-16"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <div className="text-5xl mb-4 animate-bounce">⏳</div>
+            <p className="text-lg text-gray-600 dark:text-gray-400">Loading menu items...</p>
+          </motion.div>
+        )}
+
         {/* Header */}
         <motion.div
           className="mb-12"
@@ -201,7 +163,7 @@ const MenuPage = () => {
               <p className="text-lg text-gray-600 dark:text-gray-400">
                 {uniqueCanteen 
                   ? `Order from ${uniqueCanteen.name}` 
-                  : `Browse and order from ${canteens.length} campus canteens`
+                  : `Browse and order from ${canteens.length} campus canteens • ${menuItems.length} items`
                 }
               </p>
             </div>
@@ -213,6 +175,8 @@ const MenuPage = () => {
           </div>
         </motion.div>
 
+        {!loading && (
+        <>
         {/* 🎉 Special Offers Section */}
         <motion.div
           className="mb-12"
@@ -418,20 +382,19 @@ const MenuPage = () => {
             </motion.button>
             {canteens.map((canteen) => (
               <motion.button
-                key={canteen.id}
-                onClick={() => setSelectedCanteen(canteen.id)}
+                key={canteen._id}
+                onClick={() => setSelectedCanteen(canteen)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={`px-6 py-3 rounded-xl whitespace-nowrap font-semibold transition flex items-center gap-2 ${
-                  selectedCanteen === canteen.id
+                  selectedCanteen?._id === canteen._id
                     ? 'bg-gradient-to-r from-primary-500 to-secondary-500 text-white shadow-lg'
                     : 'bg-white dark:bg-gray-800 text-dark dark:text-white border-2 border-gray-200 dark:border-gray-700 hover:border-primary-500'
                 }`}
               >
-                <span>{canteen.image}</span>
+                <span className="text-2xl">🍽️</span>
                 <div className="text-left">
                   <div>{canteen.name}</div>
-                  <div className="text-xs opacity-75">{canteen.itemCount} items • ⭐ {canteen.rating}</div>
                 </div>
               </motion.button>
             ))}
@@ -513,6 +476,8 @@ const MenuPage = () => {
               🔄 Clear Filters
             </motion.button>
           </motion.div>
+        )}
+        </>
         )}
       </div>
     </div>

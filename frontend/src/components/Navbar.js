@@ -34,6 +34,21 @@ const Navbar = () => {
             <Link to="/menu" className="text-dark dark:text-gray-300 hover:text-primary-500 transition">
               Menu
             </Link>
+            {isAuthenticated && (
+              <Link to="/my-orders" className="text-dark dark:text-gray-300 hover:text-primary-500 transition">
+                My Orders
+              </Link>
+            )}
+            {user?.role === 'admin' && (
+              <Link to="/admin/dashboard" className="text-dark dark:text-gray-300 hover:text-primary-500 transition">
+                Admin
+              </Link>
+            )}
+            {user?.role === 'canteen_manager' && (
+              <Link to="/canteen/dashboard" className="text-dark dark:text-gray-300 hover:text-primary-500 transition">
+                Dashboard
+              </Link>
+            )}
             <Link to="/about" className="text-dark dark:text-gray-300 hover:text-primary-500 transition">
               About
             </Link>
@@ -123,6 +138,21 @@ const Navbar = () => {
             <Link to="/menu" className="block px-4 py-2 text-dark dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-secondary-900 rounded transition">
               Menu
             </Link>
+            {isAuthenticated && (
+              <Link to="/my-orders" className="block px-4 py-2 text-dark dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-secondary-900 rounded transition">
+                My Orders
+              </Link>
+            )}
+            {user?.role === 'admin' && (
+              <Link to="/admin/dashboard" className="block px-4 py-2 text-dark dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-secondary-900 rounded transition">
+                Admin Dashboard
+              </Link>
+            )}
+            {user?.role === 'canteen_manager' && (
+              <Link to="/canteen/dashboard" className="block px-4 py-2 text-dark dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-secondary-900 rounded transition">
+                Canteen Dashboard
+              </Link>
+            )}
             <Link to="/about" className="block px-4 py-2 text-dark dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-secondary-900 rounded transition">
               About
             </Link>

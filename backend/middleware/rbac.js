@@ -104,12 +104,18 @@ export const requireAdmin = (req, res, next) => {
 };
 
 export const requireCanteenManager = (req, res, next) => {
+  console.log('RBAC Check - User role:', req.user?.role);
+  console.log('RBAC Check - User ID:', req.user?._id);
+  
   if (![ROLES.ADMIN, ROLES.CANTEEN_MANAGER].includes(req.user?.role)) {
+    console.log('RBAC Check - FAILED: Role not allowed');
     return res.status(403).json({
       success: false,
       message: 'Manager access required'
     });
   }
+  
+  console.log('RBAC Check - PASSED');
   next();
 };
 

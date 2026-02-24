@@ -1,7 +1,8 @@
 import { create } from 'zustand';
+import { authAPI } from '../services/api';
 
 const useAuthStore = create((set) => ({
-  user: null,
+  user: JSON.parse(localStorage.getItem('user')) || null,
   token: localStorage.getItem('token') || null,
   isAuthenticated: !!localStorage.getItem('token'),
   isLoading: false,
@@ -9,22 +10,11 @@ const useAuthStore = create((set) => ({
   login: async (email, password) => {
     set({ isLoading: true });
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await response.json();
-      
-      if (!response.ok) {
-        return {
-          success: false,
-          error: data.error || 'Login failed'
-        };
-      }
+      const data = await authAPI.login({ email, password });
       
       if (data.success) {
         localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
         set({ 
           user: data.user, 
           token: data.token, 
@@ -33,10 +23,10 @@ const useAuthStore = create((set) => ({
       }
       return data;
     } catch (error) {
-      console.error('Login fetch error:', error);
+      console.error('Login error:', error);
       return {
         success: false,
-        error: error.message || 'Network error. Please check your connection.'
+        error: error.response?.data?.error || error.message || 'Login failed'
       };
     } finally {
       set({ isLoading: false });
@@ -46,23 +36,11 @@ const useAuthStore = create((set) => ({
   signup: async (userData) => {
     set({ isLoading: true });
     try {
-      const response = await fetch('http://localhost:5000/api/auth/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(userData),
-      });
-      
-      const data = await response.json();
-      
-      if (!response.ok) {
-        return {
-          success: false,
-          error: data.error || 'Signup failed'
-        };
-      }
+      const data = await authAPI.signup(userData);
       
       if (data.success) {
         localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
         set({ 
           user: data.user, 
           token: data.token, 
@@ -71,10 +49,10 @@ const useAuthStore = create((set) => ({
       }
       return data;
     } catch (error) {
-      console.error('Signup fetch error:', error);
+      console.error('Signup error:', error);
       return {
         success: false,
-        error: error.message || 'Network error. Please check your connection.'
+        error: error.response?.data?.error || error.message || 'Signup failed'
       };
     } finally {
       set({ isLoading: false });
@@ -83,7 +61,13 @@ const useAuthStore = create((set) => ({
 
   logout: () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     set({ user: null, token: null, isAuthenticated: false });
+  },
+
+  updateUser: (user) => {
+    localStorage.setItem('user', JSON.stringify(user));
+    set({ user });
   },
 
   setUser: (user) => set({ user }),

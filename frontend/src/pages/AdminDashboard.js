@@ -28,6 +28,15 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Menu form states
+  const [menuFormData, setMenuFormData] = useState({
+    name: '',
+    price: '',
+    dietary: 'veg',
+    category: 'lunch',
+    description: ''
+  });
+
   const API_BASE_URL = 'http://localhost:5000/api';
 
   // ✅ Auth Guard - Only admins can access
@@ -102,6 +111,89 @@ const AdminDashboard = () => {
       setError(err.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Handler to add menu item
+  const handleAddMenuItem = async (e) => {
+    e.preventDefault();
+    
+    if (!menuFormData.name || !menuFormData.price) {
+      alert('Please fill name and price');
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem('token');
+      
+      // Get first canteen ID (or you can add canteen selector)
+      const canteenRes = await fetch(`${API_BASE_URL}/canteens`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const canteenData = await canteenRes.json();
+      const canteenId = canteenData.canteens?.[0]?._id || '1';
+
+      const response = await fetch(`${API_BASE_URL}/menu`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          ...menuFormData,
+          canteen: canteenId
+        })
+      });
+
+      const data = await response.json();
+      
+      if (data.success || response.status === 201) {
+        // Add to local state
+        setMenuItems([...menuItems, data.data.item]);
+        
+        // Reset form
+        setMenuFormData({
+          name: '',
+          price: '',
+          dietary: 'veg',
+          category: 'lunch',
+          description: ''
+        });
+        setShowAddMenu(false);
+        
+        alert('Menu item added successfully!');
+      } else {
+        alert('Error adding menu item: ' + data.message);
+      }
+    } catch (err) {
+      console.error('Error adding menu item:', err);
+      alert('Failed to add menu item');
+    }
+  };
+
+  // Handler to delete menu item
+  const handleDeleteMenuItem = async (itemId) => {
+    if (!window.confirm('Are you sure you want to delete this item?')) return;
+
+    try {
+      const token = localStorage.getItem('token');
+      
+      const response = await fetch(`${API_BASE_URL}/menu/${itemId}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+
+      const data = await response.json();
+      
+      if (data.success || response.status === 200) {
+        setMenuItems(menuItems.filter(item => item.id !== itemId && item._id !== itemId));
+        alert('Menu item deleted successfully!');
+      } else {
+        alert('Error deleting menu item');
+      }
+    } catch (err) {
+      console.error('Error deleting menu item:', err);
+      alert('Failed to delete menu item');
     }
   };
 
@@ -332,21 +424,57 @@ const AdminDashboard = () => {
           animate={{ opacity: 1, y: 0 }}
           className="bg-white p-6 rounded-xl shadow-soft border border-gray-200 space-y-4"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input type="text" placeholder="Item Name" className="px-4 py-2 border border-gray-300 rounded-lg bg-white text-dark" />
-            <input type="number" placeholder="Price (₹)" className="px-4 py-2 border border-gray-300 rounded-lg bg-white text-dark" />
-            <select className="px-4 py-2 border border-gray-300 rounded-lg bg-white text-dark">
-              <option>Veg</option>
-              <option>Non-Veg</option>
-            </select>
-            <select className="px-4 py-2 border border-gray-300 rounded-lg bg-white text-dark">
-              <option>Main Course</option>
-              <option>Breakfast</option>
-              <option>Snacks</option>
-              <option>Beverages</option>
-            </select>
-          </div>
-          <button className="w-full px-6 py-2 bg-primary-900 text-white rounded-lg hover:bg-primary-800 font-semibold transition">Add Item</button>
+          <form onSubmit={handleAddMenuItem}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input
+                type="text"
+                placeholder="Item Name (e.g., Paneer Butter Masala)"
+                value={menuFormData.name}
+                onChange={(e) => setMenuFormData({...menuFormData, name: e.target.value})}
+                className="px-4 py-2 border border-gray-300 rounded-lg bg-white text-dark"
+                required
+              />
+              <input
+                type="number"
+                placeholder="Price (₹)"
+                value={menuFormData.price}
+                onChange={(e) => setMenuFormData({...menuFormData, price: e.target.value})}
+                className="px-4 py-2 border border-gray-300 rounded-lg bg-white text-dark"
+                required
+              />
+              <select
+                value={menuFormData.dietary}
+                onChange={(e) => setMenuFormData({...menuFormData, dietary: e.target.value})}
+                className="px-4 py-2 border border-gray-300 rounded-lg bg-white text-dark"
+              >
+                <option value="veg">Veg</option>
+                <option value="non-veg">Non-Veg</option>
+                <option value="vegan">Vegan</option>
+              </select>
+              <select
+                value={menuFormData.category}
+                onChange={(e) => setMenuFormData({...menuFormData, category: e.target.value})}
+                className="px-4 py-2 border border-gray-300 rounded-lg bg-white text-dark"
+              >
+                <option value="breakfast">Breakfast</option>
+                <option value="lunch">Lunch</option>
+                <option value="snacks">Snacks</option>
+                <option value="beverages">Beverages</option>
+                <option value="desserts">Desserts</option>
+                <option value="special">Special</option>
+              </select>
+            </div>
+            <textarea
+              placeholder="Description"
+              value={menuFormData.description}
+              onChange={(e) => setMenuFormData({...menuFormData, description: e.target.value})}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-dark"
+              rows="2"
+            />
+            <button type="submit" className="w-full px-6 py-2 bg-primary-900 text-white rounded-lg hover:bg-primary-800 font-semibold transition">
+              Add Item
+            </button>
+          </form>
         </motion.div>
       )}
 
@@ -371,7 +499,10 @@ const AdminDashboard = () => {
                 <button className="flex-1 px-3 py-2 bg-secondary-100 text-secondary-700 rounded hover:bg-secondary-200 text-sm font-semibold flex items-center justify-center gap-1 transition">
                   <FiEdit size={14} /> Edit
                 </button>
-                <button className="flex-1 px-3 py-2 bg-red-100 text-red-700 rounded hover:bg-red-200 text-sm font-semibold flex items-center justify-center gap-1 transition">
+                <button
+                  onClick={() => handleDeleteMenuItem(item.id || item._id)}
+                  className="flex-1 px-3 py-2 bg-red-100 text-red-700 rounded hover:bg-red-200 text-sm font-semibold flex items-center justify-center gap-1 transition"
+                >
                   <FiTrash2 size={14} /> Delete
                 </button>
               </div>

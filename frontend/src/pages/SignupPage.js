@@ -118,7 +118,7 @@ const SignupPage = () => {
               </div>
               <div>
                 <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
-                  University ID
+                  University ID (Optional)
                 </label>
                 <input
                   type="text"
@@ -127,7 +127,6 @@ const SignupPage = () => {
                   onChange={handleChange}
                   placeholder="VIT123456"
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  required
                 />
               </div>
             </div>
@@ -169,7 +168,7 @@ const SignupPage = () => {
               <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
                 Account Type
               </label>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-3 gap-4">
                 <label className="flex items-center p-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer hover:border-primary-500 transition" style={{ borderColor: formData.role === 'student' ? '#f0b32f' : undefined }}>
                   <input
                     type="radio"
@@ -191,6 +190,17 @@ const SignupPage = () => {
                     className="w-4 h-4 accent-primary-500"
                   />
                   <span className="ml-3 font-semibold text-dark dark:text-white">👨‍💼 Staff</span>
+                </label>
+                <label className="flex items-center p-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer hover:border-primary-500 transition" style={{ borderColor: formData.role === 'admin' ? '#f0b32f' : undefined }}>
+                  <input
+                    type="radio"
+                    name="role"
+                    value="admin"
+                    checked={formData.role === 'admin'}
+                    onChange={handleChange}
+                    className="w-4 h-4 accent-primary-500"
+                  />
+                  <span className="ml-3 font-semibold text-dark dark:text-white">👑 Admin</span>
                 </label>
               </div>
             </div>

@@ -12,10 +12,10 @@ export const signup = async (req, res) => {
     const { name, email, password, phone, role, universityId, department } = req.body;
 
     // Validate required fields
-    if (!name || !email || !password || !universityId) {
+    if (!name || !email || !password) {
       return res.status(400).json({ 
         success: false,
-        error: 'Please fill all required fields (name, email, password, university ID)' 
+        error: 'Please fill all required fields (name, email, password)' 
       });
     }
 
@@ -28,13 +28,15 @@ export const signup = async (req, res) => {
       });
     }
 
-    // Check if university ID already exists
-    let existingUser = await User.findOne({ universityId });
-    if (existingUser) {
-      return res.status(400).json({ 
-        success: false,
-        error: 'University ID already registered. Please use different ID.' 
-      });
+    // Check if university ID already exists (only if provided)
+    if (universityId) {
+      let existingUser = await User.findOne({ universityId });
+      if (existingUser) {
+        return res.status(400).json({ 
+          success: false,
+          error: 'University ID already registered. Please use different ID.' 
+        });
+      }
     }
 
     user = new User({
@@ -57,7 +59,11 @@ export const signup = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
-        role: user.role
+        role: user.role,
+        profileImage: user.profileImage,
+        universityId: user.universityId,
+        department: user.department,
+        phone: user.phone
       }
     });
   } catch (error) {
@@ -71,32 +77,40 @@ export const signup = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
+    console.log('Login attempt:', req.body.email);
     const { email, password } = req.body;
 
     if (!email || !password) {
+      console.log('Missing credentials');
       return res.status(400).json({ 
         success: false,
         error: 'Please provide email and password' 
       });
     }
 
+    console.log('Finding user...');
     const user = await User.findOne({ email }).select('+password');
     if (!user) {
+      console.log('User not found:', email);
       return res.status(401).json({ 
         success: false,
         error: 'Invalid email or password' 
       });
     }
 
+    console.log('Comparing passwords...');
     const isPasswordValid = await user.comparePassword(password);
     if (!isPasswordValid) {
+      console.log('Invalid password for user:', email);
       return res.status(401).json({ 
         success: false,
         error: 'Invalid email or password' 
       });
     }
 
+    console.log('Generating token...');
     const token = generateToken(user._id);
+    console.log('Login successful for:', email);
     res.json({
       success: true,
       token,
@@ -104,7 +118,12 @@ export const login = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
-        role: user.role
+        role: user.role,
+        canteenId: user.canteenAssigned,
+        profileImage: user.profileImage,
+        universityId: user.universityId,
+        department: user.department,
+        phone: user.phone
       }
     });
   } catch (error) {
@@ -131,15 +150,26 @@ export const getMe = async (req, res) => {
 
 export const updateProfile = async (req, res) => {
   try {
-    const { name, phone, department } = req.body;
+    const { name, phone, department, universityId, profileImage } = req.body;
+    
+    const updateData = { name, phone, department, universityId };
+    if (profileImage) {
+      updateData.profileImage = profileImage;
+    }
+    
     const user = await User.findByIdAndUpdate(
       req.userId,
-      { name, phone, department },
-      { new: true }
-    );
+      updateData,
+      { new: true, runValidators: true }
+    ).select('-password');
+    
+    if (!user) {
+      return res.status(404).json({ success: false, error: 'User not found' });
+    }
+    
     res.json({ success: true, user });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ success: false, error: error.message });
   }
 };
 

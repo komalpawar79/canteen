@@ -208,3 +208,119 @@ export const getMenuByCategory = async (req, res) => {
     );
   }
 };
+
+/**
+ * Add new menu item
+ */
+export const addMenuItem = async (req, res) => {
+  try {
+    const { name, price, category, dietary, description, canteen } = req.body;
+
+    // Validation
+    if (!name || !price || !category || !dietary || !canteen) {
+      return res.status(400).json(
+        new ApiResponse(400, null, 'Required fields: name, price, category, dietary, canteen')
+      );
+    }
+
+    // Verify canteen exists
+    const canteenExists = await Canteen.findById(canteen);
+    if (!canteenExists) {
+      return res.status(404).json(
+        new ApiResponse(404, null, 'Canteen not found')
+      );
+    }
+
+    // Create menu item
+    const newItem = new MenuItem({
+      name,
+      price: parseFloat(price),
+      category,
+      dietary,
+      description,
+      canteen,
+      isAvailable: true,
+      preparationTime: 15,
+      rating: 0,
+      ordersCount: 0,
+      spiceLevel: 'medium'
+    });
+
+    const savedItem = await newItem.save();
+    const populatedItem = await MenuItem.findById(savedItem._id).populate('canteen', 'name');
+
+    res.status(201).json(
+      new ApiResponse(201, { item: populatedItem }, 'Menu item added successfully')
+    );
+  } catch (error) {
+    console.error('Error adding menu item:', error);
+    res.status(500).json(
+      new ApiResponse(500, null, `Error adding menu item: ${error.message}`)
+    );
+  }
+};
+
+/**
+ * Update menu item
+ */
+export const updateMenuItem = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, price, category, dietary, description, isAvailable } = req.body;
+
+    // Find and update item
+    const updatedItem = await MenuItem.findByIdAndUpdate(
+      id,
+      {
+        ...(name && { name }),
+        ...(price && { price: parseFloat(price) }),
+        ...(category && { category }),
+        ...(dietary && { dietary }),
+        ...(description && { description }),
+        ...(isAvailable !== undefined && { isAvailable })
+      },
+      { new: true, runValidators: true }
+    ).populate('canteen', 'name');
+
+    if (!updatedItem) {
+      return res.status(404).json(
+        new ApiResponse(404, null, 'Menu item not found')
+      );
+    }
+
+    res.status(200).json(
+      new ApiResponse(200, { item: updatedItem }, 'Menu item updated successfully')
+    );
+  } catch (error) {
+    console.error('Error updating menu item:', error);
+    res.status(500).json(
+      new ApiResponse(500, null, `Error updating menu item: ${error.message}`)
+    );
+  }
+};
+
+/**
+ * Delete menu item
+ */
+export const deleteMenuItem = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deletedItem = await MenuItem.findByIdAndDelete(id);
+
+    if (!deletedItem) {
+      return res.status(404).json(
+        new ApiResponse(404, null, 'Menu item not found')
+      );
+    }
+
+    res.status(200).json(
+      new ApiResponse(200, { id }, 'Menu item deleted successfully')
+    );
+  } catch (error) {
+    console.error('Error deleting menu item:', error);
+    res.status(500).json(
+      new ApiResponse(500, null, `Error deleting menu item: ${error.message}`)
+    );
+  }
+};

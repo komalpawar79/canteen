@@ -71,9 +71,17 @@ const OrderPage = () => {
 
       // Get canteen ID from first item
       const firstItem = cart[0];
-      const canteenId = firstItem.canteenId || firstItem.canteen;
+      let canteenId = firstItem.canteenId || firstItem.canteen;
+      
+      // Extract _id if canteenId is an object
+      if (typeof canteenId === 'object' && canteenId !== null) {
+        canteenId = canteenId._id || canteenId.id;
+      }
+      
+      // Convert to string
+      canteenId = String(canteenId);
 
-      if (!canteenId) {
+      if (!canteenId || canteenId === 'undefined' || canteenId === 'null') {
         throw new Error('Canteen ID not found in cart');
       }
 
@@ -131,13 +139,18 @@ const OrderPage = () => {
       }
 
       toast.success('✅ Order placed successfully!');
-      console.log('Order created:', data.order);
+      console.log('Order created:', data);
       clearCart();
       setShowSummary(false);
       
-      // Redirect to order tracking
+      // Redirect to order tracking or orders page
+      const orderId = data.order?._id || data.data?.order?._id || data._id;
       setTimeout(() => {
-        navigate(`/order-tracking/${data.order._id}`);
+        if (orderId) {
+          navigate(`/order-tracking/${orderId}`);
+        } else {
+          navigate('/orders');
+        }
       }, 1000);
     } catch (error) {
       console.error('Order error:', error);

@@ -1,13 +1,17 @@
 import express from 'express';
 import MenuItem from '../models/MenuItem.js';
 import Canteen from '../models/Canteen.js';
+import { protect } from '../middleware/auth.js';
 import {
   getMenuByCanteen,
   getMenuItemById,
   searchMenu,
   getRecommendations,
   getAllMenuItems,
-  getMenuByCategory
+  getMenuByCategory,
+  addMenuItem,
+  updateMenuItem,
+  deleteMenuItem
 } from '../controllers/menuController.js';
 
 const router = express.Router();
@@ -42,6 +46,24 @@ router.get('/canteen/:canteenId', getMenuByCanteen);
  * Get top recommended items for a canteen
  */
 router.get('/recommendations/:canteenId', getRecommendations);
+
+/**
+ * POST /api/menu
+ * Add new menu item (admin/manager only)
+ */
+router.post('/', protect, addMenuItem);
+
+/**
+ * PUT /api/menu/:id
+ * Update menu item (admin/manager only)
+ */
+router.put('/:id', protect, updateMenuItem);
+
+/**
+ * DELETE /api/menu/:id
+ * Delete menu item (admin/manager only)
+ */
+router.delete('/:id', protect, deleteMenuItem);
 
 /**
  * GET /api/menu/:id
