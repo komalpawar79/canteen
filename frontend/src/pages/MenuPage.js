@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FiFilter, FiSearch, FiChevronDown } from 'react-icons/fi';
+import { FiFilter, FiSearch, FiChevronDown, FiX } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import MenuCard from '../components/MenuCard';
 import useMenuStore from '../store/menuStore';
@@ -16,6 +16,8 @@ const MenuPage = () => {
   });
   const [showFilters, setShowFilters] = useState(false);
   const [canteens, setCanteens] = useState([]);
+  const [selectedOffer, setSelectedOffer] = useState(null);
+  const [showOfferModal, setShowOfferModal] = useState(false);
 
   // Fetch canteens on mount
   useEffect(() => {
@@ -38,57 +40,87 @@ const MenuPage = () => {
   const specialOffers = [
     {
       id: 1,
-      title: '🎓 Student Combo Pack',
+      title: 'Student Combo Pack',
       description: 'Any 2 items + 1 beverage at 20% discount',
       discount: 20,
       validFor: 'Students with ID',
-      icon: '🎓',
       color: 'from-blue-500 to-blue-600',
+      details: {
+        forStudents: 'Perfect meal for busy students. Choose any 2 main items and 1 hot or cold beverage and save 20% on total bill.',
+        forStaff: 'Faculty can also avail this offer during off-peak hours for a quick lunch break.',
+        terms: 'Valid on combo orders only. Cannot be combined with other offers. Students must show valid university ID.',
+        timing: 'Available throughout the day, 7 AM to 8 PM.'
+      }
     },
     {
       id: 2,
-      title: '👨‍🏫 Faculty Special',
-      description: 'Daily lunch buffet at flat ₹99',
-      discount: 'Flat ₹99',
+      title: 'Faculty Special',
+      description: 'Daily lunch buffet at flat price',
+      discount: 'Flat Rs99',
       validFor: 'Faculty & Staff',
-      icon: '👨‍🏫',
       color: 'from-purple-500 to-purple-600',
+      details: {
+        forStudents: 'Not available for students, but check other combo offers.',
+        forStaff: 'Exclusive for faculty and administrative staff. All-you-can-have buffet lunch at just Rs99.',
+        terms: 'Valid with staff ID card. Lunch time: 12 PM to 2 PM only.',
+        timing: 'Monday to Friday. Weekends not applicable.'
+      }
     },
     {
       id: 3,
-      title: '⏰ Breakfast Boost',
+      title: 'Breakfast Boost',
       description: 'Any breakfast item + coffee at 15% off',
       discount: 15,
       validFor: 'All Students',
-      icon: '⏰',
       color: 'from-amber-500 to-amber-600',
+      details: {
+        forStudents: 'Start your day right with a filling breakfast and hot coffee. Great for early morning classes.',
+        forStaff: 'Staff members can also enjoy breakfast specials during morning hours.',
+        terms: 'Valid from 7 AM to 10 AM daily. Includes all breakfast items and hot beverages.',
+        timing: 'Applies to coffee, tea, and other hot beverages.'
+      }
     },
     {
       id: 4,
-      title: '🤝 Group Order Discount',
+      title: 'Group Order Discount',
       description: 'Order for 5+ people and get 25% off',
       discount: 25,
       validFor: 'Groups & Clubs',
-      icon: '�',
       color: 'from-green-500 to-green-600',
+      details: {
+        forStudents: 'Organize group meals for club meetings, study sessions, or parties. Minimum 5 orders required.',
+        forStaff: 'Perfect for department meetings and team lunches. Book in advance for better service.',
+        terms: 'Applicable for 5 or more orders placed together. Discount on entire bill.',
+        timing: 'Advance booking preferred. Contact canteen for catering arrangements.'
+      }
     },
     {
       id: 5,
-      title: '🌙 Evening Special',
-      description: 'After 4 PM: Snacks + beverage combo ₹80',
-      discount: 'Only ₹80',
+      title: 'Evening Special',
+      description: 'After 4 PM: Snacks + beverage combo only price',
+      discount: 'Only Rs80',
       validFor: 'Till 7 PM',
-      icon: '🌙',
       color: 'from-indigo-500 to-indigo-600',
+      details: {
+        forStudents: 'Evening study sessions? Grab snacks and beverages on budget. Perfect for library sessions.',
+        forStaff: 'Evening tea time with snacks. Unwind after office hours.',
+        terms: 'Valid from 4 PM to 7 PM daily. Combo includes any snack item and beverage.',
+        timing: 'Last orders at 6:45 PM daily.'
+      }
     },
     {
       id: 6,
-      title: '🎉 Weekend Treat',
+      title: 'Weekend Treat',
       description: 'Saturdays & Sundays: Buy 2 get 1 free on selected items',
       discount: '50%',
       validFor: 'Weekends Only',
-      icon: '🎉',
       color: 'from-pink-500 to-pink-600',
+      details: {
+        forStudents: 'Celebrate weekends with your favorite meals. Buy 2 items, get the third free on selected menu items.',
+        forStaff: 'Treat yourself on weekends. Great for family outings with staff family members.',
+        terms: 'Valid only on Saturdays and Sundays. Applicable on selected items marked with BOGO tag.',
+        timing: 'Available throughout weekend operating hours.'
+      }
     },
   ];
 
@@ -197,18 +229,17 @@ const MenuPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className={`relative overflow-hidden rounded-2xl p-6 bg-gradient-to-br ${offer.color} text-white shadow-lg cursor-pointer hover:shadow-2xl transition group`}
+                className={`relative overflow-hidden rounded-2xl p-6 bg-gradient-to-br ${offer.color} text-white shadow-lg hover:shadow-2xl transition group`}
               >
                 {/* Decorative Background */}
                 <div className="absolute top-0 right-0 opacity-10 text-6xl">
-                  {offer.icon}
+                  OFFER
                 </div>
 
                 <div className="relative z-10">
                   {/* Title */}
-                  <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
-                    <span>{offer.icon}</span>
-                    <span>{offer.title}</span>
+                  <h3 className="text-xl font-bold mb-2">
+                    {offer.title}
                   </h3>
 
                   {/* Description */}
@@ -217,18 +248,24 @@ const MenuPage = () => {
                   </p>
 
                   {/* Footer */}
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mb-4">
                     <div className="text-2xl font-black">
-                      {typeof offer.discount === 'number' ? `-${offer.discount}%` : offer.discount}
+                      {typeof offer.discount === 'number' ? `${offer.discount}% OFF` : offer.discount}
                     </div>
                     <span className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full font-semibold">
                       {offer.validFor}
                     </span>
                   </div>
 
-                  {/* CTA Button */}
-                  <button className="mt-4 w-full bg-white text-dark font-bold py-2 rounded-lg opacity-0 group-hover:opacity-100 transition transform group-hover:scale-105">
-                    Learn More →
+                  {/* CTA Button - Always Visible */}
+                  <button 
+                    onClick={() => {
+                      setSelectedOffer(offer);
+                      setShowOfferModal(true);
+                    }}
+                    className="w-full bg-white text-gray-900 font-bold py-2 rounded-lg hover:bg-gray-100 transition transform hover:scale-105"
+                  >
+                    Learn More
                   </button>
                 </div>
               </motion.div>
@@ -478,6 +515,102 @@ const MenuPage = () => {
           </motion.div>
         )}
         </>
+        )}
+
+        {/* Learn More Modal */}
+        {showOfferModal && selectedOffer && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowOfferModal(false)}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+            >
+              {/* Header */}
+              <div className={`bg-gradient-to-r ${selectedOffer.color} text-white p-8 relative`}>
+                <button
+                  onClick={() => setShowOfferModal(false)}
+                  className="absolute top-4 right-4 p-2 hover:bg-white/20 rounded-full transition"
+                >
+                  <FiX size={24} />
+                </button>
+                <h2 className="text-3xl font-bold mb-2">{selectedOffer.title}</h2>
+                <p className="text-white/90">{selectedOffer.description}</p>
+              </div>
+
+              {/* Content */}
+              <div className="p-8 space-y-6">
+                {/* Discount Badge */}
+                <div className="flex items-center gap-4 bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-xl border-2 border-green-200">
+                  <div>
+                    <p className="text-sm text-gray-600 font-semibold">Total Discount</p>
+                    <p className="text-3xl font-black text-green-600">
+                      {typeof selectedOffer.discount === 'number' ? `${selectedOffer.discount}% OFF` : selectedOffer.discount}
+                    </p>
+                  </div>
+                </div>
+
+                {/* For Students */}
+                <div className="border-l-4 border-blue-500 pl-4">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">For Students</h3>
+                  <p className="text-gray-700 leading-relaxed">{selectedOffer.details.forStudents}</p>
+                </div>
+
+                {/* For Staff */}
+                <div className="border-l-4 border-purple-500 pl-4">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">For Staff</h3>
+                  <p className="text-gray-700 leading-relaxed">{selectedOffer.details.forStaff}</p>
+                </div>
+
+                {/* Terms & Conditions */}
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <h3 className="font-bold text-gray-900 mb-2">Terms & Conditions</h3>
+                  <p className="text-gray-700 text-sm leading-relaxed">{selectedOffer.details.terms}</p>
+                </div>
+
+                {/* Timing */}
+                <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                  <h3 className="font-bold text-gray-900 mb-2">Validity & Timing</h3>
+                  <p className="text-gray-700 text-sm leading-relaxed">{selectedOffer.details.timing}</p>
+                </div>
+
+                {/* Valid For Badge */}
+                <div className="flex items-center justify-between bg-gradient-to-r from-green-100 to-emerald-100 p-4 rounded-xl">
+                  <div>
+                    <p className="text-sm text-gray-600 font-semibold">Valid For</p>
+                    <p className="text-lg font-bold text-green-700">{selectedOffer.validFor}</p>
+                  </div>
+                </div>
+
+                {/* CTA Buttons */}
+                <div className="flex gap-3 pt-4">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setShowOfferModal(false)}
+                    className="flex-1 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-lg hover:shadow-lg transition"
+                  >
+                    Place Order Now
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setShowOfferModal(false)}
+                    className="flex-1 px-6 py-3 bg-gray-200 text-gray-900 font-bold rounded-lg hover:bg-gray-300 transition"
+                  >
+                    Close
+                  </motion.button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
         )}
       </div>
     </div>

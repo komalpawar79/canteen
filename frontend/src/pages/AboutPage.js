@@ -145,214 +145,155 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100  ">
-      {/* Hero Section with Parallax */}
+    <div className="min-h-screen bg-white">
+      {/* Hero Section */}
       <motion.section
-        className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-600 via-emerald-500 to-green-700"
+        className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-600 via-emerald-500 to-green-700"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        {/* Animated Background Elements */}
+        {/* Animated Background Pattern */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Animated Gradient Blob 1 */}
-          <motion.div
-            className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full mix-blend-screen blur-3xl"
-            animate={{
-              scale: [1, 1.2, 1],
-              x: [0, 50, 0],
-              y: [0, 30, 0],
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-          />
-          
-          {/* Animated Gradient Blob 2 */}
-          <motion.div
-            className="absolute -bottom-40 -left-40 w-96 h-96 bg-white/10 rounded-full mix-blend-screen blur-3xl"
-            animate={{
-              scale: [1, 1.3, 1],
-              x: [0, -50, 0],
-              y: [0, -30, 0],
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-          />
-
-          {/* Floating Circles Pattern */}
-          <div className="absolute inset-0">
-            {[...Array(5)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-2 h-2 bg-white/20 rounded-full"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  y: [0, -20, 0],
-                  opacity: [0.3, 0.8, 0.3],
-                }}
-                transition={{
-                  duration: 6 + i,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Grid Pattern Overlay */}
-          <svg className="absolute inset-0 w-full h-full opacity-10" preserveAspectRatio="xMidYMid slice">
+          {/* Geometric Grid Pattern SVG */}
+          <svg className="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <pattern id="grid-hero" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5" />
+              <pattern id="grid-about" width="60" height="60" patternUnits="userSpaceOnUse">
+                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1"/>
+              </pattern>
+              <pattern id="dots-about" width="60" height="60" patternUnits="userSpaceOnUse">
+                <circle cx="30" cy="30" r="2" fill="rgba(255,255,255,0.5)"/>
               </pattern>
             </defs>
-            <rect width="100%" height="100%" fill="url(#grid-hero)" />
+            <rect width="100%" height="100%" fill="url(#grid-about)" />
+            <rect width="100%" height="100%" fill="url(#dots-about)" />
           </svg>
+
+          {/* Floating Gradient Blobs */}
+          <motion.div
+            animate={{ y: [0, 20, 0], scale: [1, 1.05, 1] }}
+            transition={{ duration: 6, repeat: Infinity, repeatType: "loop" }}
+            className="absolute top-10 left-10 w-80 h-80 bg-gradient-to-br from-green-300 to-emerald-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+          />
+          <motion.div
+            animate={{ y: [0, -20, 0], scale: [1, 1.05, 1] }}
+            transition={{ duration: 8, repeat: Infinity, repeatType: "loop", delay: 2 }}
+            className="absolute -bottom-20 right-20 w-96 h-96 bg-gradient-to-br from-emerald-300 to-green-400 rounded-full mix-blend-multiply filter blur-3xl opacity-15"
+          />
+          <motion.div
+            animate={{ y: [0, 15, 0], scale: [1, 1.08, 1] }}
+            transition={{ duration: 7, repeat: Infinity, repeatType: "loop", delay: 3 }}
+            className="absolute top-1/2 right-1/4 w-72 h-72 bg-gradient-to-br from-white to-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-10"
+          />
         </div>
 
-        {/* Hero Content - Split Layout */}
-        <div className="relative z-10 w-full">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen">
-              {/* Left Side - Text */}
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <motion.div
-                  className="inline-block mb-6 px-6 py-3 bg-white/20 backdrop-blur-md border border-white/30 rounded-full"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  <span className="text-white font-bold text-sm">🚀 OUR STORY</span>
-                </motion.div>
-
-                <motion.h1
-                  className="text-6xl md:text-7xl font-black text-white mb-6 leading-tight"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                >
-                  Welcome to
-                  <br />
-                  <span className="text-white drop-shadow-lg">QuickBite 🎉</span>
-                </motion.h1>
-
-                <motion.p
-                  className="text-xl text-white/90 font-semibold mb-8 leading-relaxed"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.4 }}
-                >
-                  Your Campus Food Companion - Fast, Fresh & Friendly
-                </motion.p>
-
-                <motion.p
-                  className="text-lg text-white/80 mb-8 leading-relaxed"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                >
-                  Revolutionizing the way students eat on campus. No more waiting in queues, no more compromising on quality. Just fresh, delicious food delivered in 30 minutes or less!
-                </motion.p>
-
-                <motion.div
-                  className="flex flex-col sm:flex-row gap-4"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                >
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => navigate('/menu')}
-                    className="px-8 py-4 bg-white text-green-600 rounded-full font-bold text-lg shadow-lg hover:shadow-2xl transition-all"
-                  >
-                    🍔 Explore Now
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setShowLearnMore(true)}
-                    className="px-8 py-4 bg-white/20 backdrop-blur-md border-2 border-white text-white rounded-full font-bold text-lg hover:bg-white/30 transition-all"
-                  >
-                    📖 Learn More
-                  </motion.button>
-                </motion.div>
-              </motion.div>
-
-              {/* Right Side - Stats Cards */}
-              <motion.div
-                className="grid grid-cols-2 gap-6"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                {[
-                  { icon: '👥', value: '10K+', label: 'Happy Users' },
-                  { icon: '🏪', value: '15+', label: 'Canteens' },
-                  { icon: '🍜', value: '2K+', label: 'Dishes' },
-                  { icon: '⏱️', value: '30 min', label: 'Fast Delivery' },
-                ].map((stat, index) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{ y: -10, scale: 1.05 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="bg-white/15 backdrop-blur-md border-2 border-white/30 rounded-2xl p-6 text-center hover:border-white hover:bg-white/25 transition-all"
-                  >
-                    <div className="text-5xl mb-3">{stat.icon}</div>
-                    <div className="text-3xl font-black text-white mb-2">{stat.value}</div>
-                    <div className="text-white/80 font-semibold">{stat.label}</div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+        {/* Hero Content */}
+        <motion.div
+          className="relative z-10 text-center px-6 max-w-5xl mx-auto"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="text-white text-4xl drop-shadow-lg">↓</div>
+          <motion.div
+            className="inline-block mb-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <span className="px-4 py-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full text-white font-semibold text-sm">
+              ✨ Behind QuickBite
+            </span>
+          </motion.div>
+
+          <motion.h1
+            className="text-6xl md:text-7xl font-black text-white mb-6 drop-shadow-2xl leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            About Our
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-100 via-white to-emerald-100">
+              Campus Journey
+            </span>
+          </motion.h1>
+
+          <motion.p
+            className="text-xl md:text-2xl text-white/90 font-medium mb-12 drop-shadow-lg max-w-2xl mx-auto leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            Transforming student dining with fast, fresh, and friendly food powered by passion
+          </motion.p>
+
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+          >
+            <motion.button
+              whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(0,0,0,0.2)" }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => navigate('/menu')}
+              className="px-8 py-4 bg-white text-green-600 rounded-full font-bold text-lg shadow-lg hover:shadow-2xl transition-all"
+            >
+              Order Now
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.15)" }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setShowLearnMore(true)}
+              className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/30 hover:bg-white/20 text-white rounded-full font-bold text-lg transition-all"
+            >
+              Learn More
+            </motion.button>
+          </motion.div>
         </motion.div>
       </motion.section>
 
       {/* Stats Section */}
       <motion.section
-        className="py-16 px-4 max-w-7xl mx-auto"
+        className="py-20 px-4 max-w-7xl mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={staggerContainer}
       >
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+            By The Numbers
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Our impact on campus life, measured in satisfaction and growth
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
               <motion.div
                 key={index}
                 variants={staggerItem}
+                className="relative group"
                 whileHover={{ y: -10 }}
-                className="group relative"
               >
-                {/* Glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 to-emerald-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300 opacity-0 group-hover:opacity-100" />
+                {/* Glow Background */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-green-400 to-emerald-500 rounded-2xl opacity-0 group-hover:opacity-20 blur transition duration-300" />
                 
-                {/* Card */}
-                <div className="relative bg-gradient-to-br from-white to-green-50 border-2 border-green-200 p-8 rounded-3xl hover:border-green-500 transition-all duration-300 hover:shadow-2xl text-center">
-                  <div className="text-5xl text-green-600 mx-auto mb-4 transform group-hover:scale-125 transition-transform duration-300">
-                    <Icon />
-                  </div>
-                  <div className="text-4xl font-black bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-2">
+                <div className="relative bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-gray-100 group-hover:border-green-200">
+                  <Icon className="text-5xl text-green-600 mx-auto mb-4" />
+                  <div className="text-4xl font-black text-gray-900 mb-2">
                     {stat.value}
                   </div>
-                  <div className="text-slate-700 font-bold text-lg">
+                  <div className="text-gray-600 font-semibold text-lg">
                     {stat.label}
                   </div>
                 </div>
@@ -364,24 +305,39 @@ const AboutPage = () => {
 
       {/* Tabs Section */}
       <motion.section
-        className="py-16 px-4 max-w-7xl mx-auto"
+        className="py-20 px-4 max-w-7xl mx-auto"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
+        {/* Section Header */}
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+            Explore Our Story
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            From humble beginnings to campus favorite
+          </p>
+        </motion.div>
+
         {/* Tab Buttons */}
-        <div className="flex flex-wrap gap-4 mb-12 justify-center">
+        <div className="flex flex-wrap gap-3 mb-12 justify-center">
           {['story', 'why', 'campus', 'team'].map((tab) => (
             <motion.button
               key={tab}
               onClick={() => setActiveTab(tab)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-8 py-3 rounded-full font-bold capitalize transition duration-300 ${
+              className={`px-6 py-3 rounded-full font-bold capitalize transition-all duration-300 ${
                 activeTab === tab
-                  ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg hover:shadow-2xl'
-                  : 'bg-white border-2 border-green-200 text-slate-700 hover:border-green-400 hover:shadow-lg'
+                  ? 'bg-gradient-to-r from-green-600 to-emerald-500 text-white shadow-lg scale-105'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
               {tab === 'story' && '📖'} {tab === 'why' && '⭐'} {tab === 'campus' && '🏫'} {tab === 'team' && '👥'} {tab}
@@ -400,21 +356,23 @@ const AboutPage = () => {
           {activeTab === 'story' && (
             <div className="space-y-8">
               <motion.div
-                className="bg-white  p-8 rounded-2xl shadow-soft"
+                className="bg-gradient-to-br from-white to-gray-50 p-10 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all"
                 variants={fadeInUp}
                 initial="hidden"
                 animate="visible"
               >
-                <h2 className="text-3xl font-bold text-dark  mb-4">📖 Our Story</h2>
-                <p className="text-gray-600  text-lg leading-relaxed mb-6">
-                  QuickBite was born from a simple observation: students are hungry, busy, and deserve better food options on campus!
-                </p>
-                <p className="text-gray-600  text-lg leading-relaxed mb-6">
-                  We started with a vision to transform the way students eat on campus. No more waiting in long queues, no more expensive delivery fees, no more compromising on quality.
-                </p>
-                <p className="text-gray-600  text-lg leading-relaxed">
-                  Today, QuickBite serves 10,000+ students daily with 4 canteens, 2,000+ dishes, and lightning-fast delivery. We're not just a food app - we're part of the campus lifestyle! 🎓
-                </p>
+                <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6">Our Story</h2>
+                <div className="space-y-4">
+                  <p className="text-gray-700 text-lg leading-relaxed">
+                    <span className="font-bold text-green-600">QuickBite was born from a simple observation:</span> students are hungry, busy, and deserve better food options on campus!
+                  </p>
+                  <p className="text-gray-700 text-lg leading-relaxed">
+                    We started with a vision to transform the way students eat on campus. <span className="font-bold text-emerald-600">No more waiting in long queues, no more expensive delivery fees, no more compromising on quality.</span>
+                  </p>
+                  <p className="text-gray-700 text-lg leading-relaxed">
+                    Today, QuickBite serves <span className="font-bold text-green-600">10,000+ students daily</span> with <span className="font-bold">4 canteens, 2,000+ dishes,</span> and <span className="font-bold text-emerald-600">lightning-fast delivery.</span> We're not just a food app - we're part of the campus lifestyle! 🎓
+                  </p>
+                </div>
               </motion.div>
 
               {/* Timeline */}
@@ -422,15 +380,23 @@ const AboutPage = () => {
                 {timeline.map((item, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="flex gap-4 items-start bg-white  p-6 rounded-xl shadow-soft"
+                    className="relative group"
+                    whileHover={{ x: 10 }}
                   >
-                    <div className="text-3xl font-bold text-primary-500 min-w-fit">{item.year}</div>
-                    <div>
-                      <h3 className="text-xl font-bold text-dark ">{item.event}</h3>
-                      <p className="text-gray-600 ">{item.description}</p>
+                    {/* Left border with gradient */}
+                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-green-500 to-emerald-500 group-hover:from-green-400 group-hover:to-emerald-400 rounded transition-all" />
+                    
+                    <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg border border-gray-100 group-hover:border-green-200 transition-all ml-6">
+                      <div className="flex items-start gap-4">
+                        <div className="text-3xl font-black text-green-600 whitespace-nowrap pt-1">{item.year}</div>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-bold text-gray-900 mb-2">{item.event}</h3>
+                          <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                        </div>
+                      </div>
                     </div>
                   </motion.div>
                 ))}
@@ -450,16 +416,27 @@ const AboutPage = () => {
                 <motion.div
                   key={index}
                   variants={staggerItem}
-                  whileHover={{ y: -5 }}
-                  className="bg-white  p-8 rounded-2xl shadow-soft hover:shadow-lg transition"
+                  whileHover={{ y: -12 }}
+                  className="relative group"
                 >
-                  <div className="text-5xl mb-4">{reason.icon}</div>
-                  <h3 className="text-xl font-bold text-dark  mb-3">
-                    {reason.title}
-                  </h3>
-                  <p className="text-gray-600 ">
-                    {reason.description}
-                  </p>
+                  {/* Glow Background */}
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-green-400 to-emerald-500 rounded-2xl opacity-0 group-hover:opacity-30 blur transition duration-300" />
+                  
+                  {/* Card */}
+                  <div className="relative bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-gray-100 group-hover:border-green-200">
+                    {/* Icon with Gradient Background */}
+                    <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-emerald-100 rounded-xl flex items-center justify-center text-4xl mb-4 group-hover:from-green-200 group-hover:to-emerald-200 transition-all">
+                      {reason.icon}
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">
+                      {reason.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      {reason.description}
+                    </p>
+                    {/* Bottom accent line */}
+                    <div className="absolute bottom-0 left-8 right-8 h-1 bg-gradient-to-r from-green-500 to-emerald-500 opacity-0 group-hover:opacity-100 transition-all rounded-full" />
+                  </div>
                 </motion.div>
               ))}
             </motion.div>
@@ -519,24 +496,33 @@ const AboutPage = () => {
                   key={index}
                   variants={staggerItem}
                   whileHover={{ y: -12 }}
-                  className="group relative"
+                  className="relative group"
                 >
-                  {/* Glow Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 to-emerald-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300 opacity-0 group-hover:opacity-100" />
+                  {/* Glow Background */}
+                  <div className="absolute -inset-0.5 bg-gradient-to-br from-green-400 via-emerald-500 to-green-400 rounded-2xl opacity-0 group-hover:opacity-25 blur transition duration-300" />
                   
                   {/* Card */}
-                  <div className="relative bg-gradient-to-br from-white to-green-50 border-2 border-green-200 p-8 rounded-3xl hover:border-green-500 transition-all duration-300 hover:shadow-2xl text-center">
-                    <div className="text-7xl mb-4 transform group-hover:scale-125 group-hover:rotate-12 transition-transform duration-300">
-                      {member.emoji}
+                  <div className="relative bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl text-center transition-all border border-gray-100 group-hover:border-green-200">
+                    {/* Avatar with gradient circle */}
+                    <div className="w-20 h-20 mx-auto mb-4 relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full blur opacity-20 group-hover:opacity-40 transition" />
+                      <div className="relative w-full h-full bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center text-4xl">
+                        {member.emoji}
+                      </div>
                     </div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-2">
+                    
+                    <h3 className="text-lg font-bold text-gray-900 mb-1">
                       {member.name}
                     </h3>
-                    <p className="text-green-600 font-bold text-sm mb-3">{member.role}</p>
-                    <div className="h-1 w-8 bg-gradient-to-r from-green-500 to-emerald-600 mx-auto mb-3 rounded-full" />
-                    <p className="text-slate-600 text-sm">
+                    <p className="text-sm font-semibold text-green-600 mb-2 group-hover:text-emerald-600 transition">
+                      {member.role}
+                    </p>
+                    <p className="text-sm text-gray-600 leading-relaxed">
                       {member.specialty}
                     </p>
+                    
+                    {/* Top accent line */}
+                    <div className="absolute top-0 left-1/4 right-1/4 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full opacity-0 group-hover:opacity-100 transition-all" />
                   </div>
                 </motion.div>
               ))}
@@ -547,22 +533,33 @@ const AboutPage = () => {
 
       {/* Call to Action Section */}
       <motion.section
-        className="py-20 px-4 bg-gradient-to-r from-primary-500 to-secondary-500 relative overflow-hidden"
+        className="py-20 px-4 bg-gradient-to-br from-green-600 via-emerald-600 to-green-700 relative overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        {/* Animated Background */}
+        {/* Animated Background Pattern */}
+        <svg className="absolute inset-0 w-full h-full opacity-5" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="grid-cta" width="80" height="80" patternUnits="userSpaceOnUse">
+              <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid-cta)" />
+        </svg>
+
+        {/* Floating Elements */}
         <motion.div
-          className="absolute inset-0 opacity-10 text-9xl flex items-center justify-around pointer-events-none"
-          animate={{ rotate: 360 }}
-          transition={{ repeat: Infinity, duration: 20, ease: 'linear' }}
-        >
-          <span>🍜</span>
-          <span>🍕</span>
-          <span>🥗</span>
-        </motion.div>
+          animate={{ y: [0, 20, 0] }}
+          transition={{ duration: 4, repeat: Infinity, repeatType: "loop" }}
+          className="absolute top-10 right-10 w-72 h-72 bg-white/5 rounded-full mix-blend-multiply filter blur-3xl"
+        />
+        <motion.div
+          animate={{ y: [0, -20, 0] }}
+          transition={{ duration: 5, repeat: Infinity, repeatType: "loop", delay: 1 }}
+          className="absolute -bottom-20 left-1/4 w-80 h-80 bg-white/5 rounded-full mix-blend-multiply filter blur-3xl"
+        />
 
         <motion.div
           className="relative z-10 max-w-4xl mx-auto text-center text-white"
@@ -571,19 +568,34 @@ const AboutPage = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-black mb-6">
-            Ready to Order Your Favorite Meal? 🤤
+          <motion.div
+            className="inline-block mb-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+          >
+            <span className="px-4 py-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full text-sm font-semibold">
+              🎉 Limited Time Offer
+            </span>
+          </motion.div>
+
+          <h2 className="text-5xl md:text-6xl font-black mb-6 drop-shadow-lg">
+            Ready to Order Your
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-100 via-white to-emerald-100">
+              Favorite Meal?
+            </span>
           </h2>
-          <p className="text-xl mb-8 opacity-90">
+          <p className="text-xl md:text-2xl mb-10 opacity-95 drop-shadow-md max-w-2xl mx-auto">
             Join 10,000+ happy students and get fresh food delivered in 30 minutes!
           </p>
           <motion.button
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.08, boxShadow: "0 25px 50px rgba(0,0,0,0.25)" }}
             whileTap={{ scale: 0.95 }}
             onClick={() => navigate('/menu')}
-            className="px-10 py-4 bg-white text-primary-600 font-bold text-lg rounded-xl shadow-lg hover:shadow-2xl transition"
+            className="px-10 py-4 bg-white text-green-600 font-bold text-lg rounded-full shadow-2xl hover:shadow-3xl transition-all"
           >
-            🍔 Start Ordering Now
+            Start Ordering Now
           </motion.button>
         </motion.div>
       </motion.section>

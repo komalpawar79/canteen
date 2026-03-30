@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FiArrowRight } from 'react-icons/fi';
+import { FiArrowRight, FiShoppingCart, FiLock, FiTrendingUp, FiZap, FiMapPin, FiStar } from 'react-icons/fi';
 import LearnMoreModal from '../components/LearnMoreModal';
 
 const LandingPage = () => {

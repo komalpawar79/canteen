@@ -15,13 +15,16 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-              <span className="text-white font-bold text-lg">🍜</span>
-            </div>
-            <span className="font-bold text-xl text-green-700 hidden sm:inline group-hover:text-green-600 transition-colors">
-              QuickBite
-            </span>
+          <Link to="/" className="flex items-center group">
+            <img 
+              src="/logo.png" 
+              alt="QuickBite Logo" 
+              className="h-16 w-auto object-contain group-hover:opacity-80 transition-opacity"
+              style={{
+                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))',
+                mixBlendMode: 'multiply'
+              }}
+            />
           </Link>
 
           {/* Desktop Menu */}
