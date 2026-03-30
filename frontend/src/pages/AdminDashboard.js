@@ -862,11 +862,11 @@ const AdminDashboard = () => {
       {/* Sidebar */}
       <motion.div
         animate={{ width: sidebarOpen ? 280 : 0 }}
-        className="bg-gradient-to-b from-primary-900 to-primary-800 text-white overflow-hidden"
+        className="bg-gradient-to-b from-green-50 to-white text-slate-900 overflow-hidden border-r border-green-200"
       >
         <div className="p-6">
           <h2 className="text-2xl font-bold">🍽️ QuickBite</h2>
-          <p className="text-primary-200 text-sm">Admin Panel</p>
+          <p className="text-slate-600 text-sm">Admin Panel</p>
         </div>
 
         <nav className="mt-8 space-y-2 px-4">
@@ -885,8 +885,8 @@ const AdminDashboard = () => {
               onClick={() => setActiveTab(item.id)}
               className={`w-full text-left px-4 py-3 rounded-lg font-semibold transition ${
                 activeTab === item.id
-                  ? 'bg-white text-primary-900'
-                  : 'text-white hover:bg-primary-700'
+                  ? 'bg-green-600 text-white'
+                  : 'text-slate-900 hover:bg-green-100'
               }`}
             >
               {item.icon} {item.label}
