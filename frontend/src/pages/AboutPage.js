@@ -148,93 +148,178 @@ const AboutPage = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100  ">
       {/* Hero Section with Parallax */}
       <motion.section
-        className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-white to-gray-50"
+        className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-600 via-emerald-500 to-green-700"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Geometric Pattern Background */}
-          <svg className="absolute inset-0 w-full h-full opacity-20" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <pattern id="dots-about" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
-                <circle cx="25" cy="25" r="2" fill="#22c55e" />
-              </pattern>
-              <pattern id="grid-about" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#22c55e" strokeWidth="0.5" opacity="0.3" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid-about)" />
-            <rect width="100%" height="100%" fill="url(#dots-about)" />
-          </svg>
+          {/* Animated Gradient Blob 1 */}
+          <motion.div
+            className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full mix-blend-screen blur-3xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              x: [0, 50, 0],
+              y: [0, 30, 0],
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          
+          {/* Animated Gradient Blob 2 */}
+          <motion.div
+            className="absolute -bottom-40 -left-40 w-96 h-96 bg-white/10 rounded-full mix-blend-screen blur-3xl"
+            animate={{
+              scale: [1, 1.3, 1],
+              x: [0, -50, 0],
+              y: [0, -30, 0],
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+          />
 
-          {/* Flowing Abstract Shapes */}
+          {/* Floating Circles Pattern */}
           <div className="absolute inset-0">
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-green-400/20 to-green-500/10 rounded-full blur-3xl" />
-            <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-bl from-emerald-400/20 to-green-500/10 rounded-full blur-3xl" style={{ animation: 'float 6s ease-in-out infinite' }} />
-            <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-gradient-to-t from-green-300/15 to-green-400/5 rounded-full blur-3xl" />
+            {[...Array(5)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-2 h-2 bg-white/20 rounded-full"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+                animate={{
+                  y: [0, -20, 0],
+                  opacity: [0.3, 0.8, 0.3],
+                }}
+                transition={{
+                  duration: 6 + i,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+              />
+            ))}
           </div>
 
-          {/* Wave Pattern */}
-          <svg className="absolute bottom-0 left-0 right-0 opacity-15" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,50 Q300,0 600,50 T1200,50 L1200,120 L0,120 Z" fill="#22c55e" />
+          {/* Grid Pattern Overlay */}
+          <svg className="absolute inset-0 w-full h-full opacity-10" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <pattern id="grid-hero" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid-hero)" />
           </svg>
-          
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-white/10 to-gray-50/50" />
         </div>
 
-        {/* Hero Content */}
-        <motion.div
-          className="relative z-10 text-center px-6 max-w-4xl mx-auto"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+        {/* Hero Content - Split Layout */}
+        <div className="relative z-10 w-full">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen">
+              {/* Left Side - Text */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <motion.div
+                  className="inline-block mb-6 px-6 py-3 bg-white/20 backdrop-blur-md border border-white/30 rounded-full"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <span className="text-white font-bold text-sm">🚀 OUR STORY</span>
+                </motion.div>
+
+                <motion.h1
+                  className="text-6xl md:text-7xl font-black text-white mb-6 leading-tight"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                  Welcome to
+                  <br />
+                  <span className="text-white drop-shadow-lg">QuickBite 🎉</span>
+                </motion.h1>
+
+                <motion.p
+                  className="text-xl text-white/90 font-semibold mb-8 leading-relaxed"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                >
+                  Your Campus Food Companion - Fast, Fresh & Friendly
+                </motion.p>
+
+                <motion.p
+                  className="text-lg text-white/80 mb-8 leading-relaxed"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  Revolutionizing the way students eat on campus. No more waiting in queues, no more compromising on quality. Just fresh, delicious food delivered in 30 minutes or less!
+                </motion.p>
+
+                <motion.div
+                  className="flex flex-col sm:flex-row gap-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                >
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => navigate('/menu')}
+                    className="px-8 py-4 bg-white text-green-600 rounded-full font-bold text-lg shadow-lg hover:shadow-2xl transition-all"
+                  >
+                    🍔 Explore Now
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setShowLearnMore(true)}
+                    className="px-8 py-4 bg-white/20 backdrop-blur-md border-2 border-white text-white rounded-full font-bold text-lg hover:bg-white/30 transition-all"
+                  >
+                    📖 Learn More
+                  </motion.button>
+                </motion.div>
+              </motion.div>
+
+              {/* Right Side - Stats Cards */}
+              <motion.div
+                className="grid grid-cols-2 gap-6"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                {[
+                  { icon: '👥', value: '10K+', label: 'Happy Users' },
+                  { icon: '🏪', value: '15+', label: 'Canteens' },
+                  { icon: '🍜', value: '2K+', label: 'Dishes' },
+                  { icon: '⏱️', value: '30 min', label: 'Fast Delivery' },
+                ].map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    whileHover={{ y: -10, scale: 1.05 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="bg-white/15 backdrop-blur-md border-2 border-white/30 rounded-2xl p-6 text-center hover:border-white hover:bg-white/25 transition-all"
+                  >
+                    <div className="text-5xl mb-3">{stat.icon}</div>
+                    <div className="text-3xl font-black text-white mb-2">{stat.value}</div>
+                    <div className="text-white/80 font-semibold">{stat.label}</div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <motion.div 
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
         >
-          <motion.h1
-            className="text-6xl md:text-7xl font-black text-slate-900 mb-6 drop-shadow-lg leading-tight"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            Welcome to
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-emerald-500 to-green-700 animate-pulse">
-              QuickBite 🎉
-            </span>
-          </motion.h1>
-          <motion.p
-            className="text-lg md:text-2xl text-slate-700 font-semibold mb-10 drop-shadow-lg"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            Your Campus Food Companion - Fast, Fresh & Friendly
-          </motion.p>
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => navigate('/menu')}
-              className="px-8 py-4 bg-gradient-to-r from-primary-500 to-secondary-500 text-white rounded-full font-bold text-lg shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all"
-            >
-              🍔 Order Now
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setShowLearnMore(true)}
-              className="px-8 py-4 bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 text-white rounded-full font-bold text-lg transition-all"
-            >
-              📖 Learn More
-            </motion.button>
-          </motion.div>
+          <div className="text-white text-4xl drop-shadow-lg">↓</div>
         </motion.div>
       </motion.section>
 
