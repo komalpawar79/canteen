@@ -412,7 +412,7 @@ const AdminDashboard = () => {
         <h3 className="text-2xl font-bold text-dark">Menu Management</h3>
         <button
           onClick={() => setShowAddMenu(!showAddMenu)}
-          className="flex items-center space-x-2 px-6 py-3 bg-primary-900 text-white rounded-lg hover:bg-primary-800 font-semibold transition"
+          className="flex items-center space-x-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold transition"
         >
           <FiPlus /> Add Menu Item
         </button>
@@ -471,7 +471,7 @@ const AdminDashboard = () => {
               className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-dark"
               rows="2"
             />
-            <button type="submit" className="w-full px-6 py-2 bg-primary-900 text-white rounded-lg hover:bg-primary-800 font-semibold transition">
+            <button type="submit" className="w-full px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold transition">
               Add Item
             </button>
           </form>
@@ -706,7 +706,7 @@ const AdminDashboard = () => {
       <motion.div className="bg-white p-6 rounded-xl shadow-soft border border-gray-200">
         <div className="flex justify-between items-center mb-6">
           <h4 className="text-lg font-bold text-dark">📊 Reports</h4>
-          <button className="flex items-center space-x-2 px-4 py-2 bg-primary-900 text-white rounded-lg hover:bg-primary-800 font-semibold transition">
+          <button className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold transition">
             <FiDownload /> Export
           </button>
         </div>
@@ -742,7 +742,7 @@ const AdminDashboard = () => {
         <h3 className="text-2xl font-bold text-dark">Offers & Coupons</h3>
         <button
           onClick={() => setShowAddCoupon(!showAddCoupon)}
-          className="flex items-center space-x-2 px-6 py-3 bg-primary-900 text-white rounded-lg hover:bg-primary-800 font-semibold transition"
+          className="flex items-center space-x-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold transition"
         >
           <FiPlus /> Create Coupon
         </button>
@@ -763,7 +763,7 @@ const AdminDashboard = () => {
             <input type="number" placeholder="Discount Value" className="px-4 py-2 border border-gray-300 rounded-lg bg-white text-dark" />
             <input type="date" className="px-4 py-2 border border-gray-300 rounded-lg bg-white text-dark" />
           </div>
-          <button className="w-full px-6 py-2 bg-primary-900 text-white rounded-lg hover:bg-primary-800 font-semibold transition">Create Coupon</button>
+          <button className="w-full px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold transition">Create Coupon</button>
         </motion.div>
       )}
 
@@ -818,7 +818,7 @@ const AdminDashboard = () => {
               <label className="block text-sm font-semibold text-gray-700 mb-2">Tax Rate (%)</label>
               <input type="number" defaultValue="5" className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-dark" />
             </div>
-            <button className="w-full px-4 py-2 bg-primary-900 text-white rounded-lg hover:bg-primary-800 font-semibold transition">Save Changes</button>
+            <button className="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold transition">Save Changes</button>
           </div>
         </motion.div>
 
