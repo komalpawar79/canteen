@@ -148,7 +148,7 @@ const AboutPage = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100  ">
       {/* Hero Section with Parallax */}
       <motion.section
-        className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-900 via-dark to-secondary-900"
+        className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-white to-gray-50"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -157,7 +157,7 @@ const AboutPage = () => {
         <div className="absolute inset-0 overflow-hidden">
           {/* First Food Image */}
           <div
-            className="absolute inset-0 bg-cover bg-center opacity-15"
+            className="absolute inset-0 bg-cover bg-center opacity-10"
             style={{
               backgroundImage:
                 'url("https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1200")',
@@ -167,7 +167,7 @@ const AboutPage = () => {
           
           {/* Second Food Image */}
           <div
-            className="absolute inset-0 bg-cover bg-center opacity-15"
+            className="absolute inset-0 bg-cover bg-center opacity-10"
             style={{
               backgroundImage:
                 'url("https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1200")',
@@ -178,11 +178,11 @@ const AboutPage = () => {
           />
           
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-dark/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/20 to-gray-50/80" />
           
           {/* Animated Particles */}
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" />
-          <div className="absolute -bottom-8 right-10 w-72 h-72 bg-secondary-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-20 left-10 w-72 h-72 bg-green-400 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-pulse" />
+          <div className="absolute -bottom-8 right-10 w-72 h-72 bg-green-300 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-pulse" style={{ animationDelay: '2s' }} />
           <div className="absolute top-1/2 left-1/3 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '4s' }} />
         </div>
 
