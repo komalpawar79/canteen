@@ -27,12 +27,12 @@ const CartSidebar = ({ isOpen, onClose }) => {
       <motion.div
         initial={{ x: 400 }}
         animate={{ x: isOpen ? 0 : 400 }}
-        className="fixed right-0 top-0 h-full w-96 bg-white dark:bg-slate-800 shadow-lg border-l border-green-200 dark:border-slate-700 z-50 flex flex-col"
+        className="fixed right-0 top-0 h-full w-96 bg-white shadow-lg border-l border-green-200 z-50 flex flex-col"
       >
         {/* Header */}
-        <div className="p-6 border-b border-green-200 dark:border-slate-700 flex justify-between items-center bg-gradient-to-r from-green-50 to-white dark:from-slate-800 dark:to-slate-700">
-          <h2 className="text-2xl font-bold text-green-700 dark:text-green-300">Your Cart</h2>
-          <button onClick={onClose} className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 transition text-2xl">
+        <div className="p-6 border-b border-green-200 flex justify-between items-center bg-gradient-to-r from-green-50 to-white">
+          <h2 className="text-2xl font-bold text-green-700">Your Cart</h2>
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-700 transition text-2xl">
             ✕
           </button>
         </div>
@@ -45,9 +45,9 @@ const CartSidebar = ({ isOpen, onClose }) => {
             </div>
           ) : (
             cart.map((item) => (
-              <div key={item._id} className="bg-green-50 dark:bg-slate-700 p-4 rounded-lg border border-green-200 dark:border-slate-600 hover:border-green-300 dark:hover:border-slate-500 transition">
+              <div key={item._id} className="bg-green-50 p-4 rounded-lg border border-green-200 hover:border-green-300 transition">
                 <div className="flex justify-between items-start mb-2">
-                  <h4 className="font-semibold text-slate-900 dark:text-white">{item.name}</h4>
+                  <h4 className="font-semibold text-slate-900">{item.name}</h4>
                   <button
                     onClick={() => removeFromCart(item._id)}
                     className="text-red-500 hover:text-red-700 transition"
@@ -59,14 +59,14 @@ const CartSidebar = ({ isOpen, onClose }) => {
                   <div className="flex items-center space-x-2">
                     <button
                       onClick={() => updateQuantity(item._id, Math.max(1, item.quantity - 1))}
-                      className="p-1 bg-green-200 dark:bg-slate-600 text-slate-700 dark:text-slate-300 rounded hover:bg-green-300 dark:hover:bg-slate-500 transition"
+                      className="p-1 bg-green-200 text-slate-700 rounded hover:bg-green-300 transition"
                     >
                       <FiMinus size={16} />
                     </button>
-                    <span className="w-8 text-center font-semibold text-slate-700 dark:text-slate-300">{item.quantity}</span>
+                    <span className="w-8 text-center font-semibold text-slate-700">{item.quantity}</span>
                     <button
                       onClick={() => updateQuantity(item._id, item.quantity + 1)}
-                      className="p-1 bg-green-200 dark:bg-slate-600 text-slate-700 dark:text-slate-300 rounded hover:bg-green-300 dark:hover:bg-slate-500 transition"
+                      className="p-1 bg-green-200 text-slate-700 rounded hover:bg-green-300 transition"
                     >
                       <FiPlus size={16} />
                     </button>
@@ -80,18 +80,18 @@ const CartSidebar = ({ isOpen, onClose }) => {
 
         {/* Footer */}
         {cart.length > 0 && (
-          <div className="border-t border-green-200 dark:border-slate-700 p-6 space-y-4 bg-green-50 dark:bg-slate-700/50">
+          <div className="border-t border-green-200 p-6 space-y-4 bg-green-50">
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-slate-600 dark:text-slate-400">Subtotal</span>
-                <span className="text-slate-900 dark:text-white font-semibold">₹{totalPrice}</span>
+                <span className="text-slate-600">Subtotal</span>
+                <span className="text-slate-900 font-semibold">₹{totalPrice}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-600 dark:text-slate-400">Tax (5%)</span>
-                <span className="text-slate-900 dark:text-white font-semibold">₹{tax}</span>
+                <span className="text-slate-600">Tax (5%)</span>
+                <span className="text-slate-900 font-semibold">₹{tax}</span>
               </div>
-              <div className="pt-2 border-t border-green-200 dark:border-slate-600 flex justify-between">
-                <span className="font-bold text-slate-900 dark:text-white">Total</span>
+              <div className="pt-2 border-t border-green-200 flex justify-between">
+                <span className="font-bold text-slate-900">Total</span>
                 <span className="font-bold text-green-600 text-lg">₹{finalTotal}</span>
               </div>
             </div>

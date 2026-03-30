@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiMenu, FiX, FiShoppingCart, FiUser, FiLogOut, FiMoon, FiSun } from 'react-icons/fi';
+import { FiMenu, FiX, FiShoppingCart, FiUser, FiLogOut } from 'react-icons/fi';
 import useAuthStore from '../store/authStore';
-import useThemeStore from '../store/themeStore';
 import useCartStore from '../store/cartStore';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { isAuthenticated, user, logout } = useAuthStore();
-  const { theme, toggleTheme } = useThemeStore();
   const { getCartCount } = useCartStore();
   const cartCount = getCartCount();
 
   return (
-    <nav className="sticky top-0 z-50 bg-gradient-to-r from-green-50 to-white dark:from-slate-900 dark:to-slate-800 shadow-soft border-b border-green-100 dark:border-slate-700">
+    <nav className="sticky top-0 z-50 bg-gradient-to-r from-green-50 to-white shadow-md border-b border-green-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -21,38 +19,38 @@ const Navbar = () => {
             <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
               <span className="text-white font-bold text-lg">🍜</span>
             </div>
-            <span className="font-bold text-xl text-green-700 dark:text-green-400 hidden sm:inline group-hover:text-green-600 transition-colors">
+            <span className="font-bold text-xl text-green-700 hidden sm:inline group-hover:text-green-600 transition-colors">
               QuickBite
             </span>
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-1">
-            <Link to="/" className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-green-600 dark:hover:text-green-400 transition font-medium">
+            <Link to="/" className="px-3 py-2 text-slate-700 hover:text-green-600 transition font-medium">
               Home
             </Link>
-            <Link to="/menu" className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-green-600 dark:hover:text-green-400 transition font-medium">
+            <Link to="/menu" className="px-3 py-2 text-slate-700 hover:text-green-600 transition font-medium">
               Menu
             </Link>
             {isAuthenticated && (
-              <Link to="/my-orders" className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-green-600 dark:hover:text-green-400 transition font-medium">
+              <Link to="/my-orders" className="px-3 py-2 text-slate-700 hover:text-green-600 transition font-medium">
                 My Orders
               </Link>
             )}
             {user?.role === 'admin' && (
-              <Link to="/admin/dashboard" className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-green-600 dark:hover:text-green-400 transition font-medium">
+              <Link to="/admin/dashboard" className="px-3 py-2 text-slate-700 hover:text-green-600 transition font-medium">
                 Admin
               </Link>
             )}
             {user?.role === 'canteen_manager' && (
-              <Link to="/canteen/dashboard" className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-green-600 dark:hover:text-green-400 transition font-medium">
+              <Link to="/canteen/dashboard" className="px-3 py-2 text-slate-700 hover:text-green-600 transition font-medium">
                 Dashboard
               </Link>
             )}
-            <Link to="/about" className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-green-600 dark:hover:text-green-400 transition font-medium">
+            <Link to="/about" className="px-3 py-2 text-slate-700 hover:text-green-600 transition font-medium">
               About
             </Link>
-            <Link to="/contact" className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-green-600 dark:hover:text-green-400 transition font-medium">
+            <Link to="/contact" className="px-3 py-2 text-slate-700 hover:text-green-600 transition font-medium">
               Contact
             </Link>
           </div>
@@ -61,7 +59,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-3">
             {/* Cart Icon */}
             <Link to="/orders" className="relative group">
-              <FiShoppingCart className="text-2xl text-slate-700 dark:text-slate-300 group-hover:text-green-600 dark:group-hover:text-green-400 transition" />
+              <FiShoppingCart className="text-2xl text-slate-700 group-hover:text-green-600 transition" />
               {cartCount > 0 && (
                 <span className="absolute -top-2 -right-2 bg-green-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-lg">
                   {cartCount}
@@ -69,24 +67,12 @@ const Navbar = () => {
               )}
             </Link>
 
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg hover:bg-green-100 dark:hover:bg-slate-700 transition text-slate-700 dark:text-slate-300"
-            >
-              {theme === 'light' ? (
-                <FiMoon className="text-xl" />
-              ) : (
-                <FiSun className="text-xl" />
-              )}
-            </button>
-
             {/* Auth Buttons */}
             {isAuthenticated ? (
               <div className="flex items-center space-x-2">
-                <Link to="/profile" className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-green-100 dark:hover:bg-slate-700 transition">
-                  <FiUser className="text-slate-700 dark:text-slate-300" />
-                  <span className="text-sm font-medium text-slate-700 dark:text-slate-300 hidden sm:inline">
+                <Link to="/profile" className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-green-100 transition">
+                  <FiUser className="text-slate-700" />
+                  <span className="text-sm font-medium text-slate-700 hidden sm:inline">
                     {user?.name || 'Profile'}
                   </span>
                 </Link>
@@ -96,7 +82,7 @@ const Navbar = () => {
                       logout();
                     }
                   }}
-                  className="p-2 text-slate-700 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 transition rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20"
+                  className="p-2 text-slate-700 hover:text-red-600 transition rounded-lg hover:bg-red-50"
                   title="Logout"
                 >
                   <FiLogOut className="text-xl" />
@@ -106,7 +92,7 @@ const Navbar = () => {
               <div className="hidden sm:flex items-center space-x-3">
                 <Link
                   to="/login"
-                  className="text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 font-semibold transition"
+                  className="text-green-600 hover:text-green-700 font-semibold transition"
                 >
                   Login
                 </Link>
@@ -122,7 +108,7 @@ const Navbar = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden text-2xl text-slate-700 dark:text-slate-300 hover:text-green-600 dark:hover:text-green-400 transition"
+              className="md:hidden text-2xl text-slate-700 hover:text-green-600 transition"
             >
               {isOpen ? <FiX /> : <FiMenu />}
             </button>
@@ -131,37 +117,37 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden pb-4 space-y-1 bg-green-50 dark:bg-slate-800 rounded-lg mb-2">
-            <Link to="/" className="block px-4 py-3 text-slate-700 dark:text-slate-300 hover:bg-green-100 dark:hover:bg-slate-700 hover:text-green-600 dark:hover:text-green-400 rounded transition font-medium">
+          <div className="md:hidden pb-4 space-y-1 bg-green-50 rounded-lg mb-2">
+            <Link to="/" className="block px-4 py-3 text-slate-700 hover:bg-green-100 hover:text-green-600 rounded transition font-medium">
               Home
             </Link>
-            <Link to="/menu" className="block px-4 py-3 text-slate-700 dark:text-slate-300 hover:bg-green-100 dark:hover:bg-slate-700 hover:text-green-600 dark:hover:text-green-400 rounded transition font-medium">
+            <Link to="/menu" className="block px-4 py-3 text-slate-700 hover:bg-green-100 hover:text-green-600 rounded transition font-medium">
               Menu
             </Link>
             {isAuthenticated && (
-              <Link to="/my-orders" className="block px-4 py-3 text-slate-700 dark:text-slate-300 hover:bg-green-100 dark:hover:bg-slate-700 hover:text-green-600 dark:hover:text-green-400 rounded transition font-medium">
+              <Link to="/my-orders" className="block px-4 py-3 text-slate-700 hover:bg-green-100 hover:text-green-600 rounded transition font-medium">
                 My Orders
               </Link>
             )}
             {user?.role === 'admin' && (
-              <Link to="/admin/dashboard" className="block px-4 py-3 text-slate-700 dark:text-slate-300 hover:bg-green-100 dark:hover:bg-slate-700 hover:text-green-600 dark:hover:text-green-400 rounded transition font-medium">
+              <Link to="/admin/dashboard" className="block px-4 py-3 text-slate-700 hover:bg-green-100 hover:text-green-600 rounded transition font-medium">
                 Admin Dashboard
               </Link>
             )}
             {user?.role === 'canteen_manager' && (
-              <Link to="/canteen/dashboard" className="block px-4 py-3 text-slate-700 dark:text-slate-300 hover:bg-green-100 dark:hover:bg-slate-700 hover:text-green-600 dark:hover:text-green-400 rounded transition font-medium">
+              <Link to="/canteen/dashboard" className="block px-4 py-3 text-slate-700 hover:bg-green-100 hover:text-green-600 rounded transition font-medium">
                 Canteen Dashboard
               </Link>
             )}
-            <Link to="/about" className="block px-4 py-3 text-slate-700 dark:text-slate-300 hover:bg-green-100 dark:hover:bg-slate-700 hover:text-green-600 dark:hover:text-green-400 rounded transition font-medium">
+            <Link to="/about" className="block px-4 py-3 text-slate-700 hover:bg-green-100 hover:text-green-600 rounded transition font-medium">
               About
             </Link>
-            <Link to="/contact" className="block px-4 py-3 text-slate-700 dark:text-slate-300 hover:bg-green-100 dark:hover:bg-slate-700 hover:text-green-600 dark:hover:text-green-400 rounded transition font-medium">
+            <Link to="/contact" className="block px-4 py-3 text-slate-700 hover:bg-green-100 hover:text-green-600 rounded transition font-medium">
               Contact
             </Link>
             {!isAuthenticated && (
-              <div className="px-4 py-2 space-y-2 border-t border-green-200 dark:border-slate-700 pt-3">
-                <Link to="/login" className="block text-center px-4 py-2 text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 font-semibold border border-green-600 dark:border-green-400 rounded-lg transition">
+              <div className="px-4 py-2 space-y-2 border-t border-green-200 pt-3">
+                <Link to="/login" className="block text-center px-4 py-2 text-green-600 hover:text-green-700 font-semibold border border-green-600 rounded-lg transition">
                   Login
                 </Link>
                 <Link to="/signup" className="block text-center px-4 py-2 bg-green-600 text-white hover:bg-green-700 font-semibold rounded-lg transition shadow-md">

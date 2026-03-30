@@ -17,10 +17,10 @@ const MenuCard = ({ item, onViewDetails }) => {
   return (
     <motion.div
       whileHover={{ y: -5 }}
-      className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all border border-green-100 dark:border-slate-700 card-hover"
+      className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all border border-green-100 card-hover"
     >
       {/* Image */}
-      <div className="relative h-48 bg-gray-200 dark:bg-slate-700 overflow-hidden">
+      <div className="relative h-48 bg-gray-200 overflow-hidden">
         <img
           src={item.image || 'https://via.placeholder.com/300x200?text=Food+Image'}
           alt={item.name}
@@ -42,11 +42,11 @@ const MenuCard = ({ item, onViewDetails }) => {
 
       {/* Content */}
       <div className="p-4">
-        <h3 className="font-bold text-lg text-slate-900 dark:text-white truncate">{item.name}</h3>
-        <p className="text-slate-600 dark:text-slate-400 text-sm mt-1 line-clamp-2">{item.description}</p>
+        <h3 className="font-bold text-lg text-slate-900 truncate">{item.name}</h3>
+        <p className="text-slate-600 text-sm mt-1 line-clamp-2">{item.description}</p>
 
         {/* Details */}
-        <div className="flex justify-between items-center mt-3 text-xs text-slate-500 dark:text-slate-400">
+        <div className="flex justify-between items-center mt-3 text-xs text-slate-500">
           <span className="font-medium">{item.category}</span>
           <span>⏱️ {item.preparationTime || 30} min</span>
         </div>
@@ -62,7 +62,7 @@ const MenuCard = ({ item, onViewDetails }) => {
               />
             ))}
           </div>
-          <span className="text-xs text-slate-600 dark:text-slate-400 ml-1">({item.reviewCount || 0})</span>
+          <span className="text-xs text-slate-600 ml-1">({item.reviewCount || 0})</span>
         </div>
 
         {/* Price and Action */}
@@ -88,14 +88,14 @@ const MenuCard = ({ item, onViewDetails }) => {
           <div className="mt-3 flex items-center space-x-2">
             <button
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
-              className="px-2 py-1 bg-green-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded hover:bg-green-200 dark:hover:bg-slate-600 transition"
+              className="px-2 py-1 bg-green-100 text-slate-700 rounded hover:bg-green-200 transition"
             >
               -
             </button>
-            <span className="flex-1 text-center font-semibold text-slate-700 dark:text-slate-300">{quantity}</span>
+            <span className="flex-1 text-center font-semibold text-slate-700">{quantity}</span>
             <button
               onClick={() => setQuantity(quantity + 1)}
-              className="px-2 py-1 bg-green-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded hover:bg-green-200 dark:hover:bg-slate-600 transition"
+              className="px-2 py-1 bg-green-100 text-slate-700 rounded hover:bg-green-200 transition"
             >
               +
             </button>

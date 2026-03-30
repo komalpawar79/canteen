@@ -97,7 +97,7 @@ const LearnMoreModal = ({ isOpen, onClose }) => {
             onClick={(e) => e.target === e.currentTarget && onClose()}
           >
             <motion.div
-              className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-4xl w-full overflow-hidden"
+              className="bg-white rounded-3xl shadow-2xl max-w-4xl w-full overflow-hidden border border-green-200"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
@@ -107,9 +107,9 @@ const LearnMoreModal = ({ isOpen, onClose }) => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={onClose}
-                className="absolute top-4 right-4 z-10 p-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-full transition"
+                className="absolute top-4 right-4 z-10 p-2 bg-green-100 hover:bg-green-200 rounded-full transition"
               >
-                <FiX className="text-2xl text-dark dark:text-white" />
+                <FiX className="text-2xl text-slate-700" />
               </motion.button>
 
               {/* Selection View */}
@@ -121,13 +121,13 @@ const LearnMoreModal = ({ isOpen, onClose }) => {
                   exit={{ opacity: 0 }}
                 >
                   <div className="text-center mb-12">
-                    <h2 className="text-4xl md:text-5xl font-black text-dark dark:text-white mb-4">
+                    <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4">
                       Welcome to QuickBite! 🎉
                     </h2>
-                    <p className="text-xl text-gray-600 dark:text-gray-300 mb-2">
+                    <p className="text-xl text-slate-600 mb-2">
                       Choose your profile to see exclusive benefits
                     </p>
-                    <p className="text-gray-500 dark:text-gray-400">
+                    <p className="text-slate-500">
                       We have special offers tailored just for you!
                     </p>
                   </div>
@@ -140,14 +140,14 @@ const LearnMoreModal = ({ isOpen, onClose }) => {
                       onClick={() => setUserType('student')}
                       className="cursor-pointer group"
                     >
-                      <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition h-full">
+                      <div className="bg-gradient-to-br from-green-500 to-green-600 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition h-full">
                         <div className="text-6xl mb-4">🎓</div>
                         <h3 className="text-3xl font-bold text-white mb-2">I'm a Student</h3>
-                        <p className="text-blue-100 mb-6 text-lg">
+                        <p className="text-green-100 mb-6 text-lg">
                           Get student discounts, group offers, and fast hostel delivery
                         </p>
                         <motion.div
-                          className="inline-block bg-white text-blue-600 font-bold px-6 py-2 rounded-lg group-hover:scale-105 transition"
+                          className="inline-block bg-white text-green-600 font-bold px-6 py-2 rounded-lg group-hover:scale-105 transition"
                           whileHover={{ scale: 1.05 }}
                         >
                           Learn More →
@@ -161,14 +161,14 @@ const LearnMoreModal = ({ isOpen, onClose }) => {
                       onClick={() => setUserType('faculty')}
                       className="cursor-pointer group"
                     >
-                      <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition h-full">
+                      <div className="bg-gradient-to-br from-slate-600 to-slate-700 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition h-full">
                         <div className="text-6xl mb-4">👨‍🏫</div>
                         <h3 className="text-3xl font-bold text-white mb-2">I'm Faculty/Staff</h3>
-                        <p className="text-purple-100 mb-6 text-lg">
+                        <p className="text-slate-200 mb-6 text-lg">
                           Premium pricing, bulk orders, and professional service
                         </p>
                         <motion.div
-                          className="inline-block bg-white text-purple-600 font-bold px-6 py-2 rounded-lg group-hover:scale-105 transition"
+                          className="inline-block bg-white text-slate-700 font-bold px-6 py-2 rounded-lg group-hover:scale-105 transition"
                           whileHover={{ scale: 1.05 }}
                         >
                           Learn More →
@@ -191,17 +191,17 @@ const LearnMoreModal = ({ isOpen, onClose }) => {
                   <motion.button
                     whileHover={{ x: -4 }}
                     onClick={() => setUserType(null)}
-                    className="text-primary-500 font-bold mb-8 hover:text-primary-600 transition flex items-center gap-2"
+                    className="text-green-600 font-bold mb-8 hover:text-green-700 transition flex items-center gap-2"
                   >
                     ← Back
                   </motion.button>
 
                   {/* Header */}
                   <div className="mb-10">
-                    <h2 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent mb-2">
+                    <h2 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent mb-2">
                       {content.title}
                     </h2>
-                    <p className="text-xl text-gray-600 dark:text-gray-300">
+                    <p className="text-xl text-slate-600">
                       {content.tagline}
                     </p>
                   </div>
@@ -214,13 +214,13 @@ const LearnMoreModal = ({ isOpen, onClose }) => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.1 }}
-                        className="bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-gray-700 dark:to-gray-600 p-6 rounded-xl border-l-4 border-primary-500"
+                        className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border-l-4 border-green-600 hover:shadow-md transition"
                       >
                         <div className="text-4xl mb-3">{highlight.icon}</div>
-                        <h4 className="text-lg font-bold text-dark dark:text-white mb-2">
+                        <h4 className="text-lg font-bold text-slate-900 mb-2">
                           {highlight.title}
                         </h4>
-                        <p className="text-gray-600 dark:text-gray-300">
+                        <p className="text-slate-700">
                           {highlight.desc}
                         </p>
                       </motion.div>
@@ -229,7 +229,7 @@ const LearnMoreModal = ({ isOpen, onClose }) => {
 
                   {/* Testimonials */}
                   <div className="mb-12">
-                    <h3 className="text-2xl font-bold text-dark dark:text-white mb-6">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-6">
                       💬 What Others Say
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -239,17 +239,17 @@ const LearnMoreModal = ({ isOpen, onClose }) => {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: 0.3 + i * 0.1 }}
-                          className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-soft"
+                          className="bg-white p-6 rounded-xl shadow-md border border-green-200 hover:shadow-lg transition"
                         >
                           <div className="text-5xl mb-3">{testimonial.avatar}</div>
-                          <p className="text-gray-600 dark:text-gray-300 mb-4 italic">
+                          <p className="text-slate-700 mb-4 italic">
                             "{testimonial.quote}"
                           </p>
                           <div>
-                            <p className="font-bold text-dark dark:text-white">
+                            <p className="font-bold text-slate-900">
                               {testimonial.name}
                             </p>
-                            <p className="text-sm text-gray-500 dark:text-gray-400">
+                            <p className="text-sm text-slate-500">
                               {testimonial.year || testimonial.role}
                             </p>
                           </div>
@@ -269,7 +269,7 @@ const LearnMoreModal = ({ isOpen, onClose }) => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={onClose}
-                      className="px-10 py-4 bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-2xl transition"
+                      className="px-10 py-4 bg-gradient-to-r from-green-600 to-green-500 text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-2xl transition"
                     >
                       {content.cta}
                     </motion.button>
