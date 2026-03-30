@@ -464,14 +464,14 @@ const ContactPage = () => {
                     whileHover={link.action ? { x: 8 } : {}}
                     className={`w-full text-left px-4 py-3 rounded-lg transition flex items-center justify-between ${
                       link.action
-                        ? 'bg-gray-100  hover:bg-primary-100 :bg-primary-900/30 cursor-pointer'
-                        : 'bg-gray-100  opacity-60 cursor-not-allowed'
+                        ? 'bg-green-50 hover:bg-green-100 cursor-pointer'
+                        : 'bg-gray-100 opacity-60 cursor-not-allowed'
                     }`}
                   >
                     <span className="font-semibold text-dark ">
                       {link.emoji} {link.text}
                     </span>
-                    <span className={link.action ? 'text-primary-500' : 'text-gray-400'}>→</span>
+                    <span className={link.action ? 'text-green-600' : 'text-gray-400'}>→</span>
                   </motion.button>
                 ))}
               </div>
