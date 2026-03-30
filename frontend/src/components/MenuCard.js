@@ -17,22 +17,22 @@ const MenuCard = ({ item, onViewDetails }) => {
   return (
     <motion.div
       whileHover={{ y: -5 }}
-      className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-soft hover:shadow-medium transition-all card-hover"
+      className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all border border-green-100 dark:border-slate-700 card-hover"
     >
       {/* Image */}
-      <div className="relative h-48 bg-gray-200 dark:bg-gray-700 overflow-hidden">
+      <div className="relative h-48 bg-gray-200 dark:bg-slate-700 overflow-hidden">
         <img
           src={item.image || 'https://via.placeholder.com/300x200?text=Food+Image'}
           alt={item.name}
           className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
         />
         {item.discount > 0 && (
-          <div className="absolute top-2 right-2 bg-primary-500 text-white px-3 py-1 rounded-lg font-bold text-sm">
+          <div className="absolute top-2 right-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-1 rounded-lg font-bold text-sm shadow-lg">
             {item.discount}% OFF
           </div>
         )}
         {item.dietary && (
-          <div className={`absolute top-2 left-2 px-3 py-1 rounded-lg text-white font-semibold text-xs ${
+          <div className={`absolute top-2 left-2 px-3 py-1 rounded-lg text-white font-semibold text-xs shadow-md ${
             item.dietary === 'veg' ? 'bg-green-500' : item.dietary === 'vegan' ? 'bg-green-600' : 'bg-red-500'
           }`}>
             {item.dietary.toUpperCase()}
@@ -42,12 +42,12 @@ const MenuCard = ({ item, onViewDetails }) => {
 
       {/* Content */}
       <div className="p-4">
-        <h3 className="font-bold text-lg text-dark dark:text-white truncate">{item.name}</h3>
-        <p className="text-gray-600 dark:text-gray-400 text-sm mt-1 line-clamp-2">{item.description}</p>
+        <h3 className="font-bold text-lg text-slate-900 dark:text-white truncate">{item.name}</h3>
+        <p className="text-slate-600 dark:text-slate-400 text-sm mt-1 line-clamp-2">{item.description}</p>
 
         {/* Details */}
-        <div className="flex justify-between items-center mt-3 text-xs text-gray-500 dark:text-gray-400">
-          <span>{item.category}</span>
+        <div className="flex justify-between items-center mt-3 text-xs text-slate-500 dark:text-slate-400">
+          <span className="font-medium">{item.category}</span>
           <span>⏱️ {item.preparationTime || 30} min</span>
         </div>
 
@@ -62,22 +62,22 @@ const MenuCard = ({ item, onViewDetails }) => {
               />
             ))}
           </div>
-          <span className="text-xs text-gray-600 dark:text-gray-400 ml-1">({item.reviewCount || 0})</span>
+          <span className="text-xs text-slate-600 dark:text-slate-400 ml-1">({item.reviewCount || 0})</span>
         </div>
 
         {/* Price and Action */}
         <div className="flex justify-between items-center mt-4">
           <div>
-            <span className="text-2xl font-bold text-primary-500">₹{item.price}</span>
+            <span className="text-2xl font-bold text-green-600">₹{item.price}</span>
             {item.discount > 0 && (
-              <span className="text-xs text-gray-400 line-through ml-2">
+              <span className="text-xs text-slate-400 line-through ml-2">
                 ₹{Math.round(item.price / (1 - item.discount / 100))}
               </span>
             )}
           </div>
           <button
             onClick={() => setShowQuantity(!showQuantity)}
-            className="bg-primary-500 text-white p-2 rounded-lg hover:bg-primary-600 transition"
+            className="bg-green-600 text-white p-2 rounded-lg hover:bg-green-700 transition shadow-md"
           >
             <FiShoppingCart />
           </button>
@@ -88,14 +88,14 @@ const MenuCard = ({ item, onViewDetails }) => {
           <div className="mt-3 flex items-center space-x-2">
             <button
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
-              className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded"
+              className="px-2 py-1 bg-green-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded hover:bg-green-200 dark:hover:bg-slate-600 transition"
             >
               -
             </button>
-            <span className="flex-1 text-center font-semibold">{quantity}</span>
+            <span className="flex-1 text-center font-semibold text-slate-700 dark:text-slate-300">{quantity}</span>
             <button
               onClick={() => setQuantity(quantity + 1)}
-              className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded"
+              className="px-2 py-1 bg-green-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded hover:bg-green-200 dark:hover:bg-slate-600 transition"
             >
               +
             </button>

@@ -37,12 +37,12 @@ body.dark {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #f0b32f;
+  background: #22c55e;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #d99a27;
+  background: #16a34a;
 }
 
 /* Smooth transitions */
@@ -55,7 +55,7 @@ button:focus,
 input:focus,
 textarea:focus,
 select:focus {
-  outline: 2px solid #f0b32f;
+  outline: 2px solid #22c55e;
   outline-offset: 2px;
 }
 
