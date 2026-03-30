@@ -138,7 +138,7 @@ const MenuPage = () => {
     : null;
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
+    <div className="min-h-screen bg-gray-50  py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -147,8 +147,8 @@ const MenuPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-5xl font-black text-dark dark:text-white mb-4">🍔 Explore Menu</h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400">
+          <h1 className="text-5xl font-black text-dark  mb-4">🍔 Explore Menu</h1>
+          <p className="text-lg text-gray-600 ">
             {selectedCanteenData 
               ? `Order from ${selectedCanteenData.name}` 
               : `Browse and order from ${canteens.length} campus canteens`
@@ -159,7 +159,7 @@ const MenuPage = () => {
         {/* Error Message */}
         {fetchError && (
           <motion.div
-            className="mb-6 p-4 bg-red-100 dark:bg-red-900/30 border border-red-300 dark:border-red-700 rounded-lg text-red-700 dark:text-red-400"
+            className="mb-6 p-4 bg-red-100  border border-red-300  rounded-lg text-red-700 "
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
@@ -174,7 +174,7 @@ const MenuPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <h2 className="text-2xl font-bold text-dark dark:text-white mb-4">Select Canteen</h2>
+          <h2 className="text-2xl font-bold text-dark  mb-4">Select Canteen</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {canteens.length === 0 ? (
               <p className="text-gray-500">Loading canteens...</p>
@@ -188,7 +188,7 @@ const MenuPage = () => {
                   className={`p-4 rounded-lg text-left transition ${
                     selectedCanteen === canteen._id
                       ? 'bg-primary-500 text-white shadow-lg'
-                      : 'bg-white dark:bg-gray-800 text-dark dark:text-white hover:shadow-md'
+                      : 'bg-white  text-dark  hover:shadow-md'
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -219,7 +219,7 @@ const MenuPage = () => {
                 placeholder="Search dishes..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-dark dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full pl-12 pr-4 py-3 border border-gray-300  rounded-lg bg-white  text-dark  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>
 
@@ -227,7 +227,7 @@ const MenuPage = () => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-dark dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="px-4 py-3 border border-gray-300  rounded-lg bg-white  text-dark  focus:outline-none focus:ring-2 focus:ring-primary-500"
             >
               <option value="popular">⭐ Popular</option>
               <option value="price-low">💰 Price: Low to High</option>
@@ -240,7 +240,7 @@ const MenuPage = () => {
               className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition ${
                 showFilters
                   ? 'bg-primary-500 text-white'
-                  : 'bg-gray-200 dark:bg-gray-800 text-dark dark:text-white'
+                  : 'bg-gray-200  text-dark '
               }`}
             >
               <FiFilter />
@@ -252,22 +252,22 @@ const MenuPage = () => {
         {/* Filter Options */}
         {showFilters && (
           <motion.div
-            className="mb-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow"
+            className="mb-8 bg-white  p-6 rounded-lg shadow"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
           >
-            <h3 className="font-bold text-dark dark:text-white mb-4">Filter Options</h3>
+            <h3 className="font-bold text-dark  mb-4">Filter Options</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Dietary Filter */}
               <div>
-                <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
+                <label className="block text-sm font-semibold text-dark  mb-2">
                   🥗 Dietary
                 </label>
                 <select
                   value={filters.dietary}
                   onChange={(e) => setFilters({ ...filters, dietary: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white"
+                  className="w-full px-4 py-2 border border-gray-300  rounded-lg bg-white  text-dark "
                 >
                   <option value="">All Options</option>
                   <option value="veg">Vegetarian</option>
@@ -278,13 +278,13 @@ const MenuPage = () => {
 
               {/* Price Range Filter */}
               <div>
-                <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
+                <label className="block text-sm font-semibold text-dark  mb-2">
                   💰 Price Range
                 </label>
                 <select
                   value={filters.priceRange}
                   onChange={(e) => setFilters({ ...filters, priceRange: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white"
+                  className="w-full px-4 py-2 border border-gray-300  rounded-lg bg-white  text-dark "
                 >
                   <option value="all">All Prices</option>
                   <option value="0-100">₹0 - ₹100</option>
@@ -301,7 +301,7 @@ const MenuPage = () => {
                     setFilters({ dietary: '', priceRange: 'all', category: '' });
                     setSearchQuery('');
                   }}
-                  className="w-full px-4 py-2 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/50 transition font-semibold"
+                  className="w-full px-4 py-2 bg-red-100  text-red-600  rounded-lg hover:bg-red-200 :bg-red-900/50 transition font-semibold"
                 >
                   🔄 Reset All
                 </button>
@@ -317,7 +317,7 @@ const MenuPage = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <div className="text-sm text-gray-600 dark:text-gray-400 font-semibold">
+          <div className="text-sm text-gray-600  font-semibold">
             {loading ? (
               <span>⏳ Loading menu...</span>
             ) : sortedItems.length === 0 ? (
@@ -339,7 +339,7 @@ const MenuPage = () => {
               <p className="text-gray-500">Loading menu items...</p>
             </div>
           ) : sortedItems.length === 0 ? (
-            <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-lg">
+            <div className="text-center py-12 bg-white  rounded-lg">
               <p className="text-gray-500 text-lg">No items found. Try adjusting your filters.</p>
             </div>
           ) : (

@@ -517,11 +517,11 @@ const AdminDashboard = () => {
 
   const OrderManagementSection = () => (
     <div className="space-y-6">
-      <h3 className="text-2xl font-bold text-dark dark:text-white">Order Management</h3>
-      <motion.div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-soft">
+      <h3 className="text-2xl font-bold text-dark ">Order Management</h3>
+      <motion.div className="bg-white  p-6 rounded-lg shadow-soft">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-orange-100 dark:bg-orange-900/30">
+            <thead className="bg-orange-100 ">
               <tr>
                 <th className="px-4 py-3 text-left font-semibold">Order ID</th>
                 <th className="px-4 py-3 text-left font-semibold">Student</th>
@@ -533,10 +533,10 @@ const AdminDashboard = () => {
             </thead>
             <tbody>
               {liveOrders.map((order, i) => (
-                <tr key={i} className="border-b dark:border-gray-700 hover:bg-orange-50 dark:hover:bg-orange-900/10">
+                <tr key={i} className="border-b  hover:bg-orange-50 :bg-orange-900/10">
                   <td className="px-4 py-3 font-semibold text-orange-600">{order.id}</td>
                   <td className="px-4 py-3">{order.student}</td>
-                  <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">{order.items}</td>
+                  <td className="px-4 py-3 text-sm text-gray-600 ">{order.items}</td>
                   <td className="px-4 py-3 font-semibold">₹350</td>
                   <td className="px-4 py-3"><StatusBadge status={order.status} /></td>
                   <td className="px-4 py-3">
@@ -556,17 +556,17 @@ const AdminDashboard = () => {
 
   const InventorySection = () => (
     <div className="space-y-6">
-      <h3 className="text-2xl font-bold text-dark dark:text-white">Inventory & Stock Control</h3>
+      <h3 className="text-2xl font-bold text-dark ">Inventory & Stock Control</h3>
       
       {/* Stock Alerts */}
-      <motion.div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-soft">
-        <h4 className="text-lg font-bold text-dark dark:text-white mb-4">⚠️ Critical Stock Alerts</h4>
+      <motion.div className="bg-white  p-6 rounded-lg shadow-soft">
+        <h4 className="text-lg font-bold text-dark  mb-4">⚠️ Critical Stock Alerts</h4>
         <div className="space-y-3">
           {lowStockAlerts.map((alert, i) => (
-            <div key={i} className="flex items-center justify-between p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-lg">
+            <div key={i} className="flex items-center justify-between p-4 bg-red-50  border border-red-200  rounded-lg">
               <div>
-                <p className="font-bold text-red-900 dark:text-red-200">{alert.item}</p>
-                <p className="text-sm text-red-700 dark:text-red-300">Current Stock: {alert.stock}{alert.unit}</p>
+                <p className="font-bold text-red-900 ">{alert.item}</p>
+                <p className="text-sm text-red-700 ">Current Stock: {alert.stock}{alert.unit}</p>
               </div>
               <button className="px-4 py-2 bg-orange-600 text-white rounded font-semibold hover:bg-orange-700">Place Order</button>
             </div>
@@ -575,11 +575,11 @@ const AdminDashboard = () => {
       </motion.div>
 
       {/* Inventory Table */}
-      <motion.div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-soft">
-        <h4 className="text-lg font-bold text-dark dark:text-white mb-4">📦 Stock Levels</h4>
+      <motion.div className="bg-white  p-6 rounded-lg shadow-soft">
+        <h4 className="text-lg font-bold text-dark  mb-4">📦 Stock Levels</h4>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
-            <thead className="bg-orange-100 dark:bg-orange-900/30">
+            <thead className="bg-orange-100 ">
               <tr>
                 <th className="px-4 py-2 text-left font-semibold">Item</th>
                 <th className="px-4 py-2 text-left font-semibold">Current Stock</th>
@@ -590,7 +590,7 @@ const AdminDashboard = () => {
             </thead>
             <tbody>
               {topItems.map((item, i) => (
-                <tr key={i} className="border-b dark:border-gray-700">
+                <tr key={i} className="border-b ">
                   <td className="px-4 py-3 font-semibold">{item.name}</td>
                   <td className="px-4 py-3">{item.stock} kg</td>
                   <td className="px-4 py-3">20 kg</td>
@@ -612,16 +612,16 @@ const AdminDashboard = () => {
   const StaffManagementSection = () => (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h3 className="text-2xl font-bold text-dark dark:text-white">Staff Management</h3>
+        <h3 className="text-2xl font-bold text-dark ">Staff Management</h3>
         <button className="flex items-center space-x-2 px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 font-semibold">
           <FiPlus /> Add Staff
         </button>
       </div>
 
-      <motion.div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-soft">
+      <motion.div className="bg-white  p-6 rounded-lg shadow-soft">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-orange-100 dark:bg-orange-900/30">
+            <thead className="bg-orange-100 ">
               <tr>
                 <th className="px-4 py-3 text-left font-semibold">Name</th>
                 <th className="px-4 py-3 text-left font-semibold">Role</th>
@@ -634,7 +634,7 @@ const AdminDashboard = () => {
             <tbody>
               {staff.length > 0 ? (
                 staff.map((member, i) => (
-                  <tr key={i} className="border-b dark:border-gray-700 hover:bg-orange-50 dark:hover:bg-orange-900/10">
+                  <tr key={i} className="border-b  hover:bg-orange-50 :bg-orange-900/10">
                     <td className="px-4 py-3 font-semibold">{member.name}</td>
                     <td className="px-4 py-3 text-sm">{member.role}</td>
                     <td className="px-4 py-3 text-sm">{member.shift}</td>
@@ -847,10 +847,10 @@ const AdminDashboard = () => {
   // ✅ If not authenticated or not admin, show loading while redirecting
   if (!isAuthenticated || !user || user.role !== 'admin') {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50  flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400 font-semibold">Checking admin access...</p>
+          <p className="text-gray-600  font-semibold">Checking admin access...</p>
         </div>
       </div>
     );

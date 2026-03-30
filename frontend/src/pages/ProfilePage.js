@@ -106,17 +106,17 @@ const ProfilePage = () => {
   // ✅ If not authenticated, show loading while redirecting
   if (!isAuthenticated || !user) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50  flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400 font-semibold">Redirecting to login...</p>
+          <p className="text-gray-600  font-semibold">Redirecting to login...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
+    <div className="min-h-screen bg-gray-50  py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -124,7 +124,7 @@ const ProfilePage = () => {
           transition={{ duration: 0.5 }}
         >
           {/* Profile Header */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-soft p-8 mb-8">
+          <div className="bg-white  rounded-lg shadow-soft p-8 mb-8">
             <div className="flex justify-between items-start mb-6">
               <div className="flex items-center gap-4">
                 {/* Profile Picture */}
@@ -149,8 +149,8 @@ const ProfilePage = () => {
                   )}
                 </div>
                 <div>
-                  <h1 className="text-4xl font-bold text-dark dark:text-white mb-2">{user?.name}</h1>
-                  <p className="text-gray-600 dark:text-gray-400">{user?.email}</p>
+                  <h1 className="text-4xl font-bold text-dark  mb-2">{user?.name}</h1>
+                  <p className="text-gray-600 ">{user?.email}</p>
                 </div>
               </div>
               <button
@@ -164,7 +164,7 @@ const ProfilePage = () => {
             {/* Profile Info */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400 font-semibold mb-1">Name</p>
+                <p className="text-sm text-gray-600  font-semibold mb-1">Name</p>
                 {isEditing ? (
                   <input
                     type="text"
@@ -173,11 +173,11 @@ const ProfilePage = () => {
                     className="w-full px-3 py-2 border rounded-lg"
                   />
                 ) : (
-                  <p className="text-lg text-dark dark:text-white font-semibold">{user?.name}</p>
+                  <p className="text-lg text-dark  font-semibold">{user?.name}</p>
                 )}
               </div>
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400 font-semibold mb-1">Phone</p>
+                <p className="text-sm text-gray-600  font-semibold mb-1">Phone</p>
                 {isEditing ? (
                   <input
                     type="tel"
@@ -187,11 +187,11 @@ const ProfilePage = () => {
                     placeholder="Enter phone number"
                   />
                 ) : (
-                  <p className="text-lg text-dark dark:text-white font-semibold">{user?.phone || 'Not set'}</p>
+                  <p className="text-lg text-dark  font-semibold">{user?.phone || 'Not set'}</p>
                 )}
               </div>
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400 font-semibold mb-1">University ID</p>
+                <p className="text-sm text-gray-600  font-semibold mb-1">University ID</p>
                 {isEditing ? (
                   <input
                     type="text"
@@ -201,11 +201,11 @@ const ProfilePage = () => {
                     placeholder="Enter university ID"
                   />
                 ) : (
-                  <p className="text-lg text-dark dark:text-white font-semibold">{user?.universityId || 'Not set'}</p>
+                  <p className="text-lg text-dark  font-semibold">{user?.universityId || 'Not set'}</p>
                 )}
               </div>
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400 font-semibold mb-1">Department</p>
+                <p className="text-sm text-gray-600  font-semibold mb-1">Department</p>
                 {isEditing ? (
                   <input
                     type="text"
@@ -215,15 +215,15 @@ const ProfilePage = () => {
                     placeholder="Enter department"
                   />
                 ) : (
-                  <p className="text-lg text-dark dark:text-white font-semibold">{user?.department || 'Not set'}</p>
+                  <p className="text-lg text-dark  font-semibold">{user?.department || 'Not set'}</p>
                 )}
               </div>
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400 font-semibold mb-1">Role</p>
-                <p className="text-lg text-dark dark:text-white font-semibold capitalize">{user?.role}</p>
+                <p className="text-sm text-gray-600  font-semibold mb-1">Role</p>
+                <p className="text-lg text-dark  font-semibold capitalize">{user?.role}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400 font-semibold mb-1">Loyalty Points</p>
+                <p className="text-sm text-gray-600  font-semibold mb-1">Loyalty Points</p>
                 <p className="text-lg text-primary-500 font-bold">2,450 ⭐</p>
               </div>
             </div>
@@ -257,13 +257,13 @@ const ProfilePage = () => {
 
           {/* Order History */}
           <motion.div
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-soft p-8"
+            className="bg-white  rounded-lg shadow-soft p-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-dark dark:text-white">Recent Orders</h2>
+              <h2 className="text-2xl font-bold text-dark ">Recent Orders</h2>
               <button
                 onClick={() => navigate('/my-orders')}
                 className="text-primary-500 hover:text-primary-600 font-semibold"
@@ -274,7 +274,7 @@ const ProfilePage = () => {
             <div className="overflow-x-auto">
               {orders.length === 0 ? (
                 <div className="text-center py-8">
-                  <p className="text-gray-500 dark:text-gray-400 mb-4">No orders yet</p>
+                  <p className="text-gray-500  mb-4">No orders yet</p>
                   <button
                     onClick={() => navigate('/menu')}
                     className="btn-primary px-6 py-2"
@@ -285,24 +285,24 @@ const ProfilePage = () => {
               ) : (
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-gray-200 dark:border-gray-700">
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-dark dark:text-white">Date</th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-dark dark:text-white">Items</th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-dark dark:text-white">Amount</th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-dark dark:text-white">Status</th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-dark dark:text-white">Action</th>
+                  <tr className="border-b border-gray-200 ">
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-dark ">Date</th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-dark ">Items</th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-dark ">Amount</th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-dark ">Status</th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-dark ">Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {orders.slice(0, 5).map((order) => (
-                    <tr key={order._id} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
-                      <td className="px-6 py-4 text-sm text-dark dark:text-white">
+                    <tr key={order._id} className="border-b border-gray-100  hover:bg-gray-50 :bg-gray-700">
+                      <td className="px-6 py-4 text-sm text-dark ">
                         {new Date(order.createdAt).toLocaleDateString()}
                       </td>
-                      <td className="px-6 py-4 text-sm text-dark dark:text-white">
+                      <td className="px-6 py-4 text-sm text-dark ">
                         {order.items?.map(item => item.menuItem?.name).join(', ') || 'N/A'}
                       </td>
-                      <td className="px-6 py-4 text-sm text-dark dark:text-white font-semibold">
+                      <td className="px-6 py-4 text-sm text-dark  font-semibold">
                         ₹{order.finalAmount}
                       </td>
                       <td className="px-6 py-4 text-sm">

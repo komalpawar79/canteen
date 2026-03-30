@@ -65,16 +65,16 @@ const WalletPage = () => {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-dark flex items-center justify-center px-4">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100   flex items-center justify-center px-4">
         <motion.div
           className="text-center"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
         >
-          <h1 className="text-4xl font-bold text-dark dark:text-white mb-4">
+          <h1 className="text-4xl font-bold text-dark  mb-4">
             Please Login First
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-gray-600 ">
             You need to be logged in to use wallet features
           </p>
         </motion.div>
@@ -83,7 +83,7 @@ const WalletPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-dark py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100   py-12 px-4">
       <motion.div
         className="max-w-7xl mx-auto"
         variants={containerVariants}
@@ -92,10 +92,10 @@ const WalletPage = () => {
       >
         {/* Header */}
         <motion.div variants={itemVariants} className="mb-8">
-          <h1 className="text-5xl font-black text-dark dark:text-white mb-2">
+          <h1 className="text-5xl font-black text-dark  mb-2">
             💳 My Wallet
           </h1>
-          <p className="text-gray-600 dark:text-gray-400 text-lg">
+          <p className="text-gray-600  text-lg">
             Manage your QuickBite wallet and payments
           </p>
         </motion.div>
@@ -158,12 +158,12 @@ const WalletPage = () => {
             onClick={() => setShowAddMoney(false)}
           >
             <motion.div
-              className="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-md w-full"
+              className="bg-white  rounded-2xl p-8 max-w-md w-full"
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <h3 className="text-2xl font-bold text-dark dark:text-white mb-6">
+              <h3 className="text-2xl font-bold text-dark  mb-6">
                 Add Money to Wallet
               </h3>
 
@@ -181,7 +181,7 @@ const WalletPage = () => {
                     className={`py-3 rounded-lg font-bold transition ${
                       selectedAmount === amt
                         ? 'bg-primary-500 text-white'
-                        : 'bg-gray-100 dark:bg-gray-700 text-dark dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600'
+                        : 'bg-gray-100  text-dark  hover:bg-gray-200 :bg-gray-600'
                     }`}
                   >
                     ₹{amt}
@@ -191,11 +191,11 @@ const WalletPage = () => {
 
               {/* Custom Amount */}
               <div className="mb-6">
-                <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
+                <label className="block text-sm font-semibold text-dark  mb-2">
                   Custom Amount
                 </label>
                 <div className="flex gap-2">
-                  <span className="flex items-center bg-gray-100 dark:bg-gray-700 px-3 rounded-lg text-dark dark:text-white font-bold">
+                  <span className="flex items-center bg-gray-100  px-3 rounded-lg text-dark  font-bold">
                     ₹
                   </span>
                   <input
@@ -206,13 +206,13 @@ const WalletPage = () => {
                       setSelectedAmount(null);
                     }}
                     placeholder="Enter amount"
-                    className="flex-1 px-4 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white focus:outline-none focus:border-primary-500"
+                    className="flex-1 px-4 py-3 border-2 border-gray-200  rounded-lg bg-white  text-dark  focus:outline-none focus:border-primary-500"
                   />
                 </div>
               </div>
 
               {/* Limit Info */}
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-6">
+              <p className="text-xs text-gray-500  mb-6">
                 Minimum: ₹1 | Maximum: ₹100,000
               </p>
 
@@ -231,7 +231,7 @@ const WalletPage = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setShowAddMoney(false)}
-                  className="flex-1 bg-gray-200 dark:bg-gray-700 text-dark dark:text-white font-bold py-3 rounded-lg transition"
+                  className="flex-1 bg-gray-200  text-dark  font-bold py-3 rounded-lg transition"
                 >
                   Cancel
                 </motion.button>
@@ -247,10 +247,10 @@ const WalletPage = () => {
         >
           <motion.div
             whileHover={{ y: -5 }}
-            className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-soft"
+            className="bg-white  p-6 rounded-2xl shadow-soft"
           >
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-bold text-dark dark:text-white">
+              <h3 className="text-lg font-bold text-dark ">
                 Total Money Added
               </h3>
               <FiArrowDown className="text-3xl text-green-500" />
@@ -262,10 +262,10 @@ const WalletPage = () => {
 
           <motion.div
             whileHover={{ y: -5 }}
-            className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-soft"
+            className="bg-white  p-6 rounded-2xl shadow-soft"
           >
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-bold text-dark dark:text-white">
+              <h3 className="text-lg font-bold text-dark ">
                 Total Money Spent
               </h3>
               <FiArrowUp className="text-3xl text-red-500" />
@@ -278,7 +278,7 @@ const WalletPage = () => {
 
         {/* Recent Transactions */}
         <motion.div variants={itemVariants}>
-          <h3 className="text-2xl font-bold text-dark dark:text-white mb-4">
+          <h3 className="text-2xl font-bold text-dark  mb-4">
             📋 Recent Transactions
           </h3>
 
@@ -290,14 +290,14 @@ const WalletPage = () => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 }}
-                  className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-soft hover:shadow-lg transition flex items-center justify-between"
+                  className="bg-white  p-4 rounded-xl shadow-soft hover:shadow-lg transition flex items-center justify-between"
                 >
                   <div className="flex items-center gap-4">
                     <div
                       className={`p-3 rounded-lg ${
                         txn.type === 'credit'
-                          ? 'bg-green-100 dark:bg-green-900/30'
-                          : 'bg-red-100 dark:bg-red-900/30'
+                          ? 'bg-green-100 '
+                          : 'bg-red-100 '
                       }`}
                     >
                       {txn.type === 'credit' ? (
@@ -307,10 +307,10 @@ const WalletPage = () => {
                       )}
                     </div>
                     <div>
-                      <p className="font-semibold text-dark dark:text-white">
+                      <p className="font-semibold text-dark ">
                         {txn.description}
                       </p>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                      <p className="text-sm text-gray-500 ">
                         {new Date(txn.date).toLocaleDateString()} -{' '}
                         {new Date(txn.date).toLocaleTimeString()}
                       </p>
@@ -330,11 +330,11 @@ const WalletPage = () => {
             </div>
           ) : (
             <motion.div
-              className="bg-white dark:bg-gray-800 p-12 rounded-2xl shadow-soft text-center"
+              className="bg-white  p-12 rounded-2xl shadow-soft text-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
-              <p className="text-gray-600 dark:text-gray-400 text-lg">
+              <p className="text-gray-600  text-lg">
                 No transactions yet. Add money to get started! 💳
               </p>
             </motion.div>

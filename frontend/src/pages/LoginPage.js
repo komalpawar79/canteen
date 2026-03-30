@@ -51,7 +51,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-secondary-50 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-secondary-50   flex items-center justify-center py-12 px-4">
       <motion.div
         className="max-w-md w-full"
         initial={{ opacity: 0, y: 20 }}
@@ -59,14 +59,14 @@ const LoginPage = () => {
         transition={{ duration: 0.5 }}
       >
         {/* Card */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-premium p-8">
+        <div className="bg-white  rounded-lg shadow-premium p-8">
           {/* Header */}
           <div className="text-center mb-8">
             <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-accent rounded-lg mx-auto flex items-center justify-center mb-4">
               <span className="text-3xl">🍜</span>
             </div>
-            <h1 className="text-3xl font-bold text-dark dark:text-white mb-2">Campus Canteen</h1>
-            <p className="text-gray-600 dark:text-gray-400">Login to order your favorite food</p>
+            <h1 className="text-3xl font-bold text-dark  mb-2">Campus Canteen</h1>
+            <p className="text-gray-600 ">Login to order your favorite food</p>
           </div>
 
           {/* User Type Selection */}
@@ -78,7 +78,7 @@ const LoginPage = () => {
                 className={`flex-1 py-2 rounded-lg font-semibold transition ${
                   userType === type
                     ? 'bg-primary-500 text-white'
-                    : 'bg-gray-100 dark:bg-gray-700 text-dark dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600'
+                    : 'bg-gray-100  text-dark  hover:bg-gray-200 :bg-gray-600'
                 }`}
               >
                 {type.charAt(0).toUpperCase() + type.slice(1)}
@@ -90,7 +90,7 @@ const LoginPage = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Email */}
             <div>
-              <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
+              <label className="block text-sm font-semibold text-dark  mb-2">
                 Email Address
               </label>
               <input
@@ -99,14 +99,14 @@ const LoginPage = () => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="you@university.edu"
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full px-4 py-3 border border-gray-300  rounded-lg bg-white  text-dark  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
                 required
               />
             </div>
 
             {/* Password */}
             <div>
-              <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
+              <label className="block text-sm font-semibold text-dark  mb-2">
                 Password
               </label>
               <input
@@ -115,7 +115,7 @@ const LoginPage = () => {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full px-4 py-3 border border-gray-300  rounded-lg bg-white  text-dark  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
                 required
               />
             </div>
@@ -124,7 +124,7 @@ const LoginPage = () => {
             <div className="flex justify-between items-center text-sm">
               <label className="flex items-center space-x-2">
                 <input type="checkbox" className="rounded" />
-                <span className="text-gray-600 dark:text-gray-400">Remember me</span>
+                <span className="text-gray-600 ">Remember me</span>
               </label>
               <a href="#" className="text-primary-500 hover:text-primary-600 font-semibold">
                 Forgot password?
@@ -143,21 +143,21 @@ const LoginPage = () => {
 
           {/* Divider */}
           <div className="my-6 flex items-center">
-            <div className="flex-1 border-t border-gray-300 dark:border-gray-600"></div>
-            <span className="px-3 text-gray-500 dark:text-gray-400 text-sm">OR</span>
-            <div className="flex-1 border-t border-gray-300 dark:border-gray-600"></div>
+            <div className="flex-1 border-t border-gray-300 "></div>
+            <span className="px-3 text-gray-500  text-sm">OR</span>
+            <div className="flex-1 border-t border-gray-300 "></div>
           </div>
 
           {/* Social Login */}
           <div className="space-y-3">
-            <button className="w-full flex items-center justify-center space-x-2 border border-gray-300 dark:border-gray-600 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+            <button className="w-full flex items-center justify-center space-x-2 border border-gray-300  py-3 rounded-lg hover:bg-gray-50 :bg-gray-700 transition">
               <span>🔗</span>
-              <span className="text-dark dark:text-white font-semibold">Login with Google</span>
+              <span className="text-dark  font-semibold">Login with Google</span>
             </button>
           </div>
 
           {/* Sign Up Link */}
-          <p className="text-center mt-6 text-gray-600 dark:text-gray-400">
+          <p className="text-center mt-6 text-gray-600 ">
             Don't have an account?{' '}
             <Link to="/signup" className="text-primary-500 hover:text-primary-600 font-semibold">
               Sign up here
@@ -166,10 +166,10 @@ const LoginPage = () => {
         </div>
 
         {/* Demo Credentials */}
-        <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-900 rounded-lg p-4">
-          <p className="text-xs font-semibold text-blue-900 dark:text-blue-100 mb-2">Demo Credentials:</p>
-          <p className="text-xs text-blue-800 dark:text-blue-200">Email: demo@university.edu</p>
-          <p className="text-xs text-blue-800 dark:text-blue-200">Password: password123</p>
+        <div className="mt-6 bg-blue-50  border border-blue-200  rounded-lg p-4">
+          <p className="text-xs font-semibold text-blue-900  mb-2">Demo Credentials:</p>
+          <p className="text-xs text-blue-800 ">Email: demo@university.edu</p>
+          <p className="text-xs text-blue-800 ">Password: password123</p>
         </div>
       </motion.div>
     </div>

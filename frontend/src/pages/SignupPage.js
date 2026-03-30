@@ -64,7 +64,7 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-secondary-50 dark:from-gray-900 dark:to-gray-800 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-secondary-50   py-12 px-4">
       <motion.div
         className="max-w-2xl mx-auto"
         initial={{ opacity: 0, y: 20 }}
@@ -72,21 +72,21 @@ const SignupPage = () => {
         transition={{ duration: 0.5 }}
       >
         {/* Card */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-premium p-8">
+        <div className="bg-white  rounded-lg shadow-premium p-8">
           {/* Header */}
           <div className="text-center mb-8">
             <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-accent rounded-lg mx-auto flex items-center justify-center mb-4">
               <span className="text-3xl">🍜</span>
             </div>
-            <h1 className="text-3xl font-bold text-dark dark:text-white mb-2">Create Account</h1>
-            <p className="text-gray-600 dark:text-gray-400">Join Campus Canteen and start ordering</p>
+            <h1 className="text-3xl font-bold text-dark  mb-2">Create Account</h1>
+            <p className="text-gray-600 ">Join Campus Canteen and start ordering</p>
           </div>
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Name */}
             <div>
-              <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
+              <label className="block text-sm font-semibold text-dark  mb-2">
                 Full Name
               </label>
               <input
@@ -95,7 +95,7 @@ const SignupPage = () => {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="John Doe"
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full px-4 py-3 border border-gray-300  rounded-lg bg-white  text-dark  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
                 required
               />
             </div>
@@ -103,7 +103,7 @@ const SignupPage = () => {
             {/* Email & University ID */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
+                <label className="block text-sm font-semibold text-dark  mb-2">
                   Email Address
                 </label>
                 <input
@@ -112,12 +112,12 @@ const SignupPage = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="you@university.edu"
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  className="w-full px-4 py-3 border border-gray-300  rounded-lg bg-white  text-dark  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
+                <label className="block text-sm font-semibold text-dark  mb-2">
                   University ID (Optional)
                 </label>
                 <input
@@ -126,7 +126,7 @@ const SignupPage = () => {
                   value={formData.universityId}
                   onChange={handleChange}
                   placeholder="VIT123456"
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  className="w-full px-4 py-3 border border-gray-300  rounded-lg bg-white  text-dark  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
                 />
               </div>
             </div>
@@ -134,7 +134,7 @@ const SignupPage = () => {
             {/* Password & Confirm */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
+                <label className="block text-sm font-semibold text-dark  mb-2">
                   Password
                 </label>
                 <input
@@ -143,12 +143,12 @@ const SignupPage = () => {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="••••••••"
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  className="w-full px-4 py-3 border border-gray-300  rounded-lg bg-white  text-dark  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
+                <label className="block text-sm font-semibold text-dark  mb-2">
                   Confirm Password
                 </label>
                 <input
@@ -157,7 +157,7 @@ const SignupPage = () => {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   placeholder="••••••••"
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  className="w-full px-4 py-3 border border-gray-300  rounded-lg bg-white  text-dark  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
                   required
                 />
               </div>
@@ -165,11 +165,11 @@ const SignupPage = () => {
 
             {/* Role Selector */}
             <div>
-              <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
+              <label className="block text-sm font-semibold text-dark  mb-2">
                 Account Type
               </label>
               <div className="grid grid-cols-3 gap-4">
-                <label className="flex items-center p-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer hover:border-primary-500 transition" style={{ borderColor: formData.role === 'student' ? '#f0b32f' : undefined }}>
+                <label className="flex items-center p-3 border-2 border-gray-300  rounded-lg cursor-pointer hover:border-primary-500 transition" style={{ borderColor: formData.role === 'student' ? '#f0b32f' : undefined }}>
                   <input
                     type="radio"
                     name="role"
@@ -178,9 +178,9 @@ const SignupPage = () => {
                     onChange={handleChange}
                     className="w-4 h-4 accent-primary-500"
                   />
-                  <span className="ml-3 font-semibold text-dark dark:text-white">👨‍🎓 Student</span>
+                  <span className="ml-3 font-semibold text-dark ">👨‍🎓 Student</span>
                 </label>
-                <label className="flex items-center p-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer hover:border-primary-500 transition" style={{ borderColor: formData.role === 'staff' ? '#f0b32f' : undefined }}>
+                <label className="flex items-center p-3 border-2 border-gray-300  rounded-lg cursor-pointer hover:border-primary-500 transition" style={{ borderColor: formData.role === 'staff' ? '#f0b32f' : undefined }}>
                   <input
                     type="radio"
                     name="role"
@@ -189,9 +189,9 @@ const SignupPage = () => {
                     onChange={handleChange}
                     className="w-4 h-4 accent-primary-500"
                   />
-                  <span className="ml-3 font-semibold text-dark dark:text-white">👨‍💼 Staff</span>
+                  <span className="ml-3 font-semibold text-dark ">👨‍💼 Staff</span>
                 </label>
-                <label className="flex items-center p-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer hover:border-primary-500 transition" style={{ borderColor: formData.role === 'admin' ? '#f0b32f' : undefined }}>
+                <label className="flex items-center p-3 border-2 border-gray-300  rounded-lg cursor-pointer hover:border-primary-500 transition" style={{ borderColor: formData.role === 'admin' ? '#f0b32f' : undefined }}>
                   <input
                     type="radio"
                     name="role"
@@ -200,7 +200,7 @@ const SignupPage = () => {
                     onChange={handleChange}
                     className="w-4 h-4 accent-primary-500"
                   />
-                  <span className="ml-3 font-semibold text-dark dark:text-white">👑 Admin</span>
+                  <span className="ml-3 font-semibold text-dark ">👑 Admin</span>
                 </label>
               </div>
             </div>
@@ -208,7 +208,7 @@ const SignupPage = () => {
             {/* Phone & Department */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
+                <label className="block text-sm font-semibold text-dark  mb-2">
                   Phone Number
                 </label>
                 <input
@@ -217,11 +217,11 @@ const SignupPage = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="+91 XXXXXXXXXX"
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  className="w-full px-4 py-3 border border-gray-300  rounded-lg bg-white  text-dark  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
+                <label className="block text-sm font-semibold text-dark  mb-2">
                   Department
                 </label>
                 <input
@@ -230,7 +230,7 @@ const SignupPage = () => {
                   value={formData.department}
                   onChange={handleChange}
                   placeholder="Computer Science"
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  className="w-full px-4 py-3 border border-gray-300  rounded-lg bg-white  text-dark  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
                 />
               </div>
             </div>
@@ -238,7 +238,7 @@ const SignupPage = () => {
             {/* Terms */}
             <label className="flex items-center space-x-2">
               <input type="checkbox" required className="rounded" />
-              <span className="text-sm text-gray-600 dark:text-gray-400">
+              <span className="text-sm text-gray-600 ">
                 I agree to the{' '}
                 <a href="#" className="text-primary-500 hover:text-primary-600 font-semibold">
                   Terms & Conditions
@@ -257,7 +257,7 @@ const SignupPage = () => {
           </form>
 
           {/* Login Link */}
-          <p className="text-center mt-6 text-gray-600 dark:text-gray-400">
+          <p className="text-center mt-6 text-gray-600 ">
             Already have an account?{' '}
             <Link to="/login" className="text-primary-500 hover:text-primary-600 font-semibold">
               Login here

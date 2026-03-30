@@ -145,7 +145,7 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-dark">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100  ">
       {/* Hero Section with Parallax */}
       <motion.section
         className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-900 via-dark to-secondary-900"
@@ -254,14 +254,14 @@ const AboutPage = () => {
               <motion.div
                 key={index}
                 variants={staggerItem}
-                className="bg-white dark:bg-gray-800 p-6 rounded-2xl text-center shadow-soft hover:shadow-lg transition"
+                className="bg-white  p-6 rounded-2xl text-center shadow-soft hover:shadow-lg transition"
                 whileHover={{ y: -5 }}
               >
                 <Icon className="text-4xl text-primary-500 mx-auto mb-3" />
-                <div className="text-3xl font-black text-dark dark:text-white mb-1">
+                <div className="text-3xl font-black text-dark  mb-1">
                   {stat.value}
                 </div>
-                <div className="text-gray-600 dark:text-gray-400 font-semibold">
+                <div className="text-gray-600  font-semibold">
                   {stat.label}
                 </div>
               </motion.div>
@@ -289,7 +289,7 @@ const AboutPage = () => {
               className={`px-8 py-3 rounded-xl font-bold capitalize transition ${
                 activeTab === tab
                   ? 'bg-gradient-to-r from-primary-500 to-secondary-500 text-white shadow-lg'
-                  : 'bg-white dark:bg-gray-800 text-dark dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
+                  : 'bg-white  text-dark  hover:bg-gray-100 :bg-gray-700'
               }`}
             >
               {tab === 'story' && '📖'} {tab === 'why' && '⭐'} {tab === 'campus' && '🏫'} {tab === 'team' && '👥'} {tab}
@@ -308,19 +308,19 @@ const AboutPage = () => {
           {activeTab === 'story' && (
             <div className="space-y-8">
               <motion.div
-                className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-soft"
+                className="bg-white  p-8 rounded-2xl shadow-soft"
                 variants={fadeInUp}
                 initial="hidden"
                 animate="visible"
               >
-                <h2 className="text-3xl font-bold text-dark dark:text-white mb-4">📖 Our Story</h2>
-                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-6">
+                <h2 className="text-3xl font-bold text-dark  mb-4">📖 Our Story</h2>
+                <p className="text-gray-600  text-lg leading-relaxed mb-6">
                   QuickBite was born from a simple observation: students are hungry, busy, and deserve better food options on campus!
                 </p>
-                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-6">
+                <p className="text-gray-600  text-lg leading-relaxed mb-6">
                   We started with a vision to transform the way students eat on campus. No more waiting in long queues, no more expensive delivery fees, no more compromising on quality.
                 </p>
-                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                <p className="text-gray-600  text-lg leading-relaxed">
                   Today, QuickBite serves 10,000+ students daily with 4 canteens, 2,000+ dishes, and lightning-fast delivery. We're not just a food app - we're part of the campus lifestyle! 🎓
                 </p>
               </motion.div>
@@ -333,12 +333,12 @@ const AboutPage = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="flex gap-4 items-start bg-white dark:bg-gray-800 p-6 rounded-xl shadow-soft"
+                    className="flex gap-4 items-start bg-white  p-6 rounded-xl shadow-soft"
                   >
                     <div className="text-3xl font-bold text-primary-500 min-w-fit">{item.year}</div>
                     <div>
-                      <h3 className="text-xl font-bold text-dark dark:text-white">{item.event}</h3>
-                      <p className="text-gray-600 dark:text-gray-400">{item.description}</p>
+                      <h3 className="text-xl font-bold text-dark ">{item.event}</h3>
+                      <p className="text-gray-600 ">{item.description}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -359,13 +359,13 @@ const AboutPage = () => {
                   key={index}
                   variants={staggerItem}
                   whileHover={{ y: -5 }}
-                  className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-soft hover:shadow-lg transition"
+                  className="bg-white  p-8 rounded-2xl shadow-soft hover:shadow-lg transition"
                 >
                   <div className="text-5xl mb-4">{reason.icon}</div>
-                  <h3 className="text-xl font-bold text-dark dark:text-white mb-3">
+                  <h3 className="text-xl font-bold text-dark  mb-3">
                     {reason.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400">
+                  <p className="text-gray-600 ">
                     {reason.description}
                   </p>
                 </motion.div>
@@ -427,14 +427,14 @@ const AboutPage = () => {
                   key={index}
                   variants={staggerItem}
                   whileHover={{ y: -8, rotateY: 5 }}
-                  className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-soft hover:shadow-lg text-center transition"
+                  className="bg-white  p-6 rounded-2xl shadow-soft hover:shadow-lg text-center transition"
                 >
                   <div className="text-6xl mb-4">{member.emoji}</div>
-                  <h3 className="text-xl font-bold text-dark dark:text-white mb-1">
+                  <h3 className="text-xl font-bold text-dark  mb-1">
                     {member.name}
                   </h3>
                   <p className="text-primary-500 font-semibold mb-2">{member.role}</p>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  <p className="text-gray-600  text-sm">
                     {member.specialty}
                   </p>
                 </motion.div>
@@ -489,7 +489,7 @@ const AboutPage = () => {
 
       {/* Footer Info */}
       <motion.section
-        className="py-12 px-4 bg-white dark:bg-gray-800"
+        className="py-12 px-4 bg-white "
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -497,18 +497,18 @@ const AboutPage = () => {
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div>
             <div className="text-4xl mb-2">📱</div>
-            <h3 className="font-bold text-dark dark:text-white mb-1">Easy App</h3>
-            <p className="text-gray-600 dark:text-gray-400">Download QuickBite app for easy ordering</p>
+            <h3 className="font-bold text-dark  mb-1">Easy App</h3>
+            <p className="text-gray-600 ">Download QuickBite app for easy ordering</p>
           </div>
           <div>
             <div className="text-4xl mb-2">🚚</div>
-            <h3 className="font-bold text-dark dark:text-white mb-1">Fast Delivery</h3>
-            <p className="text-gray-600 dark:text-gray-400">Average 30 mins from order to your door</p>
+            <h3 className="font-bold text-dark  mb-1">Fast Delivery</h3>
+            <p className="text-gray-600 ">Average 30 mins from order to your door</p>
           </div>
           <div>
             <div className="text-4xl mb-2">⭐</div>
-            <h3 className="font-bold text-dark dark:text-white mb-1">Quality Assured</h3>
-            <p className="text-gray-600 dark:text-gray-400">Rated 4.6+ by 10K+ verified students</p>
+            <h3 className="font-bold text-dark  mb-1">Quality Assured</h3>
+            <p className="text-gray-600 ">Rated 4.6+ by 10K+ verified students</p>
           </div>
         </div>
       </motion.section>

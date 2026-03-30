@@ -151,10 +151,10 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-dark">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100  ">
       {/* Hero Section */}
       <motion.section
-        className="relative py-20 px-4 bg-gradient-to-r from-primary-500/10 via-secondary-500/10 to-accent/10 dark:from-primary-500/5 dark:via-secondary-500/5 dark:to-accent/5 overflow-hidden"
+        className="relative py-20 px-4 bg-gradient-to-r from-primary-500/10 via-secondary-500/10 to-accent/10    overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -189,7 +189,7 @@ const ContactPage = () => {
           />
           
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white/80 dark:from-dark/90 via-transparent to-white/80 dark:to-dark/90" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/80  via-transparent to-white/80 " />
         </div>
 
         {/* Floating Elements */}
@@ -214,13 +214,13 @@ const ContactPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 className="text-5xl md:text-6xl font-black text-dark dark:text-white mb-4">
+          <h1 className="text-5xl md:text-6xl font-black text-dark  mb-4">
             Get in Touch 💌
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-2">
+          <p className="text-xl md:text-2xl text-gray-600  mb-2">
             We'd love to hear from you!
           </p>
-          <p className="text-lg text-gray-500 dark:text-gray-400">
+          <p className="text-lg text-gray-500 ">
             Have questions? Need support? Want to collaborate? Reach out anytime.
           </p>
         </motion.div>
@@ -272,11 +272,11 @@ const ContactPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-soft">
-              <h2 className="text-3xl font-bold text-dark dark:text-white mb-2">
+            <div className="bg-white  p-8 rounded-2xl shadow-soft">
+              <h2 className="text-3xl font-bold text-dark  mb-2">
                 Send us a Message
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-8">
+              <p className="text-gray-600  mb-8">
                 Fill out the form below and we'll get back to you as soon as possible.
               </p>
 
@@ -293,10 +293,10 @@ const ContactPage = () => {
                   >
                     <FiCheckCircle className="text-6xl text-green-500 mb-4" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-dark dark:text-white mb-2">
+                  <h3 className="text-2xl font-bold text-dark  mb-2">
                     Message Sent!
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-center">
+                  <p className="text-gray-600  text-center">
                     Thank you for contacting us. We'll respond within 24 hours.
                   </p>
                 </motion.div>
@@ -309,7 +309,7 @@ const ContactPage = () => {
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
                   >
-                    <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
+                    <label className="block text-sm font-semibold text-dark  mb-2">
                       Name *
                     </label>
                     <input
@@ -318,7 +318,7 @@ const ContactPage = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="Your name"
-                      className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition"
+                      className="w-full px-4 py-3 border-2 border-gray-200  rounded-lg bg-white  text-dark  placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition"
                     />
                   </motion.div>
 
@@ -329,7 +329,7 @@ const ContactPage = () => {
                     viewport={{ once: true }}
                     transition={{ delay: 0.15 }}
                   >
-                    <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
+                    <label className="block text-sm font-semibold text-dark  mb-2">
                       Email *
                     </label>
                     <input
@@ -338,7 +338,7 @@ const ContactPage = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="your.email@university.edu"
-                      className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition"
+                      className="w-full px-4 py-3 border-2 border-gray-200  rounded-lg bg-white  text-dark  placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition"
                     />
                   </motion.div>
 
@@ -349,7 +349,7 @@ const ContactPage = () => {
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 }}
                   >
-                    <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
+                    <label className="block text-sm font-semibold text-dark  mb-2">
                       Phone (Optional)
                     </label>
                     <input
@@ -358,7 +358,7 @@ const ContactPage = () => {
                       value={formData.phone}
                       onChange={handleInputChange}
                       placeholder="+91 98765 43210"
-                      className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition"
+                      className="w-full px-4 py-3 border-2 border-gray-200  rounded-lg bg-white  text-dark  placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition"
                     />
                   </motion.div>
 
@@ -369,14 +369,14 @@ const ContactPage = () => {
                     viewport={{ once: true }}
                     transition={{ delay: 0.25 }}
                   >
-                    <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
+                    <label className="block text-sm font-semibold text-dark  mb-2">
                       Subject *
                     </label>
                     <select
                       name="subject"
                       value={formData.subject}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition"
+                      className="w-full px-4 py-3 border-2 border-gray-200  rounded-lg bg-white  text-dark  focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition"
                     >
                       <option value="">Select a subject...</option>
                       <option value="general">General Inquiry</option>
@@ -394,7 +394,7 @@ const ContactPage = () => {
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 }}
                   >
-                    <label className="block text-sm font-semibold text-dark dark:text-white mb-2">
+                    <label className="block text-sm font-semibold text-dark  mb-2">
                       Message *
                     </label>
                     <textarea
@@ -403,7 +403,7 @@ const ContactPage = () => {
                       onChange={handleInputChange}
                       placeholder="Your message here..."
                       rows="5"
-                      className="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition resize-none"
+                      className="w-full px-4 py-3 border-2 border-gray-200  rounded-lg bg-white  text-dark  placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition resize-none"
                     />
                   </motion.div>
 
@@ -446,8 +446,8 @@ const ContactPage = () => {
             transition={{ duration: 0.6 }}
           >
             {/* Quick Links */}
-            <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-soft">
-              <h3 className="text-2xl font-bold text-dark dark:text-white mb-6">
+            <div className="bg-white  p-8 rounded-2xl shadow-soft">
+              <h3 className="text-2xl font-bold text-dark  mb-6">
                 🔗 Quick Links
               </h3>
               <div className="space-y-3">
@@ -464,11 +464,11 @@ const ContactPage = () => {
                     whileHover={link.action ? { x: 8 } : {}}
                     className={`w-full text-left px-4 py-3 rounded-lg transition flex items-center justify-between ${
                       link.action
-                        ? 'bg-gray-100 dark:bg-gray-700 hover:bg-primary-100 dark:hover:bg-primary-900/30 cursor-pointer'
-                        : 'bg-gray-100 dark:bg-gray-700 opacity-60 cursor-not-allowed'
+                        ? 'bg-gray-100  hover:bg-primary-100 :bg-primary-900/30 cursor-pointer'
+                        : 'bg-gray-100  opacity-60 cursor-not-allowed'
                     }`}
                   >
-                    <span className="font-semibold text-dark dark:text-white">
+                    <span className="font-semibold text-dark ">
                       {link.emoji} {link.text}
                     </span>
                     <span className={link.action ? 'text-primary-500' : 'text-gray-400'}>→</span>
@@ -478,8 +478,8 @@ const ContactPage = () => {
             </div>
 
             {/* Social Media */}
-            <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-soft">
-              <h3 className="text-2xl font-bold text-dark dark:text-white mb-6">
+            <div className="bg-white  p-8 rounded-2xl shadow-soft">
+              <h3 className="text-2xl font-bold text-dark  mb-6">
                 🌐 Follow Us
               </h3>
               <div className="grid grid-cols-2 gap-4">
@@ -501,14 +501,14 @@ const ContactPage = () => {
 
             {/* Response Time */}
             <motion.div
-              className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 border-2 border-amber-500/50 dark:border-amber-500/30 p-6 rounded-2xl"
+              className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 border-2 border-amber-500/50  p-6 rounded-2xl"
               whileHover={{ scale: 1.02 }}
             >
-              <h4 className="font-bold text-dark dark:text-white mb-2">⏱️ Response Time</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <h4 className="font-bold text-dark  mb-2">⏱️ Response Time</h4>
+              <p className="text-sm text-gray-600 ">
                 We typically respond within <strong>24 hours</strong> during business hours.
               </p>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+              <p className="text-sm text-gray-600  mt-2">
                 For urgent issues, call us directly at <strong>+91 98765 43210</strong>
               </p>
             </motion.div>
@@ -518,7 +518,7 @@ const ContactPage = () => {
 
       {/* FAQ Section */}
       <motion.section
-        className="py-16 px-4 bg-white dark:bg-gray-800"
+        className="py-16 px-4 bg-white "
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -531,10 +531,10 @@ const ContactPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-dark dark:text-white mb-4">
+            <h2 className="text-4xl font-bold text-dark  mb-4">
               Frequently Asked Questions 🤔
             </h2>
-            <p className="text-gray-600 dark:text-gray-400 text-lg">
+            <p className="text-gray-600  text-lg">
               Find answers to common questions about QuickBite
             </p>
           </motion.div>
@@ -550,12 +550,12 @@ const ContactPage = () => {
               <motion.div
                 key={index}
                 variants={staggerItem}
-                className="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl hover:shadow-lg transition border-l-4 border-primary-500"
+                className="bg-gray-50  p-6 rounded-xl hover:shadow-lg transition border-l-4 border-primary-500"
               >
-                <h4 className="font-bold text-dark dark:text-white mb-3 text-lg">
+                <h4 className="font-bold text-dark  mb-3 text-lg">
                   {faq.question}
                 </h4>
-                <p className="text-gray-600 dark:text-gray-300">
+                <p className="text-gray-600 ">
                   {faq.answer}
                 </p>
               </motion.div>

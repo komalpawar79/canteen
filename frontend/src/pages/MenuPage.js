@@ -136,7 +136,7 @@ const MenuPage = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-dark py-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100   py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Loading State */}
         {loading && (
@@ -146,7 +146,7 @@ const MenuPage = () => {
             animate={{ opacity: 1 }}
           >
             <div className="text-5xl mb-4 animate-bounce">⏳</div>
-            <p className="text-lg text-gray-600 dark:text-gray-400">Loading menu items...</p>
+            <p className="text-lg text-gray-600 ">Loading menu items...</p>
           </motion.div>
         )}
 
@@ -159,8 +159,8 @@ const MenuPage = () => {
         >
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-5xl font-black text-dark dark:text-white mb-2">🍔 Explore Menu</h1>
-              <p className="text-lg text-gray-600 dark:text-gray-400">
+              <h1 className="text-5xl font-black text-dark  mb-2">🍔 Explore Menu</h1>
+              <p className="text-lg text-gray-600 ">
                 {uniqueCanteen 
                   ? `Order from ${uniqueCanteen.name}` 
                   : `Browse and order from ${canteens.length} campus canteens • ${menuItems.length} items`
@@ -168,7 +168,7 @@ const MenuPage = () => {
               </p>
             </div>
             <div className="text-right hidden md:block">
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="text-sm text-gray-600 ">
                 📍 {sortedItems.length} Items Available
               </div>
             </div>
@@ -185,7 +185,7 @@ const MenuPage = () => {
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <div className="flex items-center gap-3 mb-6">
-            <h2 className="text-3xl font-bold text-dark dark:text-white">🎁 Special Offers</h2>
+            <h2 className="text-3xl font-bold text-dark ">🎁 Special Offers</h2>
             <span className="inline-block bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse">LIMITED TIME</span>
           </div>
           
@@ -252,7 +252,7 @@ const MenuPage = () => {
                 placeholder="Search dishes, canteens..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-gray-800 text-dark dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition"
+                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200  rounded-xl bg-white  text-dark  placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition"
               />
             </div>
 
@@ -261,7 +261,7 @@ const MenuPage = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-3 pr-10 border-2 border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-gray-800 text-dark dark:text-white focus:outline-none focus:border-primary-500 appearance-none cursor-pointer transition"
+                className="px-4 py-3 pr-10 border-2 border-gray-200  rounded-xl bg-white  text-dark  focus:outline-none focus:border-primary-500 appearance-none cursor-pointer transition"
               >
                 <option value="popular">⭐ Popular</option>
                 <option value="newest">🆕 Newest</option>
@@ -277,7 +277,7 @@ const MenuPage = () => {
               className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition ${
                 showFilters
                   ? 'bg-primary-500 text-white'
-                  : 'bg-gray-200 dark:bg-gray-800 text-dark dark:text-white hover:bg-gray-300 dark:hover:bg-gray-700'
+                  : 'bg-gray-200  text-dark  hover:bg-gray-300 :bg-gray-700'
               }`}
             >
               <FiFilter />
@@ -289,20 +289,20 @@ const MenuPage = () => {
         {/* Advanced Filters */}
         {showFilters && (
           <motion.div
-            className="mb-8 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-soft border border-gray-200 dark:border-gray-700"
+            className="mb-8 bg-white  p-6 rounded-2xl shadow-soft border border-gray-200 "
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             transition={{ duration: 0.3 }}
           >
-            <h3 className="font-bold text-dark dark:text-white mb-4">Filter Options</h3>
+            <h3 className="font-bold text-dark  mb-4">Filter Options</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
               {/* Dietary Filter */}
               <div>
-                <label className="block text-sm font-semibold text-dark dark:text-white mb-2">🥗 Dietary</label>
+                <label className="block text-sm font-semibold text-dark  mb-2">🥗 Dietary</label>
                 <select
                   value={filters.dietary}
                   onChange={(e) => setFilters({ ...filters, dietary: e.target.value })}
-                  className="w-full px-4 py-2 border-2 border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white focus:border-primary-500 transition"
+                  className="w-full px-4 py-2 border-2 border-gray-200  rounded-lg bg-white  text-dark  focus:border-primary-500 transition"
                 >
                   <option value="">All Options</option>
                   <option value="veg">Vegetarian</option>
@@ -313,11 +313,11 @@ const MenuPage = () => {
 
               {/* Category Filter */}
               <div>
-                <label className="block text-sm font-semibold text-dark dark:text-white mb-2">📂 Category</label>
+                <label className="block text-sm font-semibold text-dark  mb-2">📂 Category</label>
                 <select
                   value={filters.category}
                   onChange={(e) => setFilters({ ...filters, category: e.target.value })}
-                  className="w-full px-4 py-2 border-2 border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white focus:border-primary-500 transition"
+                  className="w-full px-4 py-2 border-2 border-gray-200  rounded-lg bg-white  text-dark  focus:border-primary-500 transition"
                 >
                   <option value="">All Items</option>
                   <option value="breakfast">☀️ Breakfast</option>
@@ -329,11 +329,11 @@ const MenuPage = () => {
 
               {/* Price Range Filter */}
               <div>
-                <label className="block text-sm font-semibold text-dark dark:text-white mb-2">💵 Price Range</label>
+                <label className="block text-sm font-semibold text-dark  mb-2">💵 Price Range</label>
                 <select
                   value={filters.priceRange}
                   onChange={(e) => setFilters({ ...filters, priceRange: e.target.value })}
-                  className="w-full px-4 py-2 border-2 border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white focus:border-primary-500 transition"
+                  className="w-full px-4 py-2 border-2 border-gray-200  rounded-lg bg-white  text-dark  focus:border-primary-500 transition"
                 >
                   <option value="all">All Prices</option>
                   <option value="0-100">₹0 - ₹100</option>
@@ -350,7 +350,7 @@ const MenuPage = () => {
                     setFilters({ dietary: '', priceRange: 'all', category: '' });
                     setSearchQuery('');
                   }}
-                  className="w-full px-4 py-2 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/50 transition font-semibold"
+                  className="w-full px-4 py-2 bg-red-100  text-red-600  rounded-lg hover:bg-red-200 :bg-red-900/50 transition font-semibold"
                 >
                   🔄 Reset All
                 </button>
@@ -366,7 +366,7 @@ const MenuPage = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <h3 className="text-lg font-bold text-dark dark:text-white mb-4">📍 Select Canteen</h3>
+          <h3 className="text-lg font-bold text-dark  mb-4">📍 Select Canteen</h3>
           <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide">
             <motion.button
               onClick={() => setSelectedCanteen(null)}
@@ -375,7 +375,7 @@ const MenuPage = () => {
               className={`px-6 py-3 rounded-xl whitespace-nowrap font-semibold transition ${
                 selectedCanteen === null
                   ? 'bg-gradient-to-r from-primary-500 to-secondary-500 text-white shadow-lg'
-                  : 'bg-white dark:bg-gray-800 text-dark dark:text-white border-2 border-gray-200 dark:border-gray-700 hover:border-primary-500'
+                  : 'bg-white  text-dark  border-2 border-gray-200  hover:border-primary-500'
               }`}
             >
               ✨ All Canteens
@@ -389,7 +389,7 @@ const MenuPage = () => {
                 className={`px-6 py-3 rounded-xl whitespace-nowrap font-semibold transition flex items-center gap-2 ${
                   selectedCanteen?._id === canteen._id
                     ? 'bg-gradient-to-r from-primary-500 to-secondary-500 text-white shadow-lg'
-                    : 'bg-white dark:bg-gray-800 text-dark dark:text-white border-2 border-gray-200 dark:border-gray-700 hover:border-primary-500'
+                    : 'bg-white  text-dark  border-2 border-gray-200  hover:border-primary-500'
                 }`}
               >
                 <span className="text-2xl">🍽️</span>
@@ -408,7 +408,7 @@ const MenuPage = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <div className="text-sm text-gray-600 dark:text-gray-400 font-semibold">
+          <div className="text-sm text-gray-600  font-semibold">
             {sortedItems.length === 0 ? (
               <span>❌ No items found</span>
             ) : (
@@ -459,8 +459,8 @@ const MenuPage = () => {
             transition={{ duration: 0.5 }}
           >
             <div className="text-5xl mb-4">🍽️</div>
-            <h3 className="text-2xl font-bold text-dark dark:text-white mb-2">No items found</h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-6">
+            <h3 className="text-2xl font-bold text-dark  mb-2">No items found</h3>
+            <p className="text-gray-600  mb-6">
               Try adjusting your filters or search terms
             </p>
             <motion.button

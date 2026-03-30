@@ -48,13 +48,13 @@ const MyOrdersPage = () => {
     : orders.filter(order => order.status === filter);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
+    <div className="min-h-screen bg-gray-50  py-8">
       <div className="max-w-6xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <h1 className="text-4xl font-bold text-dark dark:text-white mb-8">My Orders</h1>
+          <h1 className="text-4xl font-bold text-dark  mb-8">My Orders</h1>
 
           {/* Filter Tabs */}
           <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
@@ -65,7 +65,7 @@ const MyOrdersPage = () => {
                 className={`px-4 py-2 rounded-lg font-semibold whitespace-nowrap transition ${
                   filter === status
                     ? 'bg-orange-600 text-white'
-                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100'
+                    : 'bg-white  text-gray-700  hover:bg-gray-100'
                 }`}
               >
                 {status.charAt(0).toUpperCase() + status.slice(1)}
@@ -80,9 +80,9 @@ const MyOrdersPage = () => {
               <p className="mt-4 text-gray-600">Loading orders...</p>
             </div>
           ) : filteredOrders.length === 0 ? (
-            <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-lg">
+            <div className="text-center py-12 bg-white  rounded-lg">
               <FiPackage className="mx-auto text-6xl text-gray-400 mb-4" />
-              <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
+              <h3 className="text-xl font-semibold text-gray-700  mb-2">
                 No orders found
               </h3>
               <p className="text-gray-500 mb-6">Start ordering delicious food!</p>
@@ -100,17 +100,17 @@ const MyOrdersPage = () => {
                   key={order._id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 hover:shadow-xl transition"
+                  className="bg-white  rounded-lg shadow-lg p-6 hover:shadow-xl transition"
                 >
                   <div className="flex justify-between items-start mb-4">
                     <div>
-                      <h3 className="text-lg font-bold text-dark dark:text-white">
+                      <h3 className="text-lg font-bold text-dark ">
                         Order #{order._id?.slice(-6)}
                       </h3>
                       <p className="text-sm text-gray-500">
                         {new Date(order.createdAt).toLocaleString()}
                       </p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      <p className="text-sm text-gray-600  mt-1">
                         {order.canteen?.name || 'Canteen'}
                       </p>
                     </div>
@@ -126,15 +126,15 @@ const MyOrdersPage = () => {
                   </div>
 
                   {/* Order Items */}
-                  <div className="border-t border-gray-200 dark:border-gray-700 pt-4 mb-4">
-                    <h4 className="font-semibold text-gray-700 dark:text-gray-300 mb-2">Items:</h4>
+                  <div className="border-t border-gray-200  pt-4 mb-4">
+                    <h4 className="font-semibold text-gray-700  mb-2">Items:</h4>
                     <div className="space-y-2">
                       {order.items?.map((item, idx) => (
                         <div key={idx} className="flex justify-between text-sm">
-                          <span className="text-gray-600 dark:text-gray-400">
+                          <span className="text-gray-600 ">
                             {item.menuItem?.name || 'Item'} x {item.quantity}
                           </span>
-                          <span className="font-semibold text-gray-700 dark:text-gray-300">
+                          <span className="font-semibold text-gray-700 ">
                             ₹{item.price * item.quantity}
                           </span>
                         </div>

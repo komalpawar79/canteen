@@ -215,7 +215,7 @@ const LandingPage = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-24 bg-gray-50 dark:bg-dark">
+      <section className="py-24 bg-gray-50 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -224,8 +224,8 @@ const LandingPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-5xl font-black text-dark dark:text-white mb-6">What Students Say 📢</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <h2 className="text-5xl font-black text-dark  mb-6">What Students Say 📢</h2>
+            <p className="text-xl text-gray-600  max-w-2xl mx-auto">
               Join 10K+ happy students who are already ordering from campus canteens.
             </p>
           </motion.div>
@@ -263,13 +263,13 @@ const LandingPage = () => {
               <motion.div 
                 key={index} 
                 variants={item}
-                className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-soft hover:shadow-xl transition-shadow border border-gray-100 dark:border-gray-700"
+                className="bg-white  p-8 rounded-2xl shadow-soft hover:shadow-xl transition-shadow border border-gray-100 "
               >
                 <div className="flex items-center mb-6">
                   <div className="text-5xl mr-4">{testimonial.avatar}</div>
                   <div>
-                    <h4 className="text-lg font-bold text-dark dark:text-white">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{testimonial.role}</p>
+                    <h4 className="text-lg font-bold text-dark ">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-600 ">{testimonial.role}</p>
                   </div>
                 </div>
                 <div className="flex mb-4">
@@ -277,7 +277,7 @@ const LandingPage = () => {
                     <span key={i} className="text-yellow-400 text-lg">⭐</span>
                   ))}
                 </div>
-                <p className="text-gray-600 dark:text-gray-300 text-lg italic">"{testimonial.text}"</p>
+                <p className="text-gray-600  text-lg italic">"{testimonial.text}"</p>
               </motion.div>
             ))}
           </motion.div>
@@ -285,7 +285,7 @@ const LandingPage = () => {
       </section>
 
       {/* How It Works */}
-      <section className="py-24 bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-gray-900 dark:to-dark">
+      <section className="py-24 bg-gradient-to-r from-primary-50 to-secondary-50  ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -294,8 +294,8 @@ const LandingPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-5xl font-black text-dark dark:text-white mb-6">How It Works? 🚀</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <h2 className="text-5xl font-black text-dark  mb-6">How It Works? 🚀</h2>
+            <p className="text-xl text-gray-600  max-w-2xl mx-auto">
               Get your favorite meal in just 3 simple steps
             </p>
           </motion.div>
@@ -317,13 +317,13 @@ const LandingPage = () => {
                 variants={item}
                 className="relative"
               >
-                <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl text-center shadow-soft hover:shadow-xl transition-all">
+                <div className="bg-white  p-8 rounded-2xl text-center shadow-soft hover:shadow-xl transition-all">
                   <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-full flex items-center justify-center text-white font-bold text-2xl mb-6 mx-auto">
                     {item.step}
                   </div>
                   <div className="text-4xl mb-4">{item.emoji}</div>
-                  <h3 className="text-2xl font-bold text-dark dark:text-white mb-3">{item.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300">{item.desc}</p>
+                  <h3 className="text-2xl font-bold text-dark  mb-3">{item.title}</h3>
+                  <p className="text-gray-600 ">{item.desc}</p>
                 </div>
                 {i < 2 && (
                   <div className="hidden md:flex absolute top-1/2 -right-4 transform -translate-y-1/2">

@@ -163,31 +163,31 @@ const OrderPage = () => {
   // ✅ If not authenticated, show loading while redirecting
   if (!isAuthenticated || !user) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50  flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400 font-semibold">Redirecting to login...</p>
+          <p className="text-gray-600  font-semibold">Redirecting to login...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
+    <div className="min-h-screen bg-gray-50  py-8">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-4xl font-bold text-dark dark:text-white mb-8">Order Summary</h1>
+          <h1 className="text-4xl font-bold text-dark  mb-8">Order Summary</h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Order Details */}
             <div className="lg:col-span-2 space-y-6">
               {/* Delivery Mode */}
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-soft">
-                <h2 className="text-2xl font-bold text-dark dark:text-white mb-4">Select Delivery Mode</h2>
+              <div className="bg-white  p-6 rounded-lg shadow-soft">
+                <h2 className="text-2xl font-bold text-dark  mb-4">Select Delivery Mode</h2>
                 <div className="space-y-3">
                   {[
                     { id: 'dine-in', label: 'Dine-In', icon: <FiHome className="text-2xl" /> },
@@ -200,7 +200,7 @@ const OrderPage = () => {
                       className={`w-full p-4 rounded-lg flex items-center space-x-4 transition ${
                         orderMode === mode.id
                           ? 'bg-primary-500 text-white'
-                          : 'bg-gray-100 dark:bg-gray-700 text-dark dark:text-white hover:bg-primary-100 dark:hover:bg-gray-600'
+                          : 'bg-gray-100  text-dark  hover:bg-primary-100 :bg-gray-600'
                       }`}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -213,8 +213,8 @@ const OrderPage = () => {
               </div>
 
               {/* Payment Method */}
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-soft">
-                <h2 className="text-2xl font-bold text-dark dark:text-white mb-4">Payment Method</h2>
+              <div className="bg-white  p-6 rounded-lg shadow-soft">
+                <h2 className="text-2xl font-bold text-dark  mb-4">Payment Method</h2>
                 <div className="space-y-3">
                   {[
                     { id: 'card', label: '💳 Debit/Credit Card' },
@@ -228,7 +228,7 @@ const OrderPage = () => {
                       className={`w-full p-4 rounded-lg text-left font-semibold transition ${
                         paymentMethod === method.id
                           ? 'bg-primary-500 text-white'
-                          : 'bg-gray-100 dark:bg-gray-700 text-dark dark:text-white hover:bg-primary-100 dark:hover:bg-gray-600'
+                          : 'bg-gray-100  text-dark  hover:bg-primary-100 :bg-gray-600'
                       }`}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -240,13 +240,13 @@ const OrderPage = () => {
               </div>
 
               {/* Special Requests */}
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-soft">
-                <h2 className="text-2xl font-bold text-dark dark:text-white mb-4">Special Requests</h2>
+              <div className="bg-white  p-6 rounded-lg shadow-soft">
+                <h2 className="text-2xl font-bold text-dark  mb-4">Special Requests</h2>
                 <textarea
                   value={specialRequests}
                   onChange={(e) => setSpecialRequests(e.target.value)}
                   placeholder="Add any special instructions for your order..."
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-dark dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  className="w-full px-4 py-3 border border-gray-300  rounded-lg bg-white  text-dark  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
                   rows="4"
                 />
               </div>
@@ -255,21 +255,21 @@ const OrderPage = () => {
             {/* Order Summary Sidebar */}
             <div className="lg:col-span-1">
               <motion.div
-                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-premium sticky top-24"
+                className="bg-white  p-6 rounded-lg shadow-premium sticky top-24"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <h3 className="text-2xl font-bold text-dark dark:text-white mb-6">Bill Summary</h3>
+                <h3 className="text-2xl font-bold text-dark  mb-6">Bill Summary</h3>
 
                 <div className="space-y-4 mb-6 max-h-64 overflow-y-auto">
                   {cart.length === 0 ? (
                     <p className="text-gray-500 text-center py-8">Your cart is empty</p>
                   ) : (
                     cart.map((item) => (
-                      <div key={item._id} className="flex justify-between items-center text-sm bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+                      <div key={item._id} className="flex justify-between items-center text-sm bg-gray-50  p-3 rounded-lg">
                         <div className="flex-1">
-                          <span className="text-gray-600 dark:text-gray-300">
+                          <span className="text-gray-600 ">
                             {item.name}
                           </span>
                           <div className="flex items-center gap-2 mt-1">
@@ -280,7 +280,7 @@ const OrderPage = () => {
                             >
                               <FiMinus size={12} />
                             </button>
-                            <span className="font-semibold text-dark dark:text-white w-6 text-center">
+                            <span className="font-semibold text-dark  w-6 text-center">
                               {item.quantity}
                             </span>
                             <button
@@ -292,10 +292,10 @@ const OrderPage = () => {
                           </div>
                         </div>
                         <div className="text-right">
-                          <span className="font-semibold text-dark dark:text-white block">
+                          <span className="font-semibold text-dark  block">
                             ₹{item.price * item.quantity}
                           </span>
-                          <span className="text-xs text-gray-500 dark:text-gray-400">
+                          <span className="text-xs text-gray-500 ">
                             ₹{item.price} each
                           </span>
                         </div>
@@ -304,17 +304,17 @@ const OrderPage = () => {
                   )}
                 </div>
 
-                <div className="border-t border-gray-200 dark:border-gray-700 pt-4 space-y-2">
+                <div className="border-t border-gray-200  pt-4 space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-600 dark:text-gray-400">Subtotal</span>
-                    <span className="text-dark dark:text-white font-semibold">₹{totalPrice}</span>
+                    <span className="text-gray-600 ">Subtotal</span>
+                    <span className="text-dark  font-semibold">₹{totalPrice}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-600 dark:text-gray-400">Tax (5%)</span>
-                    <span className="text-dark dark:text-white font-semibold">₹{tax}</span>
+                    <span className="text-gray-600 ">Tax (5%)</span>
+                    <span className="text-dark  font-semibold">₹{tax}</span>
                   </div>
-                  <div className="flex justify-between text-lg font-bold pt-2 border-t border-gray-200 dark:border-gray-700">
-                    <span className="text-dark dark:text-white">Total</span>
+                  <div className="flex justify-between text-lg font-bold pt-2 border-t border-gray-200 ">
+                    <span className="text-dark ">Total</span>
                     <span className="text-primary-500">₹{finalTotal}</span>
                   </div>
                 </div>
@@ -343,16 +343,16 @@ const OrderPage = () => {
             onClick={() => setShowSummary(false)}
           >
             <motion.div
-              className="bg-white dark:bg-gray-800 rounded-lg p-8 max-w-md w-full"
+              className="bg-white  rounded-lg p-8 max-w-md w-full"
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <h3 className="text-2xl font-bold text-dark dark:text-white mb-4">Confirm Order?</h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-6">
-                Order Mode: <span className="font-bold capitalize text-dark dark:text-white">{orderMode}</span>
+              <h3 className="text-2xl font-bold text-dark  mb-4">Confirm Order?</h3>
+              <p className="text-gray-600  mb-6">
+                Order Mode: <span className="font-bold capitalize text-dark ">{orderMode}</span>
                 <br />
-                Payment: <span className="font-bold capitalize text-dark dark:text-white">{paymentMethod}</span>
+                Payment: <span className="font-bold capitalize text-dark ">{paymentMethod}</span>
                 <br />
                 Total: <span className="font-bold text-primary-500">₹{finalTotal}</span>
               </p>
@@ -360,7 +360,7 @@ const OrderPage = () => {
                 <button
                   onClick={() => setShowSummary(false)}
                   disabled={loading}
-                  className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-dark dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition disabled:opacity-50"
+                  className="flex-1 px-4 py-2 border border-gray-300  rounded-lg text-dark  hover:bg-gray-100 :bg-gray-700 transition disabled:opacity-50"
                 >
                   Cancel
                 </button>
