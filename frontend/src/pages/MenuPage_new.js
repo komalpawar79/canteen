@@ -301,7 +301,7 @@ const MenuPage = () => {
                     setFilters({ dietary: '', priceRange: 'all', category: '' });
                     setSearchQuery('');
                   }}
-                  className="w-full px-4 py-2 bg-red-100  text-red-600  rounded-lg hover:bg-red-200 :bg-red-900/50 transition font-semibold"
+                  className="w-full px-4 py-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition font-semibold"
                 >
                   🔄 Reset All
                 </button>
