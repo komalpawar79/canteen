@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FiArrowRight, FiTrendingUp, FiShoppingCart, FiMapPin, FiZap, FiLock, FiStar } from 'react-icons/fi';
+import { FiArrowRight } from 'react-icons/fi';
 import LearnMoreModal from '../components/LearnMoreModal';
 
 const LandingPage = () => {
@@ -42,34 +42,19 @@ const LandingPage = () => {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white to-gray-50">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Geometric Pattern Background */}
-          <svg className="absolute inset-0 w-full h-full opacity-20" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <pattern id="dots" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
-                <circle cx="25" cy="25" r="2" fill="#22c55e" />
-              </pattern>
-              <pattern id="grid" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#22c55e" strokeWidth="0.5" opacity="0.3" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-            <rect width="100%" height="100%" fill="url(#dots)" />
-          </svg>
-
-          {/* Flowing Abstract Shapes */}
-          <div className="absolute inset-0">
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-green-400/20 to-green-500/10 rounded-full blur-3xl" />
-            <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-bl from-emerald-400/20 to-green-500/10 rounded-full blur-3xl" style={{ animation: 'float 6s ease-in-out infinite' }} />
-            <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-gradient-to-t from-green-300/15 to-green-400/5 rounded-full blur-3xl" />
-          </div>
-
-          {/* Wave Pattern */}
-          <svg className="absolute bottom-0 left-0 right-0 opacity-15" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,50 Q300,0 600,50 T1200,50 L1200,120 L0,120 Z" fill="#22c55e" />
-          </svg>
+          {/* Food images background */}
+          <div
+            className="absolute inset-0 bg-cover bg-center opacity-10"
+            style={{
+              backgroundImage:
+                'url("https://images.unsplash.com/photo-1546833999-b9f581a1996d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+              backgroundAttachment: 'fixed',
+              transform: `translateY(${scrollY * 0.5}px)`,
+            }}
+          />
           
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-white/10 to-gray-50/50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/20 to-gray-50/80" />
           
           {/* Animated Particles */}
           <div className="absolute top-20 left-10 w-72 h-72 bg-primary-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" />
@@ -127,15 +112,9 @@ const LandingPage = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            {[
-              { icon: <FiZap className="w-4 h-4" />, text: '30-Min Delivery' },
-              { icon: <FiLock className="w-4 h-4" />, text: 'Secure Payment' },
-              { icon: <FiMapPin className="w-4 h-4" />, text: 'Live Tracking' },
-              { icon: <FiStar className="w-4 h-4" />, text: 'Trusted Reviews' },
-            ].map((feature, i) => (
-              <div key={i} className="bg-green-100/50 backdrop-blur-md border border-green-300 px-4 py-2 rounded-full text-sm text-slate-700 font-semibold hover:bg-green-200 transition flex items-center gap-2">
-                {feature.icon}
-                {feature.text}
+            {['⚡ 30-Min Delivery', '🔒 Secure Payment', '📍 Live Tracking', '⭐ Trusted Reviews'].map((feature, i) => (
+              <div key={i} className="bg-green-100/50 backdrop-blur-md border border-green-300 px-4 py-2 rounded-full text-sm text-slate-700 font-semibold hover:bg-green-200 transition">
+                {feature}
               </div>
             ))}
           </motion.div>
@@ -192,7 +171,7 @@ const LandingPage = () => {
         </motion.div>
       </section>
 
-      {/* Features Section */}
+      {/* Features Section - Why Students Love Us */}
       <section id="features" className="py-24 bg-gradient-to-br from-white via-green-50/30 to-white relative overflow-hidden">
         {/* Premium Background Effects */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-green-200/15 rounded-full blur-3xl" />
@@ -240,7 +219,7 @@ const LandingPage = () => {
                 
                 {/* Card - Premium Design */}
                 <div className="relative bg-gradient-to-br from-white to-green-50/50 border-1.5 border-green-200/80 p-6 rounded-2xl hover:border-green-400 transition-all duration-300 hover:shadow-xl transform group-hover:scale-102 h-full flex flex-col backdrop-blur-sm">
-                  {/* icon */}
+                  {/* Icon */}
                   <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300 transform group-hover:rotate-12">
                     {feature.icon}
                   </div>
@@ -261,28 +240,10 @@ const LandingPage = () => {
               </motion.div>
             ))}
           </motion.div>
-                  </div>
-                  
-                  {/* Title */}
-                  <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-4">
-                    {feature.title}
-                  </h3>
-                  
-                  {/* Description */}
-                  <p className="text-slate-700 text-lg leading-relaxed flex-grow">
-                    {feature.description}
-                  </p>
-                  
-                  {/* Animated Bottom Line */}
-                  <div className="mt-6 h-1.5 w-12 bg-gradient-to-r from-green-500 via-green-600 to-emerald-600 group-hover:w-full transition-all duration-300 rounded-full" />
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Testimonials Section - Premium */}
       <section className="py-24 bg-gradient-to-b from-white via-green-50 to-white relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute top-0 left-0 w-96 h-96 bg-green-200/20 rounded-full blur-3xl" />
@@ -457,21 +418,6 @@ const LandingPage = () => {
                     {item.desc}
                   </p>
                 </div>
-              </motion.div>
-            ))}
-          </motion.div>
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-full flex items-center justify-center text-white font-bold text-2xl mb-6 mx-auto">
-                    {item.step}
-                  </div>
-                  <div className="text-4xl mb-4">{item.emoji}</div>
-                  <h3 className="text-2xl font-bold text-dark  mb-3">{item.title}</h3>
-                  <p className="text-gray-600 ">{item.desc}</p>
-                </div>
-                {i < 2 && (
-                  <div className="hidden md:flex absolute top-1/2 -right-4 transform -translate-y-1/2">
-                    <FiArrowRight className="text-primary-500 text-3xl" />
-                  </div>
-                )}
               </motion.div>
             ))}
           </motion.div>
