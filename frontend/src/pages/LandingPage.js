@@ -39,12 +39,12 @@ const LandingPage = () => {
     <>
       <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-900 via-dark to-secondary-900">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white to-gray-50">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Food images background */}
           <div
-            className="absolute inset-0 bg-cover bg-center opacity-25"
+            className="absolute inset-0 bg-cover bg-center opacity-10"
             style={{
               backgroundImage:
                 'url("https://images.unsplash.com/photo-1546833999-b9f581a1996d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
@@ -54,7 +54,7 @@ const LandingPage = () => {
           />
           
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-dark/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/20 to-gray-50/80" />
           
           {/* Animated Particles */}
           <div className="absolute top-20 left-10 w-72 h-72 bg-primary-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" />
@@ -76,33 +76,33 @@ const LandingPage = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <span className="bg-primary-500/20 border border-primary-300 text-primary-200 px-6 py-2 rounded-full text-sm font-semibold backdrop-blur-sm">
+            <span className="bg-green-100 border border-green-400 text-green-700 px-6 py-2 rounded-full text-sm font-semibold backdrop-blur-sm">
               🎓 Your Campus Food Companion
             </span>
           </motion.div>
 
           {/* Main Heading */}
           <motion.h1 
-            className="text-6xl md:text-8xl font-black text-white mb-6 drop-shadow-2xl leading-tight"
+            className="text-6xl md:text-8xl font-black text-slate-900 mb-6 drop-shadow-lg leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             Fast Food,
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 via-yellow-200 to-secondary-300 animate-pulse">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-green-500 to-emerald-500 animate-pulse">
               Smart Choice!
             </span>
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p 
-            className="text-lg md:text-2xl text-gray-100 font-semibold mb-10 max-w-3xl mx-auto drop-shadow-lg leading-relaxed"
+            className="text-lg md:text-2xl text-slate-700 font-semibold mb-10 max-w-3xl mx-auto drop-shadow-lg leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Order delicious food from all campus canteens in <span className="text-primary-300 font-bold">just 3 taps</span>. Real-time tracking, easy payments, and meals delivered to your hostel or classroom.
+            Order delicious food from all campus canteens in <span className="text-green-600 font-bold">just 3 taps</span>. Real-time tracking, easy payments, and meals delivered to your hostel or classroom.
           </motion.p>
 
           {/* Feature Pills */}
@@ -113,7 +113,7 @@ const LandingPage = () => {
             transition={{ duration: 0.6, delay: 0.5 }}
           >
             {['⚡ 30-Min Delivery', '🔒 Secure Payment', '📍 Live Tracking', '⭐ Trusted Reviews'].map((feature, i) => (
-              <div key={i} className="bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full text-sm text-white font-semibold hover:bg-white/20 transition">
+              <div key={i} className="bg-green-100/50 backdrop-blur-md border border-green-300 px-4 py-2 rounded-full text-sm text-slate-700 font-semibold hover:bg-green-200 transition">
                 {feature}
               </div>
             ))}
@@ -128,14 +128,14 @@ const LandingPage = () => {
           >
             <Link
               to="/menu"
-              className="flex items-center space-x-2 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white text-lg px-10 py-4 rounded-full font-bold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all"
+              className="flex items-center space-x-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white text-lg px-10 py-4 rounded-full font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
             >
               <span>🚀 Explore Menu</span>
               <FiArrowRight className="animate-bounce" />
             </Link>
             <button
               onClick={() => setShowLearnMore(true)}
-              className="bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 text-white text-lg px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105"
+              className="bg-slate-300/50 backdrop-blur-md border border-slate-400 hover:bg-slate-400 text-slate-700 text-lg px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105"
             >
               ℹ️ Learn More
             </button>
@@ -153,9 +153,9 @@ const LandingPage = () => {
               { number: '15+', label: 'Canteens' },
               { number: '2K+', label: 'Dishes' },
             ].map((stat, i) => (
-              <div key={i} className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-4 hover:bg-white/20 transition">
-                <div className="text-2xl md:text-3xl font-bold text-primary-300">{stat.number}</div>
-                <div className="text-sm text-gray-200 font-semibold mt-1">{stat.label}</div>
+              <div key={i} className="bg-green-100/50 backdrop-blur-md border border-green-300 rounded-lg p-4 hover:bg-green-200 transition">
+                <div className="text-2xl md:text-3xl font-bold text-green-700">{stat.number}</div>
+                <div className="text-sm text-slate-700 font-semibold mt-1">{stat.label}</div>
               </div>
             ))}
           </motion.div>
@@ -167,15 +167,15 @@ const LandingPage = () => {
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <div className="text-white text-4xl drop-shadow-lg">↓</div>
+          <div className="text-slate-700 text-4xl drop-shadow-lg">↓</div>
         </motion.div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-24 bg-gradient-to-br from-gray-900 via-dark to-gray-900 relative overflow-hidden">
+      <section id="features" className="py-24 bg-gradient-to-br from-white to-gray-50 relative overflow-hidden">
         {/* Background Elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-green-200/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-green-100/20 rounded-full blur-3xl" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
@@ -185,8 +185,8 @@ const LandingPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-5xl md:text-6xl font-black text-white mb-6">Why Students Love Us 💕</h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6">Why Students Love Us 💕</h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Built specifically for campus life – fast, affordable, and designed to save your time during study hours.
             </p>
           </motion.div>
@@ -202,12 +202,12 @@ const LandingPage = () => {
               <motion.div 
                 key={index} 
                 variants={item} 
-                className="group bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 p-8 rounded-2xl hover:border-primary-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary-500/20 transform hover:scale-105"
+                className="group bg-gradient-to-br from-green-50 to-green-100 border border-green-300 p-8 rounded-2xl hover:border-green-500 transition-all duration-300 hover:shadow-xl hover:shadow-green-200 transform hover:scale-105"
               >
                 <div className="text-6xl mb-6 group-hover:scale-125 transition-transform duration-300">{feature.icon}</div>
-                <h3 className="text-2xl font-bold text-white mb-4">{feature.title}</h3>
-                <p className="text-gray-300 text-lg leading-relaxed">{feature.description}</p>
-                <div className="mt-6 h-1 w-12 bg-gradient-to-r from-primary-500 to-secondary-500 group-hover:w-full transition-all duration-300 rounded-full" />
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">{feature.title}</h3>
+                <p className="text-slate-700 text-lg leading-relaxed">{feature.description}</p>
+                <div className="mt-6 h-1 w-12 bg-gradient-to-r from-green-500 to-green-600 group-hover:w-full transition-all duration-300 rounded-full" />
               </motion.div>
             ))}
           </motion.div>
