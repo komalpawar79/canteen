@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FiArrowRight } from 'react-icons/fi';
+import { FiArrowRight, FiTrendingUp, FiShoppingCart, FiMapPin, FiZap, FiLock, FiStar } from 'react-icons/fi';
 import LearnMoreModal from '../components/LearnMoreModal';
 
 const LandingPage = () => {
@@ -127,9 +127,15 @@ const LandingPage = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            {['⚡ 30-Min Delivery', '🔒 Secure Payment', '📍 Live Tracking', '⭐ Trusted Reviews'].map((feature, i) => (
-              <div key={i} className="bg-green-100/50 backdrop-blur-md border border-green-300 px-4 py-2 rounded-full text-sm text-slate-700 font-semibold hover:bg-green-200 transition">
-                {feature}
+            {[
+              { icon: <FiZap className="w-4 h-4" />, text: '30-Min Delivery' },
+              { icon: <FiLock className="w-4 h-4" />, text: 'Secure Payment' },
+              { icon: <FiMapPin className="w-4 h-4" />, text: 'Live Tracking' },
+              { icon: <FiStar className="w-4 h-4" />, text: 'Trusted Reviews' },
+            ].map((feature, i) => (
+              <div key={i} className="bg-green-100/50 backdrop-blur-md border border-green-300 px-4 py-2 rounded-full text-sm text-slate-700 font-semibold hover:bg-green-200 transition flex items-center gap-2">
+                {feature.icon}
+                {feature.text}
               </div>
             ))}
           </motion.div>
@@ -187,10 +193,11 @@ const LandingPage = () => {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-24 bg-gradient-to-br from-white to-gray-50 relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-green-200/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-green-100/20 rounded-full blur-3xl" />
+      <section id="features" className="py-24 bg-gradient-to-br from-white via-green-50/30 to-white relative overflow-hidden">
+        {/* Premium Background Effects */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-green-200/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-200/15 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-96 h-96 bg-green-300/10 rounded-full blur-3xl" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
@@ -200,6 +207,14 @@ const LandingPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
+            <motion.div
+              className="inline-block mb-6 px-6 py-3 bg-green-100 border border-green-400 rounded-full"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <span className="text-green-700 font-bold text-sm">⭐ WHY CHOOSE US</span>
+            </motion.div>
             <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6">Why Students Love Us 💕</h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Built specifically for campus life – fast, affordable, and designed to save your time during study hours.
@@ -207,27 +222,45 @@ const LandingPage = () => {
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4"
             variants={container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
           >
-            {features.map((feature, index) => (
+            {features.slice(0, 6).map((feature, index) => (
               <motion.div 
                 key={index} 
                 variants={item}
-                whileHover={{ y: -10 }}
+                whileHover={{ y: -8 }}
                 className="group relative h-full"
               >
-                {/* Gradient Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 to-emerald-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300 opacity-0 group-hover:opacity-100" />
+                {/* Premium Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-green-400/25 to-emerald-500/25 rounded-2xl blur-lg group-hover:blur-xl transition-all duration-300 opacity-0 group-hover:opacity-100" />
                 
-                {/* Card */}
-                <div className="relative bg-gradient-to-br from-white to-green-50 border-2 border-green-200 p-8 rounded-3xl hover:border-green-500 transition-all duration-300 hover:shadow-2xl transform group-hover:scale-105 h-full flex flex-col">
-                  {/* Icon Container */}
-                  <div className="text-7xl mb-6 group-hover:scale-125 transition-transform duration-300 transform group-hover:rotate-12">
+                {/* Card - Premium Design */}
+                <div className="relative bg-gradient-to-br from-white to-green-50/50 border-1.5 border-green-200/80 p-6 rounded-2xl hover:border-green-400 transition-all duration-300 hover:shadow-xl transform group-hover:scale-102 h-full flex flex-col backdrop-blur-sm">
+                  {/* icon */}
+                  <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300 transform group-hover:rotate-12">
                     {feature.icon}
+                  </div>
+                  
+                  {/* Title */}
+                  <h3 className="text-lg font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-2">
+                    {feature.title}
+                  </h3>
+                  
+                  {/* Description */}
+                  <p className="text-slate-700 text-sm leading-snug flex-grow">
+                    {feature.description}
+                  </p>
+                  
+                  {/* Animated Bottom Accent */}
+                  <div className="mt-4 h-1 w-6 bg-gradient-to-r from-green-500 to-emerald-600 group-hover:w-full transition-all duration-300 rounded-full" />
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
                   </div>
                   
                   {/* Title */}
@@ -347,40 +380,86 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="py-24 bg-gradient-to-r from-primary-50 to-secondary-50  ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* How It Works - Premium Section */}
+      <section className="py-24 bg-gradient-to-b from-white to-green-50/50 relative overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 right-20 w-72 h-72 bg-green-200/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 left-20 w-72 h-72 bg-emerald-200/20 rounded-full blur-3xl" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-20"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-5xl font-black text-dark  mb-6">How It Works? 🚀</h2>
-            <p className="text-xl text-gray-600  max-w-2xl mx-auto">
+            <motion.div
+              className="inline-block mb-6 px-6 py-3 bg-green-100 border border-green-400 rounded-full"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <span className="text-green-700 font-bold text-sm">🚀 SIMPLE PROCESS</span>
+            </motion.div>
+            <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6">How It Works? 🎯</h2>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
               Get your favorite meal in just 3 simple steps
             </p>
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
             variants={container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
           >
             {[
-              { step: 1, title: 'Browse & Select', desc: 'Explore menus from all campus canteens', emoji: '🔍' },
-              { step: 2, title: 'Quick Checkout', desc: 'Pay securely via UPI or Card', emoji: '💳' },
-              { step: 3, title: 'Get Delivered', desc: 'Receive hot meals in 30 minutes', emoji: '🚚' },
+              { step: 1, title: 'Browse & Select', desc: 'Explore menus from all campus canteens', icon: <FiShoppingCart className="w-8 h-8" /> },
+              { step: 2, title: 'Quick Checkout', desc: 'Pay securely via UPI or Card', icon: <FiLock className="w-8 h-8" /> },
+              { step: 3, title: 'Get Delivered', desc: 'Receive hot meals in 30 minutes', icon: <FiTrendingUp className="w-8 h-8" /> },
             ].map((item, i) => (
               <motion.div 
                 key={i} 
                 variants={item}
-                className="relative"
+                className="group relative"
               >
-                <div className="bg-white  p-8 rounded-2xl text-center shadow-soft hover:shadow-xl transition-all">
+                {/* Connector Line */}
+                {i < 2 && (
+                  <div className="hidden md:block absolute top-20 -right-4 w-8 h-1 bg-gradient-to-r from-green-500 to-emerald-600" />
+                )}
+
+                {/* Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 to-emerald-500/20 rounded-2xl blur-lg group-hover:blur-xl transition-all duration-300 opacity-0 group-hover:opacity-100" />
+
+                {/* Card */}
+                <div className="relative bg-gradient-to-br from-white to-green-50/50 border-2 border-green-200 p-8 rounded-2xl hover:border-green-400 transition-all duration-300 hover:shadow-2xl text-center h-full flex flex-col items-center justify-center">
+                  {/* Step Number */}
+                  <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                    {item.step}
+                  </div>
+
+                  {/* Icon */}
+                  <div className="text-5xl mb-6 text-green-600 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300 transform">
+                    {item.icon}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-2xl font-bold text-slate-900 mb-3">
+                    {item.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-slate-600 font-medium">
+                    {item.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
                   <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-full flex items-center justify-center text-white font-bold text-2xl mb-6 mx-auto">
                     {item.step}
                   </div>
