@@ -155,35 +155,34 @@ const AboutPage = () => {
       >
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* First Food Image */}
-          <div
-            className="absolute inset-0 bg-cover bg-center opacity-10"
-            style={{
-              backgroundImage:
-                'url("https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1200")',
-              backgroundAttachment: 'fixed',
-            }}
-          />
-          
-          {/* Second Food Image */}
-          <div
-            className="absolute inset-0 bg-cover bg-center opacity-10"
-            style={{
-              backgroundImage:
-                'url("https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1200")',
-              backgroundAttachment: 'fixed',
-              backgroundPosition: 'right',
-              mixBlendMode: 'overlay',
-            }}
-          />
+          {/* Geometric Pattern Background */}
+          <svg className="absolute inset-0 w-full h-full opacity-20" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <pattern id="dots-about" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+                <circle cx="25" cy="25" r="2" fill="#22c55e" />
+              </pattern>
+              <pattern id="grid-about" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#22c55e" strokeWidth="0.5" opacity="0.3" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid-about)" />
+            <rect width="100%" height="100%" fill="url(#dots-about)" />
+          </svg>
+
+          {/* Flowing Abstract Shapes */}
+          <div className="absolute inset-0">
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-green-400/20 to-green-500/10 rounded-full blur-3xl" />
+            <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-bl from-emerald-400/20 to-green-500/10 rounded-full blur-3xl" style={{ animation: 'float 6s ease-in-out infinite' }} />
+            <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-gradient-to-t from-green-300/15 to-green-400/5 rounded-full blur-3xl" />
+          </div>
+
+          {/* Wave Pattern */}
+          <svg className="absolute bottom-0 left-0 right-0 opacity-15" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,50 Q300,0 600,50 T1200,50 L1200,120 L0,120 Z" fill="#22c55e" />
+          </svg>
           
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/20 to-gray-50/80" />
-          
-          {/* Animated Particles */}
-          <div className="absolute top-20 left-10 w-72 h-72 bg-green-400 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-pulse" />
-          <div className="absolute -bottom-8 right-10 w-72 h-72 bg-green-300 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-pulse" style={{ animationDelay: '2s' }} />
-          <div className="absolute top-1/2 left-1/3 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '4s' }} />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-white/10 to-gray-50/50" />
         </div>
 
         {/* Hero Content */}
@@ -194,19 +193,19 @@ const AboutPage = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <motion.h1
-            className="text-6xl md:text-7xl font-black text-white mb-6 drop-shadow-2xl leading-tight"
+            className="text-6xl md:text-7xl font-black text-slate-900 mb-6 drop-shadow-lg leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             Welcome to
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 via-yellow-200 to-secondary-300 animate-pulse">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-emerald-500 to-green-700 animate-pulse">
               QuickBite 🎉
             </span>
           </motion.h1>
           <motion.p
-            className="text-lg md:text-2xl text-gray-100 font-semibold mb-10 drop-shadow-lg"
+            className="text-lg md:text-2xl text-slate-700 font-semibold mb-10 drop-shadow-lg"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
@@ -254,15 +253,23 @@ const AboutPage = () => {
               <motion.div
                 key={index}
                 variants={staggerItem}
-                className="bg-white  p-6 rounded-2xl text-center shadow-soft hover:shadow-lg transition"
-                whileHover={{ y: -5 }}
+                whileHover={{ y: -10 }}
+                className="group relative"
               >
-                <Icon className="text-4xl text-primary-500 mx-auto mb-3" />
-                <div className="text-3xl font-black text-dark  mb-1">
-                  {stat.value}
-                </div>
-                <div className="text-gray-600  font-semibold">
-                  {stat.label}
+                {/* Glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 to-emerald-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300 opacity-0 group-hover:opacity-100" />
+                
+                {/* Card */}
+                <div className="relative bg-gradient-to-br from-white to-green-50 border-2 border-green-200 p-8 rounded-3xl hover:border-green-500 transition-all duration-300 hover:shadow-2xl text-center">
+                  <div className="text-5xl text-green-600 mx-auto mb-4 transform group-hover:scale-125 transition-transform duration-300">
+                    <Icon />
+                  </div>
+                  <div className="text-4xl font-black bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-slate-700 font-bold text-lg">
+                    {stat.label}
+                  </div>
                 </div>
               </motion.div>
             );
@@ -286,10 +293,10 @@ const AboutPage = () => {
               onClick={() => setActiveTab(tab)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-8 py-3 rounded-xl font-bold capitalize transition ${
+              className={`px-8 py-3 rounded-full font-bold capitalize transition duration-300 ${
                 activeTab === tab
-                  ? 'bg-gradient-to-r from-primary-500 to-secondary-500 text-white shadow-lg'
-                  : 'bg-white  text-dark  hover:bg-gray-100 :bg-gray-700'
+                  ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg hover:shadow-2xl'
+                  : 'bg-white border-2 border-green-200 text-slate-700 hover:border-green-400 hover:shadow-lg'
               }`}
             >
               {tab === 'story' && '📖'} {tab === 'why' && '⭐'} {tab === 'campus' && '🏫'} {tab === 'team' && '👥'} {tab}
@@ -426,17 +433,26 @@ const AboutPage = () => {
                 <motion.div
                   key={index}
                   variants={staggerItem}
-                  whileHover={{ y: -8, rotateY: 5 }}
-                  className="bg-white  p-6 rounded-2xl shadow-soft hover:shadow-lg text-center transition"
+                  whileHover={{ y: -12 }}
+                  className="group relative"
                 >
-                  <div className="text-6xl mb-4">{member.emoji}</div>
-                  <h3 className="text-xl font-bold text-dark  mb-1">
-                    {member.name}
-                  </h3>
-                  <p className="text-primary-500 font-semibold mb-2">{member.role}</p>
-                  <p className="text-gray-600  text-sm">
-                    {member.specialty}
-                  </p>
+                  {/* Glow Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 to-emerald-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300 opacity-0 group-hover:opacity-100" />
+                  
+                  {/* Card */}
+                  <div className="relative bg-gradient-to-br from-white to-green-50 border-2 border-green-200 p-8 rounded-3xl hover:border-green-500 transition-all duration-300 hover:shadow-2xl text-center">
+                    <div className="text-7xl mb-4 transform group-hover:scale-125 group-hover:rotate-12 transition-transform duration-300">
+                      {member.emoji}
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-2">
+                      {member.name}
+                    </h3>
+                    <p className="text-green-600 font-bold text-sm mb-3">{member.role}</p>
+                    <div className="h-1 w-8 bg-gradient-to-r from-green-500 to-emerald-600 mx-auto mb-3 rounded-full" />
+                    <p className="text-slate-600 text-sm">
+                      {member.specialty}
+                    </p>
+                  </div>
                 </motion.div>
               ))}
             </motion.div>

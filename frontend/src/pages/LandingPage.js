@@ -42,19 +42,34 @@ const LandingPage = () => {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white to-gray-50">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Food images background */}
-          <div
-            className="absolute inset-0 bg-cover bg-center opacity-10"
-            style={{
-              backgroundImage:
-                'url("https://images.unsplash.com/photo-1546833999-b9f581a1996d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
-              backgroundAttachment: 'fixed',
-              transform: `translateY(${scrollY * 0.5}px)`,
-            }}
-          />
+          {/* Geometric Pattern Background */}
+          <svg className="absolute inset-0 w-full h-full opacity-20" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <pattern id="dots" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+                <circle cx="25" cy="25" r="2" fill="#22c55e" />
+              </pattern>
+              <pattern id="grid" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#22c55e" strokeWidth="0.5" opacity="0.3" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+            <rect width="100%" height="100%" fill="url(#dots)" />
+          </svg>
+
+          {/* Flowing Abstract Shapes */}
+          <div className="absolute inset-0">
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-green-400/20 to-green-500/10 rounded-full blur-3xl" />
+            <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-bl from-emerald-400/20 to-green-500/10 rounded-full blur-3xl" style={{ animation: 'float 6s ease-in-out infinite' }} />
+            <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-gradient-to-t from-green-300/15 to-green-400/5 rounded-full blur-3xl" />
+          </div>
+
+          {/* Wave Pattern */}
+          <svg className="absolute bottom-0 left-0 right-0 opacity-15" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,50 Q300,0 600,50 T1200,50 L1200,120 L0,120 Z" fill="#22c55e" />
+          </svg>
           
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/20 to-gray-50/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-white/10 to-gray-50/50" />
           
           {/* Animated Particles */}
           <div className="absolute top-20 left-10 w-72 h-72 bg-primary-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" />
@@ -201,13 +216,33 @@ const LandingPage = () => {
             {features.map((feature, index) => (
               <motion.div 
                 key={index} 
-                variants={item} 
-                className="group bg-gradient-to-br from-green-50 to-green-100 border border-green-300 p-8 rounded-2xl hover:border-green-500 transition-all duration-300 hover:shadow-xl hover:shadow-green-200 transform hover:scale-105"
+                variants={item}
+                whileHover={{ y: -10 }}
+                className="group relative h-full"
               >
-                <div className="text-6xl mb-6 group-hover:scale-125 transition-transform duration-300">{feature.icon}</div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-4">{feature.title}</h3>
-                <p className="text-slate-700 text-lg leading-relaxed">{feature.description}</p>
-                <div className="mt-6 h-1 w-12 bg-gradient-to-r from-green-500 to-green-600 group-hover:w-full transition-all duration-300 rounded-full" />
+                {/* Gradient Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 to-emerald-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300 opacity-0 group-hover:opacity-100" />
+                
+                {/* Card */}
+                <div className="relative bg-gradient-to-br from-white to-green-50 border-2 border-green-200 p-8 rounded-3xl hover:border-green-500 transition-all duration-300 hover:shadow-2xl transform group-hover:scale-105 h-full flex flex-col">
+                  {/* Icon Container */}
+                  <div className="text-7xl mb-6 group-hover:scale-125 transition-transform duration-300 transform group-hover:rotate-12">
+                    {feature.icon}
+                  </div>
+                  
+                  {/* Title */}
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-4">
+                    {feature.title}
+                  </h3>
+                  
+                  {/* Description */}
+                  <p className="text-slate-700 text-lg leading-relaxed flex-grow">
+                    {feature.description}
+                  </p>
+                  
+                  {/* Animated Bottom Line */}
+                  <div className="mt-6 h-1.5 w-12 bg-gradient-to-r from-green-500 via-green-600 to-emerald-600 group-hover:w-full transition-all duration-300 rounded-full" />
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -215,8 +250,12 @@ const LandingPage = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-24 bg-gray-50 ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 bg-gradient-to-b from-white via-green-50 to-white relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-green-200/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-200/20 rounded-full blur-3xl" />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
@@ -224,8 +263,11 @@ const LandingPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-5xl font-black text-dark  mb-6">What Students Say 📢</h2>
-            <p className="text-xl text-gray-600  max-w-2xl mx-auto">
+            <div className="inline-block mb-4 px-6 py-2 bg-green-100 border border-green-400 rounded-full">
+              <span className="text-green-700 font-bold text-sm">⭐ TESTIMONIALS</span>
+            </div>
+            <h2 className="text-5xl font-black text-slate-900 mb-6">What Students Say 📢</h2>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
               Join 10K+ happy students who are already ordering from campus canteens.
             </p>
           </motion.div>
@@ -263,21 +305,42 @@ const LandingPage = () => {
               <motion.div 
                 key={index} 
                 variants={item}
-                className="bg-white  p-8 rounded-2xl shadow-soft hover:shadow-xl transition-shadow border border-gray-100 "
+                whileHover={{ y: -10 }}
+                className="group relative"
               >
-                <div className="flex items-center mb-6">
-                  <div className="text-5xl mr-4">{testimonial.avatar}</div>
-                  <div>
-                    <h4 className="text-lg font-bold text-dark ">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-600 ">{testimonial.role}</p>
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 to-emerald-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300 opacity-0 group-hover:opacity-100" />
+                
+                {/* Card */}
+                <div className="relative bg-gradient-to-br from-white to-green-50 border-2 border-green-200 p-8 rounded-3xl hover:border-green-500 transition-all duration-300 hover:shadow-2xl">
+                  {/* Rating Stars */}
+                  <div className="flex mb-4 gap-1">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <motion.span 
+                        key={i} 
+                        className="text-xl"
+                        animate={{ scale: [1, 1.2, 1] }}
+                        transition={{ delay: i * 0.1, duration: 0.5 }}
+                      >
+                        ⭐
+                      </motion.span>
+                    ))}
+                  </div>
+                  
+                  {/* Testimonial Text */}
+                  <p className="text-slate-700 text-lg italic font-medium mb-6">
+                    "{testimonial.text}"
+                  </p>
+                  
+                  {/* Author */}
+                  <div className="flex items-center gap-4 pt-6 border-t-2 border-green-200">
+                    <div className="text-4xl">{testimonial.avatar}</div>
+                    <div>
+                      <h4 className="text-lg font-bold text-slate-900">{testimonial.name}</h4>
+                      <p className="text-sm text-green-600 font-semibold">{testimonial.role}</p>
+                    </div>
                   </div>
                 </div>
-                <div className="flex mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-lg">⭐</span>
-                  ))}
-                </div>
-                <p className="text-gray-600  text-lg italic">"{testimonial.text}"</p>
               </motion.div>
             ))}
           </motion.div>
